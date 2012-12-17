@@ -1,0 +1,27 @@
+//
+//  Created by Chris Kau on 4/12/12.
+//  Copyright (c) 2012 N/A. All rights reserved.
+//
+
+// Pull in general build settings
+#include "Drink.xcconfig"
+
+
+// Code Signing
+CODE_SIGN_IDENTITY = iPhone Developer
+CODE_SIGN_IDENTITY[sdk=iphoneos*] = iPhone Developer
+
+
+// Deployment
+DEPLOYMENT_POSTPROCESSING = NO
+COPY_PHASE_STRIP = NO
+STRIP_INSTALLED_PRODUCT = NO // only for Debug
+
+
+// LLVM GCC 4.2 - Code Generation
+GCC_OPTIMIZATION_LEVEL = 0 //Debug only
+
+
+// LLVM GCC 4.2 - Warnings
+WARNING_CFLAGS = -fcatch-undefined-behavior -fwrapv -fno-strict-aliasing
+
