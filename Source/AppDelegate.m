@@ -4,6 +4,7 @@
 //
 
 #import "AppDelegate.h"
+#import "AFNetworking.h"
 #import "DrinksViewController.h"
 #import "SecondViewController.h"
 
@@ -14,11 +15,12 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    // Override point for customization after application launch.
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+
     UIViewController *viewController1 = [[DrinksViewController alloc] init];
-    UIViewController *viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController" bundle:nil];
+    UIViewController *viewController2 = [[SecondViewController alloc] init];
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.title = NSLocalizedString(@"What Did I Drink?", @"");
+    self.tabBarController.title = NSLocalizedString(@"Drinks", @"");
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, nil];
 
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.tabBarController];

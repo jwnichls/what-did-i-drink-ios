@@ -14,6 +14,9 @@
 		8314787215EE9E3100EC21A3 /* drinks@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8314787115EE9E3100EC21A3 /* drinks@2x.png */; };
 		831AFC5715D9BC6400EF63B3 /* DrinkDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831AFC5615D9BC6400EF63B3 /* DrinkDetailsViewController.m */; };
 		831AFC7C15D9BD5600EF63B3 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 831AFC7115D9BD5600EF63B3 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		83358475168002B80066D745 /* UIImage-Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83358472168002B80066D745 /* UIImage-Extensions.m */; };
+		83358476168002B80066D745 /* UIView-Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83358474168002B80066D745 /* UIView-Extensions.m */; };
+		833584791680050B0066D745 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833584781680050B0066D745 /* SystemConfiguration.framework */; };
 		836F7F7F167FAA19002F30AB /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F7F6D167FAA19002F30AB /* AFHTTPClient.m */; };
 		836F7F80167FAA19002F30AB /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F7F6F167FAA19002F30AB /* AFHTTPRequestOperation.m */; };
 		836F7F81167FAA19002F30AB /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F7F71167FAA19002F30AB /* AFImageRequestOperation.m */; };
@@ -25,8 +28,6 @@
 		836F7F87167FAA19002F30AB /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F7F7E167FAA19002F30AB /* UIImageView+AFNetworking.m */; };
 		8377783C153768AB009EE79F /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 83777830153768AB009EE79F /* second.png */; };
 		8377783D153768AB009EE79F /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83777831153768AB009EE79F /* second@2x.png */; };
-		8377783E153768AB009EE79F /* DrinksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83777833153768AB009EE79F /* DrinksViewController.xib */; };
-		8377783F153768AB009EE79F /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83777835153768AB009EE79F /* SecondViewController.xib */; };
 		8377786D153768CD009EE79F /* Drink.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 83777868153768CD009EE79F /* Drink.xcconfig */; };
 		8377786E153768CD009EE79F /* Drink_Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 83777869153768CD009EE79F /* Drink_Debug.xcconfig */; };
 		8377786F153768CD009EE79F /* Drink_Distribution.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8377786A153768CD009EE79F /* Drink_Distribution.xcconfig */; };
@@ -54,6 +55,12 @@
 		831AFC5615D9BC6400EF63B3 /* DrinkDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrinkDetailsViewController.m; path = Classes/DrinkDetailsViewController.m; sourceTree = SOURCE_ROOT; };
 		831AFC7015D9BD5600EF63B3 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		831AFC7115D9BD5600EF63B3 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		83358471168002B80066D745 /* UIImage-Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage-Extensions.h"; path = "Classes/UIImage-Extensions.h"; sourceTree = SOURCE_ROOT; };
+		83358472168002B80066D745 /* UIImage-Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage-Extensions.m"; path = "Classes/UIImage-Extensions.m"; sourceTree = SOURCE_ROOT; };
+		83358473168002B80066D745 /* UIView-Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView-Extensions.h"; path = "Classes/UIView-Extensions.h"; sourceTree = SOURCE_ROOT; };
+		83358474168002B80066D745 /* UIView-Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView-Extensions.m"; path = "Classes/UIView-Extensions.m"; sourceTree = SOURCE_ROOT; };
+		83358477168002C30066D745 /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Globals.h; path = Classes/Globals.h; sourceTree = SOURCE_ROOT; };
+		833584781680050B0066D745 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		836F7F6C167FAA19002F30AB /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPClient.h; path = AFNetworking/AFHTTPClient.h; sourceTree = "<group>"; };
 		836F7F6D167FAA19002F30AB /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPClient.m; path = AFNetworking/AFHTTPClient.m; sourceTree = "<group>"; };
 		836F7F6E167FAA19002F30AB /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPRequestOperation.h; path = AFNetworking/AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -75,8 +82,6 @@
 		836F7F7E167FAA19002F30AB /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+AFNetworking.m"; path = "AFNetworking/UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		83777830153768AB009EE79F /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		83777831153768AB009EE79F /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
-		83777834153768AB009EE79F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DrinksViewController.xib; sourceTree = "<group>"; };
-		83777836153768AB009EE79F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondViewController.xib; sourceTree = "<group>"; };
 		83777839153768AB009EE79F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		83777867153768CD009EE79F /* Drink-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Drink-Info.plist"; sourceTree = "<group>"; };
 		83777868153768CD009EE79F /* Drink.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Drink.xcconfig; sourceTree = "<group>"; };
@@ -103,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				833584791680050B0066D745 /* SystemConfiguration.framework in Frameworks */,
 				838B218C1537660300F36DB0 /* UIKit.framework in Frameworks */,
 				838B218E1537660300F36DB0 /* Foundation.framework in Frameworks */,
 				838B21901537660300F36DB0 /* CoreGraphics.framework in Frameworks */,
@@ -182,11 +188,21 @@
 			path = Frameworks/JSONKit;
 			sourceTree = "<group>";
 		};
+		83358470168002730066D745 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				83358471168002B80066D745 /* UIImage-Extensions.h */,
+				83358472168002B80066D745 /* UIImage-Extensions.m */,
+				83358473168002B80066D745 /* UIView-Extensions.h */,
+				83358474168002B80066D745 /* UIView-Extensions.m */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		8377782C153768AB009EE79F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				8377782D153768AB009EE79F /* Images */,
-				83777832153768AB009EE79F /* Interfaces */,
 				83777837153768AB009EE79F /* Strings */,
 			);
 			path = Resources;
@@ -202,15 +218,6 @@
 				83777831153768AB009EE79F /* second@2x.png */,
 			);
 			path = Images;
-			sourceTree = "<group>";
-		};
-		83777832153768AB009EE79F /* Interfaces */ = {
-			isa = PBXGroup;
-			children = (
-				83777833153768AB009EE79F /* DrinksViewController.xib */,
-				83777835153768AB009EE79F /* SecondViewController.xib */,
-			);
-			path = Interfaces;
 			sourceTree = "<group>";
 		};
 		83777837153768AB009EE79F /* Strings */ = {
@@ -237,10 +244,10 @@
 			isa = PBXGroup;
 			children = (
 				838B21911537660300F36DB0 /* Classes */,
+				8377782C153768AB009EE79F /* Resources */,
 				83777866153768CD009EE79F /* Configurations */,
 				838B218A1537660300F36DB0 /* Frameworks */,
 				838B21881537660300F36DB0 /* Products */,
-				8377782C153768AB009EE79F /* Resources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -260,6 +267,7 @@
 				838B218B1537660300F36DB0 /* UIKit.framework */,
 				838B218D1537660300F36DB0 /* Foundation.framework */,
 				838B218F1537660300F36DB0 /* CoreGraphics.framework */,
+				833584781680050B0066D745 /* SystemConfiguration.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -267,10 +275,12 @@
 		838B21911537660300F36DB0 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				83358477168002C30066D745 /* Globals.h */,
+				83358470168002730066D745 /* Extensions */,
 				83777877153768FE009EE79F /* AppDelegate.h */,
 				83777878153768FE009EE79F /* AppDelegate.m */,
-				8306A58B153773290019AED5 /* Table Cells */,
 				8306A57E15376A480019AED5 /* View Controllers */,
+				8306A58B153773290019AED5 /* Table Cells */,
 				8306A57C15376A390019AED5 /* REST API Client */,
 				838B21921537660300F36DB0 /* Supporting Files */,
 			);
@@ -340,8 +350,6 @@
 			files = (
 				8377783C153768AB009EE79F /* second.png in Resources */,
 				8377783D153768AB009EE79F /* second@2x.png in Resources */,
-				8377783E153768AB009EE79F /* DrinksViewController.xib in Resources */,
-				8377783F153768AB009EE79F /* SecondViewController.xib in Resources */,
 				8377786D153768CD009EE79F /* Drink.xcconfig in Resources */,
 				8377786E153768CD009EE79F /* Drink_Debug.xcconfig in Resources */,
 				8377786F153768CD009EE79F /* Drink_Distribution.xcconfig in Resources */,
@@ -377,28 +385,14 @@
 				836F7F85167FAA19002F30AB /* AFURLConnectionOperation.m in Sources */,
 				836F7F86167FAA19002F30AB /* AFXMLRequestOperation.m in Sources */,
 				836F7F87167FAA19002F30AB /* UIImageView+AFNetworking.m in Sources */,
+				83358475168002B80066D745 /* UIImage-Extensions.m in Sources */,
+				83358476168002B80066D745 /* UIView-Extensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		83777833153768AB009EE79F /* DrinksViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				83777834153768AB009EE79F /* en */,
-			);
-			name = DrinksViewController.xib;
-			sourceTree = "<group>";
-		};
-		83777835153768AB009EE79F /* SecondViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				83777836153768AB009EE79F /* en */,
-			);
-			name = SecondViewController.xib;
-			sourceTree = "<group>";
-		};
 		83777838153768AB009EE79F /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
