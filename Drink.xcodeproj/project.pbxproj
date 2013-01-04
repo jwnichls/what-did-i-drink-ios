@@ -26,12 +26,9 @@
 		836F7F85167FAA19002F30AB /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F7F7A167FAA19002F30AB /* AFURLConnectionOperation.m */; };
 		836F7F86167FAA19002F30AB /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F7F7C167FAA19002F30AB /* AFXMLRequestOperation.m */; };
 		836F7F87167FAA19002F30AB /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F7F7E167FAA19002F30AB /* UIImageView+AFNetworking.m */; };
+		8371365A1697463700B98410 /* Drink.m in Sources */ = {isa = PBXBuildFile; fileRef = 837136591697463700B98410 /* Drink.m */; };
 		8377783C153768AB009EE79F /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 83777830153768AB009EE79F /* second.png */; };
 		8377783D153768AB009EE79F /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83777831153768AB009EE79F /* second@2x.png */; };
-		8377786D153768CD009EE79F /* Drink.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 83777868153768CD009EE79F /* Drink.xcconfig */; };
-		8377786E153768CD009EE79F /* Drink_Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 83777869153768CD009EE79F /* Drink_Debug.xcconfig */; };
-		8377786F153768CD009EE79F /* Drink_Distribution.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8377786A153768CD009EE79F /* Drink_Distribution.xcconfig */; };
-		83777870153768CD009EE79F /* Drink_Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8377786B153768CD009EE79F /* Drink_Release.xcconfig */; };
 		8377787D153768FE009EE79F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83777878153768FE009EE79F /* AppDelegate.m */; };
 		8377787E153768FE009EE79F /* DrinksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377787A153768FE009EE79F /* DrinksViewController.m */; };
 		8377787F153768FE009EE79F /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377787C153768FE009EE79F /* SecondViewController.m */; };
@@ -44,22 +41,22 @@
 
 /* Begin PBXFileReference section */
 		830590A7167FA13E00BCD9F8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		8306A58815376AF70019AED5 /* Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Client.h; path = Classes/Client.h; sourceTree = SOURCE_ROOT; };
-		8306A58915376AF70019AED5 /* Client.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Client.m; path = Classes/Client.m; sourceTree = SOURCE_ROOT; };
-		8306A58C1537736C0019AED5 /* SmartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SmartTableViewCell.h; path = Classes/SmartTableViewCell.h; sourceTree = SOURCE_ROOT; };
-		8306A58D1537736C0019AED5 /* SmartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SmartTableViewCell.m; path = Classes/SmartTableViewCell.m; sourceTree = SOURCE_ROOT; };
-		8306A58F15378B2E0019AED5 /* DrinkOverviewTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrinkOverviewTableCell.h; path = Classes/DrinkOverviewTableCell.h; sourceTree = SOURCE_ROOT; };
-		8306A59015378B2E0019AED5 /* DrinkOverviewTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrinkOverviewTableCell.m; path = Classes/DrinkOverviewTableCell.m; sourceTree = SOURCE_ROOT; };
+		8306A58815376AF70019AED5 /* Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Client.h; path = Source/Client.h; sourceTree = SOURCE_ROOT; };
+		8306A58915376AF70019AED5 /* Client.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Client.m; path = Source/Client.m; sourceTree = SOURCE_ROOT; };
+		8306A58C1537736C0019AED5 /* SmartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SmartTableViewCell.h; path = Source/SmartTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		8306A58D1537736C0019AED5 /* SmartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SmartTableViewCell.m; path = Source/SmartTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		8306A58F15378B2E0019AED5 /* DrinkOverviewTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrinkOverviewTableCell.h; path = Source/DrinkOverviewTableCell.h; sourceTree = SOURCE_ROOT; };
+		8306A59015378B2E0019AED5 /* DrinkOverviewTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrinkOverviewTableCell.m; path = Source/DrinkOverviewTableCell.m; sourceTree = SOURCE_ROOT; };
 		8314787115EE9E3100EC21A3 /* drinks@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drinks@2x.png"; sourceTree = "<group>"; };
-		831AFC5515D9BC6400EF63B3 /* DrinkDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrinkDetailsViewController.h; path = Classes/DrinkDetailsViewController.h; sourceTree = SOURCE_ROOT; };
-		831AFC5615D9BC6400EF63B3 /* DrinkDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrinkDetailsViewController.m; path = Classes/DrinkDetailsViewController.m; sourceTree = SOURCE_ROOT; };
+		831AFC5515D9BC6400EF63B3 /* DrinkDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrinkDetailsViewController.h; path = Source/DrinkDetailsViewController.h; sourceTree = SOURCE_ROOT; };
+		831AFC5615D9BC6400EF63B3 /* DrinkDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrinkDetailsViewController.m; path = Source/DrinkDetailsViewController.m; sourceTree = SOURCE_ROOT; };
 		831AFC7015D9BD5600EF63B3 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		831AFC7115D9BD5600EF63B3 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
-		83358471168002B80066D745 /* UIImage-Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage-Extensions.h"; path = "Classes/UIImage-Extensions.h"; sourceTree = SOURCE_ROOT; };
-		83358472168002B80066D745 /* UIImage-Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage-Extensions.m"; path = "Classes/UIImage-Extensions.m"; sourceTree = SOURCE_ROOT; };
-		83358473168002B80066D745 /* UIView-Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView-Extensions.h"; path = "Classes/UIView-Extensions.h"; sourceTree = SOURCE_ROOT; };
-		83358474168002B80066D745 /* UIView-Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView-Extensions.m"; path = "Classes/UIView-Extensions.m"; sourceTree = SOURCE_ROOT; };
-		83358477168002C30066D745 /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Globals.h; path = Classes/Globals.h; sourceTree = SOURCE_ROOT; };
+		83358471168002B80066D745 /* UIImage-Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage-Extensions.h"; path = "Source/UIImage-Extensions.h"; sourceTree = SOURCE_ROOT; };
+		83358472168002B80066D745 /* UIImage-Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage-Extensions.m"; path = "Source/UIImage-Extensions.m"; sourceTree = SOURCE_ROOT; };
+		83358473168002B80066D745 /* UIView-Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView-Extensions.h"; path = "Source/UIView-Extensions.h"; sourceTree = SOURCE_ROOT; };
+		83358474168002B80066D745 /* UIView-Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView-Extensions.m"; path = "Source/UIView-Extensions.m"; sourceTree = SOURCE_ROOT; };
+		83358477168002C30066D745 /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Globals.h; path = Source/Globals.h; sourceTree = SOURCE_ROOT; };
 		833584781680050B0066D745 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		836F7F6C167FAA19002F30AB /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPClient.h; path = AFNetworking/AFHTTPClient.h; sourceTree = "<group>"; };
 		836F7F6D167FAA19002F30AB /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPClient.m; path = AFNetworking/AFHTTPClient.m; sourceTree = "<group>"; };
@@ -80,6 +77,8 @@
 		836F7F7C167FAA19002F30AB /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFXMLRequestOperation.m; path = AFNetworking/AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		836F7F7D167FAA19002F30AB /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+AFNetworking.h"; path = "AFNetworking/UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		836F7F7E167FAA19002F30AB /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+AFNetworking.m"; path = "AFNetworking/UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		837136581697463700B98410 /* Drink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Drink.h; path = Source/Drink.h; sourceTree = SOURCE_ROOT; };
+		837136591697463700B98410 /* Drink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Drink.m; path = Source/Drink.m; sourceTree = SOURCE_ROOT; };
 		83777830153768AB009EE79F /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		83777831153768AB009EE79F /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		83777839153768AB009EE79F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -88,14 +87,14 @@
 		83777869153768CD009EE79F /* Drink_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Drink_Debug.xcconfig; sourceTree = "<group>"; };
 		8377786A153768CD009EE79F /* Drink_Distribution.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Drink_Distribution.xcconfig; sourceTree = "<group>"; };
 		8377786B153768CD009EE79F /* Drink_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Drink_Release.xcconfig; sourceTree = "<group>"; };
-		83777877153768FE009EE79F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = SOURCE_ROOT; };
-		83777878153768FE009EE79F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = SOURCE_ROOT; };
-		83777879153768FE009EE79F /* DrinksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrinksViewController.h; path = Classes/DrinksViewController.h; sourceTree = SOURCE_ROOT; };
-		8377787A153768FE009EE79F /* DrinksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrinksViewController.m; path = Classes/DrinksViewController.m; sourceTree = SOURCE_ROOT; };
-		8377787B153768FE009EE79F /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SecondViewController.h; path = Classes/SecondViewController.h; sourceTree = SOURCE_ROOT; };
-		8377787C153768FE009EE79F /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SecondViewController.m; path = Classes/SecondViewController.m; sourceTree = SOURCE_ROOT; };
-		8377788015376906009EE79F /* Drink-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Drink-Prefix.pch"; path = "Classes/Drink-Prefix.pch"; sourceTree = SOURCE_ROOT; };
-		8377788115376906009EE79F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Classes/main.m; sourceTree = SOURCE_ROOT; };
+		83777877153768FE009EE79F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Source/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		83777878153768FE009EE79F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Source/AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		83777879153768FE009EE79F /* DrinksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrinksViewController.h; path = Source/DrinksViewController.h; sourceTree = SOURCE_ROOT; };
+		8377787A153768FE009EE79F /* DrinksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrinksViewController.m; path = Source/DrinksViewController.m; sourceTree = SOURCE_ROOT; };
+		8377787B153768FE009EE79F /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SecondViewController.h; path = Source/SecondViewController.h; sourceTree = SOURCE_ROOT; };
+		8377787C153768FE009EE79F /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SecondViewController.m; path = Source/SecondViewController.m; sourceTree = SOURCE_ROOT; };
+		8377788015376906009EE79F /* Drink-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Drink-Prefix.pch"; path = "Source/Drink-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		8377788115376906009EE79F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/main.m; sourceTree = SOURCE_ROOT; };
 		838B21871537660300F36DB0 /* Drink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		838B218B1537660300F36DB0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		838B218D1537660300F36DB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -240,10 +239,19 @@
 			path = Configurations;
 			sourceTree = "<group>";
 		};
+		8377D20E169671B100940912 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				837136581697463700B98410 /* Drink.h */,
+				837136591697463700B98410 /* Drink.m */,
+			);
+			name = "Data Model";
+			sourceTree = "<group>";
+		};
 		838B217C1537660300F36DB0 = {
 			isa = PBXGroup;
 			children = (
-				838B21911537660300F36DB0 /* Classes */,
+				838B21911537660300F36DB0 /* Source */,
 				8377782C153768AB009EE79F /* Resources */,
 				83777866153768CD009EE79F /* Configurations */,
 				838B218A1537660300F36DB0 /* Frameworks */,
@@ -272,7 +280,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		838B21911537660300F36DB0 /* Classes */ = {
+		838B21911537660300F36DB0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				83358477168002C30066D745 /* Globals.h */,
@@ -282,9 +290,10 @@
 				8306A57E15376A480019AED5 /* View Controllers */,
 				8306A58B153773290019AED5 /* Table Cells */,
 				8306A57C15376A390019AED5 /* REST API Client */,
+				8377D20E169671B100940912 /* Data Model */,
 				838B21921537660300F36DB0 /* Supporting Files */,
 			);
-			name = Classes;
+			name = Source;
 			path = Drink;
 			sourceTree = "<group>";
 		};
@@ -323,7 +332,7 @@
 		838B217E1537660300F36DB0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = N/A;
 			};
 			buildConfigurationList = 838B21811537660300F36DB0 /* Build configuration list for PBXProject "Drink" */;
@@ -350,10 +359,6 @@
 			files = (
 				8377783C153768AB009EE79F /* second.png in Resources */,
 				8377783D153768AB009EE79F /* second@2x.png in Resources */,
-				8377786D153768CD009EE79F /* Drink.xcconfig in Resources */,
-				8377786E153768CD009EE79F /* Drink_Debug.xcconfig in Resources */,
-				8377786F153768CD009EE79F /* Drink_Distribution.xcconfig in Resources */,
-				83777870153768CD009EE79F /* Drink_Release.xcconfig in Resources */,
 				8314787215EE9E3100EC21A3 /* drinks@2x.png in Resources */,
 				83FFD7D215EEB7C40067428C /* drinks.png in Resources */,
 				830590A8167FA13E00BCD9F8 /* Default-568h@2x.png in Resources */,
@@ -387,6 +392,7 @@
 				836F7F87167FAA19002F30AB /* UIImageView+AFNetworking.m in Sources */,
 				83358475168002B80066D745 /* UIImage-Extensions.m in Sources */,
 				83358476168002B80066D745 /* UIView-Extensions.m in Sources */,
+				8371365A1697463700B98410 /* Drink.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,7 +458,7 @@
 			baseConfigurationReference = 83777869153768CD009EE79F /* Drink_Debug.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Classes/Drink-Prefix.pch";
+				GCC_PREFIX_HEADER = "Source/Drink-Prefix.pch";
 				INFOPLIST_FILE = "Configurations/Drink-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -466,7 +472,7 @@
 			baseConfigurationReference = 8377786B153768CD009EE79F /* Drink_Release.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Classes/Drink-Prefix.pch";
+				GCC_PREFIX_HEADER = "Source/Drink-Prefix.pch";
 				INFOPLIST_FILE = "Configurations/Drink-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";

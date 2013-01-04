@@ -52,6 +52,7 @@
     _searchBar.delegate = self;
     [view addSubview:_searchBar];
 
+    // load all drinks asynchroneously from server
     [[Client sharedClient] allDrinksWithCompletionHandler:^(id JSON, NSError *error) {
         _drinks = JSON;
         [_tableView reloadData];
@@ -82,7 +83,7 @@
         _filteredDrinks = [[NSMutableArray alloc] init];
         
         for (id drinkDetails in _drinks) {
-            NSString *name = [drinkDetails valueForKeyPath:@"drink.name"];
+            NSString *name = [drinkDetails valueForKeyPath:@"name"];
             NSRange nameRange = [name rangeOfString:text options:NSCaseInsensitiveSearch];
             if (nameRange.location != NSNotFound) {
                 [_filteredDrinks addObject:drinkDetails];
@@ -109,7 +110,7 @@
     id drinkDetails = [_drinks objectAtIndex:indexPath.row];
 
     DrinkDetailsViewController *drinkDetailsViewController = [[DrinkDetailsViewController alloc] init];
-    drinkDetailsViewController.title = [drinkDetails valueForKeyPath:@"drink.name"];
+    drinkDetailsViewController.title = [drinkDetails valueForKeyPath:@"name"];
     drinkDetailsViewController.drink = drinkDetails;
     [self.navigationController pushViewController:drinkDetailsViewController animated:YES];
 }
@@ -143,7 +144,7 @@
         drinkDetails = [_drinks objectAtIndex:indexPath.row];
     }
 
-    cell.textLabel.text = [drinkDetails valueForKeyPath:@"drink.name"];
+    cell.textLabel.text = [drinkDetails valueForKeyPath:@"name"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;

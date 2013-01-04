@@ -47,7 +47,7 @@
 - (void)setDrink:(id)drink
 {
     _drink = drink;
-    _recipeTextView.text = [drink valueForKeyPath:@"drink.recipe"];
+    _recipeTextView.text = [drink valueForKeyPath:@"recipe"];
 }
 
 - (void)checkin
