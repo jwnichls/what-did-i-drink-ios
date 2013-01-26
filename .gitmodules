@@ -4,3 +4,6 @@
 [submodule "Frameworks/AFNetworking"]
 	path = Frameworks/AFNetworking
 	url = https://github.com/AFNetworking/AFNetworking.git
+[submodule "Frameworks/AFHTTPRequestOperationLogger"]
+	path = Frameworks/AFHTTPRequestOperationLogger
+	url = https://github.com/AFNetworking/AFHTTPRequestOperationLogger.git

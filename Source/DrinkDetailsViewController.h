@@ -3,9 +3,9 @@
 //  Copyright (c) 2012 N/A. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "GAITrackedViewController.h"
 
-@interface DrinkDetailsViewController : UIViewController
+@interface DrinkDetailsViewController : GAITrackedViewController
 
 @property (nonatomic) id drink;
 

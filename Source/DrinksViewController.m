@@ -4,15 +4,18 @@
 //
 
 #import "DrinksViewController.h"
+#import "AppDelegate.h"
 #import "Client.h"
+#import "Drink.h"
 #import "DrinkOverviewTableCell.h"
 #import "DrinkDetailsViewController.h"
 
 
 @implementation DrinksViewController {
-    __strong NSArray *_drinks;
+//    __strong NSMutableArray *_drinks;
+    __weak AppDelegate *appDelegate;
     __strong NSMutableArray *_filteredDrinks;
-    
+
     BOOL _isFiltered;
 
     __strong UITableView *_tableView;
@@ -25,10 +28,13 @@
     if (self) {
         self.title = NSLocalizedString(@"Drinks", @"Drinks");
         self.tabBarItem.image = [UIImage imageNamed:@"drinks"];
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 548.0)];
+        CGRect frame = CGRectMake(0.0, 0.0, 320.0, 456.0);
+        _tableView = [[UITableView alloc] initWithFrame:frame];
         _tableView.dataSource = self;
         _tableView.delegate = self;
         [self.view addSubview:_tableView];
+
+        appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     }
 
     return self;
@@ -43,6 +49,13 @@
 {
     [super viewDidLoad];
 
+    self.trackedViewName = @"Drinks";
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+                                              initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                              target:self
+                                              action:@selector(_addDrink)];
+
     // add search bar
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 40.0)];
     view.backgroundColor = [UIColor blueColor];
@@ -54,7 +67,7 @@
 
     // load all drinks asynchroneously from server
     [[Client sharedClient] allDrinksWithCompletionHandler:^(id JSON, NSError *error) {
-        _drinks = JSON;
+        appDelegate._drinks = [JSON mutableCopy];
         [_tableView reloadData];
     }];
 }
@@ -70,6 +83,15 @@
     }
 }
 
+- (void)loadData
+{
+    // load all drinks asynchroneously from server
+    [[Client sharedClient] allDrinksWithCompletionHandler:^(id JSON, NSError *error) {
+        appDelegate._drinks = [JSON mutableCopy];
+        [_tableView reloadData];
+    }];
+}
+
 
 #pragma mark UISearchBarDelegate methods
 
@@ -82,7 +104,7 @@
         _isFiltered = YES;
         _filteredDrinks = [[NSMutableArray alloc] init];
         
-        for (id drinkDetails in _drinks) {
+        for (id drinkDetails in appDelegate._drinks) {
             NSString *name = [drinkDetails valueForKeyPath:@"name"];
             NSRange nameRange = [name rangeOfString:text options:NSCaseInsensitiveSearch];
             if (nameRange.location != NSNotFound) {
@@ -107,7 +129,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [_searchBar resignFirstResponder];
 
-    id drinkDetails = [_drinks objectAtIndex:indexPath.row];
+    id drinkDetails = [appDelegate._drinks objectAtIndex:indexPath.row];
 
     DrinkDetailsViewController *drinkDetailsViewController = [[DrinkDetailsViewController alloc] init];
     drinkDetailsViewController.title = [drinkDetails valueForKeyPath:@"name"];
@@ -126,7 +148,7 @@
         numberOfRows = _filteredDrinks.count;
     }
     else {
-        numberOfRows = _drinks.count;
+        numberOfRows = appDelegate._drinks.count;
     }
 
     return numberOfRows;
@@ -141,13 +163,61 @@
         drinkDetails = [_filteredDrinks objectAtIndex:indexPath.row];
     }
     else {
-        drinkDetails = [_drinks objectAtIndex:indexPath.row];
+        drinkDetails = [appDelegate._drinks objectAtIndex:indexPath.row];
     }
 
-    cell.textLabel.text = [drinkDetails valueForKeyPath:@"name"];
+    id name = [drinkDetails valueForKeyPath:@"name"];
+    if ((name == nil) || (name == [NSNull null])) name = [NSString stringWithFormat:@"ERROR: id = %@", [drinkDetails valueForKeyPath:@"id"]];
+    cell.textLabel.text = name;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *drink = [appDelegate._drinks objectAtIndex:indexPath.row];
+    NSNumber *drinkID = [drink objectForKey:@"id"];
+
+    [[Client sharedClient] removeDrinkWithID:drinkID.integerValue completion:^(id JSON, NSError *error) {
+        if (error == nil) {
+            [appDelegate._drinks removeObjectAtIndex:indexPath.row];
+
+            NSArray *indexPaths = @[ indexPath ];
+            [_tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+        else {
+            NSLog(@"ERROR: %@", error.localizedDescription);
+        }
+    }];
+}
+
+
+#pragma mark AddDrinkViewControllerDelegate methods
+
+- (void)newDrinkViewController:(NewDrinkViewController *)viewController didFinishWithDrink:(id)JSON
+{
+    [self dismissModalViewControllerAnimated:YES];
+
+    if (JSON != nil) {
+        [appDelegate._drinks addObject:JSON];
+        appDelegate._drinks = [[appDelegate._drinks sortedArrayUsingDescriptors:@[ [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES] ]] mutableCopy];
+        NSUInteger row = [appDelegate._drinks indexOfObject:JSON];
+
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+        NSArray *indexPaths = @[ indexPath ];
+        [_tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
+
+
+#pragma mark Private methods
+
+- (void)_addDrink
+{
+    NewDrinkViewController *viewController = [[NewDrinkViewController alloc] init];
+    viewController.delegate = self;
+    [self presentModalViewController:viewController animated:YES];
 }
 
 @end

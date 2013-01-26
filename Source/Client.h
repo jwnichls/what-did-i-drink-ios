@@ -5,28 +5,29 @@
 
 #import "AFHTTPClient.h"
 
+@class Drink, Checkin;
+
 @interface Client : AFHTTPClient
+
+@property (nonatomic) NSString *accessToken;
 
 + (Client *)sharedClient;
 
+// drinks
 - (void)allDrinksWithCompletionHandler:(void (^)(id JSON, NSError *error))handler;
+- (void)detailsForDrinkWithID:(NSUInteger)drinkID completion:(void (^)(id JSON, NSError *error))completion;
+- (void)addDrink:(Drink *)drink completion:(void (^)(id JSON, NSError *error))completion;
+- (void)removeDrinkWithID:(NSUInteger)drinkID completion:(void (^)(id JSON, NSError *error))completion;
 
-- (void)detailsForDrinkWithID:(NSUInteger)drinkID handler:(void (^)(id JSON, NSError *error))handler;
+// checkins
+- (void)allCheckinsWithCompletionHandler:(void (^)(id JSON, NSError *error))handler;
+- (void)addCheckin:(Checkin *)checkin completion:(void (^)(id JSON, NSError *error))completion;
+- (void)detailsForCheckinWithID:(NSUInteger)checkinID completion:(void (^)(id JSON, NSError *error))completion;
 
 // wishlist
-- (void)addDrinkToWishlist:(NSUInteger)drinkID handler:(void (^)(id JSON, NSError *error))handler;
-
-
-// drinkHistory
-
-// http://whatdididrink.com/users/4 ???
-
-
-// add new drink to history
-
-// add new drink
-
-// add to favourites
+- (void)wishlistWithCompletionHandler:(void (^)(id JSON, NSError *error))handler;
+- (void)addDrinkToWishlist:(NSUInteger)drinkID completion:(void (^)(id JSON, NSError *error))completion;
+- (void)removeDrinkFromWishlist:(NSUInteger)drinkID completion:(void (^)(id JSON, NSError *error))completion;
 
 @end
 

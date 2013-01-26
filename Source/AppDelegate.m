@@ -5,29 +5,70 @@
 
 #import "AppDelegate.h"
 #import "AFNetworking.h"
+#import "AFHTTPRequestOperationLogger.h"
+#import "CheckinsViewController.h"
 #import "DrinksViewController.h"
-#import "SecondViewController.h"
+#import "WishlistViewController.h"
+#import "GAI.h"
 
-
-@implementation AppDelegate
+@implementation AppDelegate {
+    DrinksViewController *_drinksViewController;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-
+    // setup AFNetworking
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+    [[AFHTTPRequestOperationLogger sharedLogger] startLogging];
 
-    UIViewController *viewController1 = [[DrinksViewController alloc] init];
-    UIViewController *viewController2 = [[SecondViewController alloc] init];
+#if (!DEBUG)
+    // setup Google Analytics
+    [GAI sharedInstance].dispatchInterval = 20;
+    [GAI sharedInstance].debug = YES;
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-37810022-1"];
+#endif
+
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.title = NSLocalizedString(@"Drinks", @"");
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, nil];
 
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.tabBarController];
-    self.window.rootViewController = self.navigationController;
+    // drinks
+    _drinksViewController = [[DrinksViewController alloc] init];
+    UINavigationController *navigationController1 = [[UINavigationController alloc] initWithRootViewController:_drinksViewController];
+
+    // checkins
+    UIViewController *viewController2 = [[CheckinsViewController alloc] init];
+    UINavigationController *navigationController2 = [[UINavigationController alloc] initWithRootViewController:viewController2];
+
+    // wishlist
+    UIViewController *viewController3 = [[WishlistViewController alloc] init];
+    UINavigationController *navigationController3 = [[UINavigationController alloc] initWithRootViewController:viewController3];
+
+
+    self.tabBarController.title = NSLocalizedString(@"Drinks", @"");
+    self.tabBarController.viewControllers = @[ navigationController1, navigationController2, navigationController3 ];
+
+
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
 
+    NSString *accessToken = [[NSUserDefaults standardUserDefaults] stringForKey:@"accessToken"];
+    if (accessToken == nil) {
+        LoginViewController *loginViewController = [[LoginViewController alloc] init];
+        loginViewController.delegate = self;
+        [self.window.rootViewController presentModalViewController:loginViewController animated:NO];
+    }
+
     return YES;
+}
+
+
+#pragma mark LoginViewControllerDelegate methods
+
+- (void)loginViewControllerDidFinish
+{
+    [_drinksViewController loadData];
+
+    [self.window.rootViewController dismissModalViewControllerAnimated:YES];
 }
 
 @end

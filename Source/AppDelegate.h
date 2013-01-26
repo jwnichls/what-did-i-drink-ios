@@ -3,10 +3,14 @@
 //  Copyright (c) 2012 N/A. All rights reserved.
 //
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
+#import "LoginViewController.h"
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate, LoginViewControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController *navigationController;
 @property (strong, nonatomic) UITabBarController *tabBarController;
+
+@property (strong, nonatomic) NSMutableArray *_drinks;
 
 @end

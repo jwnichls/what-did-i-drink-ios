@@ -14,9 +14,12 @@
 		8314787215EE9E3100EC21A3 /* drinks@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8314787115EE9E3100EC21A3 /* drinks@2x.png */; };
 		831AFC5715D9BC6400EF63B3 /* DrinkDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831AFC5615D9BC6400EF63B3 /* DrinkDetailsViewController.m */; };
 		831AFC7C15D9BD5600EF63B3 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 831AFC7115D9BD5600EF63B3 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		831EB36E16A519E300F4C129 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831EB36D16A519E300F4C129 /* LoginViewController.m */; };
 		83358475168002B80066D745 /* UIImage-Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83358472168002B80066D745 /* UIImage-Extensions.m */; };
 		83358476168002B80066D745 /* UIView-Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83358474168002B80066D745 /* UIView-Extensions.m */; };
 		833584791680050B0066D745 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833584781680050B0066D745 /* SystemConfiguration.framework */; };
+		833A66A7169CCFB4001D0A28 /* WishlistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833A66A6169CCFB4001D0A28 /* WishlistViewController.m */; };
+		833A66AD169CF0A6001D0A28 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 833A66AC169CF0A6001D0A28 /* LoginView.xib */; };
 		836F7F7F167FAA19002F30AB /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F7F6D167FAA19002F30AB /* AFHTTPClient.m */; };
 		836F7F80167FAA19002F30AB /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F7F6F167FAA19002F30AB /* AFHTTPRequestOperation.m */; };
 		836F7F81167FAA19002F30AB /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F7F71167FAA19002F30AB /* AFImageRequestOperation.m */; };
@@ -31,11 +34,17 @@
 		8377783D153768AB009EE79F /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83777831153768AB009EE79F /* second@2x.png */; };
 		8377787D153768FE009EE79F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83777878153768FE009EE79F /* AppDelegate.m */; };
 		8377787E153768FE009EE79F /* DrinksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377787A153768FE009EE79F /* DrinksViewController.m */; };
-		8377787F153768FE009EE79F /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377787C153768FE009EE79F /* SecondViewController.m */; };
+		8377787F153768FE009EE79F /* CheckinsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377787C153768FE009EE79F /* CheckinsViewController.m */; };
 		8377788215376906009EE79F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377788115376906009EE79F /* main.m */; };
 		838B218C1537660300F36DB0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 838B218B1537660300F36DB0 /* UIKit.framework */; };
 		838B218E1537660300F36DB0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 838B218D1537660300F36DB0 /* Foundation.framework */; };
 		838B21901537660300F36DB0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 838B218F1537660300F36DB0 /* CoreGraphics.framework */; };
+		839D241D169C946C00BEFD22 /* Checkin.m in Sources */ = {isa = PBXBuildFile; fileRef = 839D241C169C946C00BEFD22 /* Checkin.m */; };
+		83B72DAD16B333DB00F2FB0C /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B72DAB16B333DB00F2FB0C /* libGoogleAnalytics.a */; };
+		83B72DB016B333F700F2FB0C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B72DAF16B333F700F2FB0C /* CoreData.framework */; };
+		83B72DB316B3489900F2FB0C /* NewDrinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B72DB216B3489800F2FB0C /* NewDrinkViewController.m */; };
+		83C0FF9B1698D35D00766CBE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C0FF9A1698D35D00766CBE /* MobileCoreServices.framework */; };
+		83C0FFA21698EDF400766CBE /* AFHTTPRequestOperationLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C0FF9E1698EDF400766CBE /* AFHTTPRequestOperationLogger.m */; };
 		83FFD7D215EEB7C40067428C /* drinks.png in Resources */ = {isa = PBXBuildFile; fileRef = 83FFD7D115EEB7C40067428C /* drinks.png */; };
 /* End PBXBuildFile section */
 
@@ -52,12 +61,17 @@
 		831AFC5615D9BC6400EF63B3 /* DrinkDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrinkDetailsViewController.m; path = Source/DrinkDetailsViewController.m; sourceTree = SOURCE_ROOT; };
 		831AFC7015D9BD5600EF63B3 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		831AFC7115D9BD5600EF63B3 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		831EB36D16A519E300F4C129 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = Source/LoginViewController.m; sourceTree = SOURCE_ROOT; };
 		83358471168002B80066D745 /* UIImage-Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage-Extensions.h"; path = "Source/UIImage-Extensions.h"; sourceTree = SOURCE_ROOT; };
 		83358472168002B80066D745 /* UIImage-Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage-Extensions.m"; path = "Source/UIImage-Extensions.m"; sourceTree = SOURCE_ROOT; };
 		83358473168002B80066D745 /* UIView-Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView-Extensions.h"; path = "Source/UIView-Extensions.h"; sourceTree = SOURCE_ROOT; };
 		83358474168002B80066D745 /* UIView-Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView-Extensions.m"; path = "Source/UIView-Extensions.m"; sourceTree = SOURCE_ROOT; };
 		83358477168002C30066D745 /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Globals.h; path = Source/Globals.h; sourceTree = SOURCE_ROOT; };
 		833584781680050B0066D745 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		833A66A5169CCFB4001D0A28 /* WishlistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WishlistViewController.h; path = Source/WishlistViewController.h; sourceTree = SOURCE_ROOT; };
+		833A66A6169CCFB4001D0A28 /* WishlistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WishlistViewController.m; path = Source/WishlistViewController.m; sourceTree = SOURCE_ROOT; };
+		833A66A8169CE66D001D0A28 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = Source/LoginViewController.h; sourceTree = SOURCE_ROOT; };
+		833A66AC169CF0A6001D0A28 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginView.xib; path = Resources/Interfaces/LoginView.xib; sourceTree = SOURCE_ROOT; };
 		836F7F6C167FAA19002F30AB /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPClient.h; path = AFNetworking/AFHTTPClient.h; sourceTree = "<group>"; };
 		836F7F6D167FAA19002F30AB /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPClient.m; path = AFNetworking/AFHTTPClient.m; sourceTree = "<group>"; };
 		836F7F6E167FAA19002F30AB /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPRequestOperation.h; path = AFNetworking/AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -91,14 +105,28 @@
 		83777878153768FE009EE79F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Source/AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		83777879153768FE009EE79F /* DrinksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrinksViewController.h; path = Source/DrinksViewController.h; sourceTree = SOURCE_ROOT; };
 		8377787A153768FE009EE79F /* DrinksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrinksViewController.m; path = Source/DrinksViewController.m; sourceTree = SOURCE_ROOT; };
-		8377787B153768FE009EE79F /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SecondViewController.h; path = Source/SecondViewController.h; sourceTree = SOURCE_ROOT; };
-		8377787C153768FE009EE79F /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SecondViewController.m; path = Source/SecondViewController.m; sourceTree = SOURCE_ROOT; };
+		8377787B153768FE009EE79F /* CheckinsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CheckinsViewController.h; path = Source/CheckinsViewController.h; sourceTree = SOURCE_ROOT; };
+		8377787C153768FE009EE79F /* CheckinsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CheckinsViewController.m; path = Source/CheckinsViewController.m; sourceTree = SOURCE_ROOT; };
 		8377788015376906009EE79F /* Drink-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Drink-Prefix.pch"; path = "Source/Drink-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		8377788115376906009EE79F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/main.m; sourceTree = SOURCE_ROOT; };
 		838B21871537660300F36DB0 /* Drink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		838B218B1537660300F36DB0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		838B218D1537660300F36DB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		838B218F1537660300F36DB0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		839D241B169C946C00BEFD22 /* Checkin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Checkin.h; path = Source/Checkin.h; sourceTree = SOURCE_ROOT; };
+		839D241C169C946C00BEFD22 /* Checkin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Checkin.m; path = Source/Checkin.m; sourceTree = SOURCE_ROOT; };
+		83B72DA616B333DB00F2FB0C /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		83B72DA716B333DB00F2FB0C /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		83B72DA816B333DB00F2FB0C /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		83B72DA916B333DB00F2FB0C /* GAITransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransaction.h; sourceTree = "<group>"; };
+		83B72DAA16B333DB00F2FB0C /* GAITransactionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransactionItem.h; sourceTree = "<group>"; };
+		83B72DAB16B333DB00F2FB0C /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
+		83B72DAF16B333F700F2FB0C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		83B72DB116B3489800F2FB0C /* NewDrinkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewDrinkViewController.h; path = Source/NewDrinkViewController.h; sourceTree = SOURCE_ROOT; };
+		83B72DB216B3489800F2FB0C /* NewDrinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewDrinkViewController.m; path = Source/NewDrinkViewController.m; sourceTree = SOURCE_ROOT; };
+		83C0FF9A1698D35D00766CBE /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		83C0FF9D1698EDF400766CBE /* AFHTTPRequestOperationLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationLogger.h; sourceTree = "<group>"; };
+		83C0FF9E1698EDF400766CBE /* AFHTTPRequestOperationLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationLogger.m; sourceTree = "<group>"; };
 		83FFD7D115EEB7C40067428C /* drinks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drinks.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,10 +135,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83B72DB016B333F700F2FB0C /* CoreData.framework in Frameworks */,
+				83C0FF9B1698D35D00766CBE /* MobileCoreServices.framework in Frameworks */,
 				833584791680050B0066D745 /* SystemConfiguration.framework in Frameworks */,
 				838B218C1537660300F36DB0 /* UIKit.framework in Frameworks */,
 				838B218E1537660300F36DB0 /* Foundation.framework in Frameworks */,
 				838B21901537660300F36DB0 /* CoreGraphics.framework in Frameworks */,
+				83B72DAD16B333DB00F2FB0C /* libGoogleAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,12 +160,18 @@
 		8306A57E15376A480019AED5 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				83B72DB116B3489800F2FB0C /* NewDrinkViewController.h */,
+				83B72DB216B3489800F2FB0C /* NewDrinkViewController.m */,
 				83777879153768FE009EE79F /* DrinksViewController.h */,
 				8377787A153768FE009EE79F /* DrinksViewController.m */,
-				8377787B153768FE009EE79F /* SecondViewController.h */,
-				8377787C153768FE009EE79F /* SecondViewController.m */,
 				831AFC5515D9BC6400EF63B3 /* DrinkDetailsViewController.h */,
 				831AFC5615D9BC6400EF63B3 /* DrinkDetailsViewController.m */,
+				8377787B153768FE009EE79F /* CheckinsViewController.h */,
+				8377787C153768FE009EE79F /* CheckinsViewController.m */,
+				833A66A8169CE66D001D0A28 /* LoginViewController.h */,
+				831EB36D16A519E300F4C129 /* LoginViewController.m */,
+				833A66A5169CCFB4001D0A28 /* WishlistViewController.h */,
+				833A66A6169CCFB4001D0A28 /* WishlistViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -198,10 +235,20 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		833A66AB169CF083001D0A28 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				833A66AC169CF0A6001D0A28 /* LoginView.xib */,
+			);
+			name = Interfaces;
+			path = Images/Interfaces;
+			sourceTree = "<group>";
+		};
 		8377782C153768AB009EE79F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				8377782D153768AB009EE79F /* Images */,
+				833A66AB169CF083001D0A28 /* Interfaces */,
 				83777837153768AB009EE79F /* Strings */,
 			);
 			path = Resources;
@@ -242,6 +289,8 @@
 		8377D20E169671B100940912 /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
+				839D241B169C946C00BEFD22 /* Checkin.h */,
+				839D241C169C946C00BEFD22 /* Checkin.m */,
 				837136581697463700B98410 /* Drink.h */,
 				837136591697463700B98410 /* Drink.m */,
 			);
@@ -270,12 +319,16 @@
 		838B218A1537660300F36DB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				83B72DAF16B333F700F2FB0C /* CoreData.framework */,
+				83B72DA516B333DB00F2FB0C /* Google Analytics */,
+				83C0FF9C1698EDF400766CBE /* AFHTTPRequestOperationLogger */,
 				831AFC5915D9BD5600EF63B3 /* AFNetworking */,
 				831AFC6F15D9BD5600EF63B3 /* JSONKit */,
 				838B218B1537660300F36DB0 /* UIKit.framework */,
 				838B218D1537660300F36DB0 /* Foundation.framework */,
 				838B218F1537660300F36DB0 /* CoreGraphics.framework */,
 				833584781680050B0066D745 /* SystemConfiguration.framework */,
+				83C0FF9A1698D35D00766CBE /* MobileCoreServices.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -304,6 +357,30 @@
 				8377788115376906009EE79F /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		83B72DA516B333DB00F2FB0C /* Google Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				83B72DA616B333DB00F2FB0C /* GAI.h */,
+				83B72DA716B333DB00F2FB0C /* GAITrackedViewController.h */,
+				83B72DA816B333DB00F2FB0C /* GAITracker.h */,
+				83B72DA916B333DB00F2FB0C /* GAITransaction.h */,
+				83B72DAA16B333DB00F2FB0C /* GAITransactionItem.h */,
+				83B72DAB16B333DB00F2FB0C /* libGoogleAnalytics.a */,
+			);
+			name = "Google Analytics";
+			path = "Frameworks/Google Analytics";
+			sourceTree = "<group>";
+		};
+		83C0FF9C1698EDF400766CBE /* AFHTTPRequestOperationLogger */ = {
+			isa = PBXGroup;
+			children = (
+				83C0FF9D1698EDF400766CBE /* AFHTTPRequestOperationLogger.h */,
+				83C0FF9E1698EDF400766CBE /* AFHTTPRequestOperationLogger.m */,
+			);
+			name = AFHTTPRequestOperationLogger;
+			path = Frameworks/AFHTTPRequestOperationLogger;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,6 +439,7 @@
 				8314787215EE9E3100EC21A3 /* drinks@2x.png in Resources */,
 				83FFD7D215EEB7C40067428C /* drinks.png in Resources */,
 				830590A8167FA13E00BCD9F8 /* Default-568h@2x.png in Resources */,
+				833A66AD169CF0A6001D0A28 /* LoginView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,7 +452,7 @@
 			files = (
 				8377787D153768FE009EE79F /* AppDelegate.m in Sources */,
 				8377787E153768FE009EE79F /* DrinksViewController.m in Sources */,
-				8377787F153768FE009EE79F /* SecondViewController.m in Sources */,
+				8377787F153768FE009EE79F /* CheckinsViewController.m in Sources */,
 				8377788215376906009EE79F /* main.m in Sources */,
 				8306A58A15376AF70019AED5 /* Client.m in Sources */,
 				8306A58E1537736C0019AED5 /* SmartTableViewCell.m in Sources */,
@@ -393,6 +471,11 @@
 				83358475168002B80066D745 /* UIImage-Extensions.m in Sources */,
 				83358476168002B80066D745 /* UIView-Extensions.m in Sources */,
 				8371365A1697463700B98410 /* Drink.m in Sources */,
+				83C0FFA21698EDF400766CBE /* AFHTTPRequestOperationLogger.m in Sources */,
+				839D241D169C946C00BEFD22 /* Checkin.m in Sources */,
+				833A66A7169CCFB4001D0A28 /* WishlistViewController.m in Sources */,
+				831EB36E16A519E300F4C129 /* LoginViewController.m in Sources */,
+				83B72DB316B3489900F2FB0C /* NewDrinkViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +544,10 @@
 				GCC_PREFIX_HEADER = "Source/Drink-Prefix.pch";
 				INFOPLIST_FILE = "Configurations/Drink-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks/Google Analytics\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -475,6 +562,10 @@
 				GCC_PREFIX_HEADER = "Source/Drink-Prefix.pch";
 				INFOPLIST_FILE = "Configurations/Drink-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks/Google Analytics\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

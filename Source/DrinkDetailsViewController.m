@@ -4,11 +4,14 @@
 //
 
 #import "DrinkDetailsViewController.h"
+#import "Checkin.h"
 #import "Client.h"
+#import "GAI.h"
 
 @implementation DrinkDetailsViewController {
     UITextView *_recipeTextView;
     UIButton *_addToWishlistButton;
+    UIButton *_addCheckinButton;
 }
 
 - (id)init
@@ -27,11 +30,17 @@
         // updated_at
         // urls
 
-//        _addToWishlistButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//        _addToWishlistButton.frame = CGRectMake(20.0, 20.0, 80.0, 25.0);
-//        [_addToWishlistButton setTitle:@"Add to Wishlist" forState:UIControlStateNormal];
-//        [_addToWishlistButton addTarget:self action:@selector(addToWishlist) forControlEvents:UIControlEventTouchUpInside];
-//        [self.view addSubview:_addToWishlistButton];
+        _addToWishlistButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        _addToWishlistButton.frame = CGRectMake(30.0, self.view.frame.size.height - 130.0, 120.0, 30.0);
+        [_addToWishlistButton setTitle:@"Add to Wishlist" forState:UIControlStateNormal];
+        [_addToWishlistButton addTarget:self action:@selector(_addToWishlist) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_addToWishlistButton];
+
+        _addCheckinButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        _addCheckinButton.frame = CGRectMake(320.0 - 120.0 - 30.0, self.view.frame.size.height - 130.0, 120.0, 30.0);
+        [_addCheckinButton setTitle:@"Checkin" forState:UIControlStateNormal];
+        [_addCheckinButton addTarget:self action:@selector(_addToCheckins) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_addCheckinButton];
     }
 
     return self;
@@ -40,6 +49,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.trackedViewName = @"Drink Details";
 
     self.view.backgroundColor = [UIColor whiteColor];
 }
@@ -50,13 +61,40 @@
     _recipeTextView.text = [drink valueForKeyPath:@"recipe"];
 }
 
-- (void)checkin
+- (void)_addToCheckins
 {
+    Checkin *checkin = [[Checkin alloc] init];
+    checkin.drink_id = [[_drink objectForKey:@"id"] integerValue];
+    [[Client sharedClient] addCheckin:checkin completion:^(id JSON, NSError *error) {
+        NSLog(@"INFO: Checked in %@", [_drink objectForKey:@"name"]);
+
+#if (!DEBUG)
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        tracker.sessionStart = YES;
+        [tracker sendEventWithCategory:@"app_flow"
+                            withAction:@"add checkin"
+                             withLabel:nil
+                             withValue:nil];
+#endif
+
+    }];
 }
 
-- (void)addToWishlist
+- (void)_addToWishlist
 {
-    [[Client sharedClient] addDrinkToWishlist:9 handler:^(id JSON, NSError *error) {
+    NSUInteger drinkID = [[_drink objectForKey:@"id"] integerValue];
+    [[Client sharedClient] addDrinkToWishlist:drinkID completion:^(id JSON, NSError *error) {
+        NSLog(@"INFO: Added %@ to your wishlist", [_drink objectForKey:@"name"]);
+
+#if (!DEBUG)
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        tracker.sessionStart = YES;
+        [tracker sendEventWithCategory:@"app_flow"
+                            withAction:@"add to wishlist"
+                             withLabel:nil
+                             withValue:nil];
+#endif
+
     }];
 }
 
