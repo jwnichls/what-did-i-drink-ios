@@ -58,7 +58,9 @@
 - (void)setDrink:(id)drink
 {
     _drink = drink;
-    _recipeTextView.text = [drink valueForKeyPath:@"recipe"];
+    NSArray *ary = [drink valueForKey:@"recipe"];
+    NSString *recipe = [ary componentsJoinedByString:@" "];
+    _recipeTextView.text = recipe;
 }
 
 - (void)_addToCheckins

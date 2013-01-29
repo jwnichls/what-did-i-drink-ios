@@ -209,6 +209,31 @@ NSString *const kBaseURLString = @"http://api.whatdididrink.com";
 }
 
 
+// timeline
+
+- (void)timelineWithCompletionHandler:(void (^)(id JSON, NSError *error))handler
+{
+    NSMutableURLRequest *request = [self _mutableRequestWithMethod:kHTTP_METHOD_GET
+                                                              path:@"/timeline"
+                                                        parameters:nil];
+
+    AFHTTPRequestOperation *operation =
+    [self HTTPRequestOperationWithRequest:request
+                                  success:^(AFHTTPRequestOperation *op, id responseObject) {
+                                      if (handler) {
+                                          handler(responseObject, nil);
+                                      }
+                                  }
+                                  failure:^(AFHTTPRequestOperation *op, NSError *error) {
+                                      if (handler) {
+                                          handler(nil, error);
+                                      }
+                                  }];
+
+    [self.operationQueue addOperation:operation];
+}
+
+
 // wishlist
 
 - (void)wishlistWithCompletionHandler:(void (^)(id JSON, NSError *error))completion

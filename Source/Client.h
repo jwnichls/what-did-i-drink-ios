@@ -24,6 +24,9 @@
 - (void)addCheckin:(Checkin *)checkin completion:(void (^)(id JSON, NSError *error))completion;
 - (void)detailsForCheckinWithID:(NSUInteger)checkinID completion:(void (^)(id JSON, NSError *error))completion;
 
+// timeline
+- (void)timelineWithCompletionHandler:(void (^)(id JSON, NSError *error))handler;
+
 // wishlist
 - (void)wishlistWithCompletionHandler:(void (^)(id JSON, NSError *error))handler;
 - (void)addDrinkToWishlist:(NSUInteger)drinkID completion:(void (^)(id JSON, NSError *error))completion;

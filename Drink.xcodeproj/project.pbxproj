@@ -43,6 +43,7 @@
 		83B72DAD16B333DB00F2FB0C /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B72DAB16B333DB00F2FB0C /* libGoogleAnalytics.a */; };
 		83B72DB016B333F700F2FB0C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B72DAF16B333F700F2FB0C /* CoreData.framework */; };
 		83B72DB316B3489900F2FB0C /* NewDrinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B72DB216B3489800F2FB0C /* NewDrinkViewController.m */; };
+		83B72DB816B48C9C00F2FB0C /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B72DB716B48C9C00F2FB0C /* TimelineViewController.m */; };
 		83C0FF9B1698D35D00766CBE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C0FF9A1698D35D00766CBE /* MobileCoreServices.framework */; };
 		83C0FFA21698EDF400766CBE /* AFHTTPRequestOperationLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C0FF9E1698EDF400766CBE /* AFHTTPRequestOperationLogger.m */; };
 		83FFD7D215EEB7C40067428C /* drinks.png in Resources */ = {isa = PBXBuildFile; fileRef = 83FFD7D115EEB7C40067428C /* drinks.png */; };
@@ -124,6 +125,8 @@
 		83B72DAF16B333F700F2FB0C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		83B72DB116B3489800F2FB0C /* NewDrinkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewDrinkViewController.h; path = Source/NewDrinkViewController.h; sourceTree = SOURCE_ROOT; };
 		83B72DB216B3489800F2FB0C /* NewDrinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewDrinkViewController.m; path = Source/NewDrinkViewController.m; sourceTree = SOURCE_ROOT; };
+		83B72DB616B48C9C00F2FB0C /* TimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimelineViewController.h; path = Source/TimelineViewController.h; sourceTree = SOURCE_ROOT; };
+		83B72DB716B48C9C00F2FB0C /* TimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimelineViewController.m; path = Source/TimelineViewController.m; sourceTree = SOURCE_ROOT; };
 		83C0FF9A1698D35D00766CBE /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		83C0FF9D1698EDF400766CBE /* AFHTTPRequestOperationLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationLogger.h; sourceTree = "<group>"; };
 		83C0FF9E1698EDF400766CBE /* AFHTTPRequestOperationLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationLogger.m; sourceTree = "<group>"; };
@@ -170,6 +173,8 @@
 				8377787C153768FE009EE79F /* CheckinsViewController.m */,
 				833A66A8169CE66D001D0A28 /* LoginViewController.h */,
 				831EB36D16A519E300F4C129 /* LoginViewController.m */,
+				83B72DB616B48C9C00F2FB0C /* TimelineViewController.h */,
+				83B72DB716B48C9C00F2FB0C /* TimelineViewController.m */,
 				833A66A5169CCFB4001D0A28 /* WishlistViewController.h */,
 				833A66A6169CCFB4001D0A28 /* WishlistViewController.m */,
 			);
@@ -476,6 +481,7 @@
 				833A66A7169CCFB4001D0A28 /* WishlistViewController.m in Sources */,
 				831EB36E16A519E300F4C129 /* LoginViewController.m in Sources */,
 				83B72DB316B3489900F2FB0C /* NewDrinkViewController.m in Sources */,
+				83B72DB816B48C9C00F2FB0C /* TimelineViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

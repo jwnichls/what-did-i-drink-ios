@@ -8,6 +8,7 @@
 #import "AFHTTPRequestOperationLogger.h"
 #import "CheckinsViewController.h"
 #import "DrinksViewController.h"
+#import "TimelineViewController.h"
 #import "WishlistViewController.h"
 #import "GAI.h"
 
@@ -30,6 +31,10 @@
 
     self.tabBarController = [[UITabBarController alloc] init];
 
+    // timeline
+    UIViewController *viewController = [[TimelineViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+
     // drinks
     _drinksViewController = [[DrinksViewController alloc] init];
     UINavigationController *navigationController1 = [[UINavigationController alloc] initWithRootViewController:_drinksViewController];
@@ -44,7 +49,7 @@
 
 
     self.tabBarController.title = NSLocalizedString(@"Drinks", @"");
-    self.tabBarController.viewControllers = @[ navigationController1, navigationController2, navigationController3 ];
+    self.tabBarController.viewControllers = @[ navigationController, navigationController1, navigationController2, navigationController3 ];
 
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
