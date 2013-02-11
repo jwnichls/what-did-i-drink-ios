@@ -7,9 +7,12 @@
 #import "AppDelegate.h"
 #import "Client.h"
 #import "DrinkDetailsViewController.h"
+#import "ISO8601DateFormatter.h"
 
 @implementation TimelineViewController {
     __weak AppDelegate *appDelegate;
+
+    ISO8601DateFormatter *_dateFormatter;
 
     UITableView *_tableView;
     NSArray *_events;
@@ -26,6 +29,8 @@
         _tableView.dataSource = self;
         _tableView.delegate = self;
         [self.view addSubview:_tableView];
+
+        _dateFormatter = [[ISO8601DateFormatter alloc] init];
 
         appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     }
@@ -74,20 +79,44 @@
     }
 
     NSDictionary *event = [_events objectAtIndex:indexPath.row];
-    NSInteger drinkID = [[event valueForKey:@"drink_id"] integerValue];
-    id drinkDetails = [appDelegate._drinks filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"id == %d", drinkID]];
 
-    NSString *name = [[drinkDetails valueForKeyPath:@"name"] objectAtIndex:0];
-    cell.textLabel.text = name;
-    
-    NSString *updated = [event valueForKey:@"updated_at"];
-    NSString *user = [event valueForKey:@"user_id"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Updated %@ by user %@", updated, user];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    NSString *eventType = [event valueForKey:@"type"];
+    NSString *drinkName = [event valueForKeyPath:@"drink.name"];
+    NSString *userName = [event valueForKeyPath:@"user.full_name"];
+
+    NSString *text = nil;
+
+    // drink was added to the library
+    if ([eventType isEqualToString:@"AddDrink"]) {
+        text = [NSString stringWithFormat:@"'%@' was added to the list of drinks", drinkName];
+    }
+    // a drink in the library was updated
+    else if ([eventType isEqualToString:@"EditDrink"]) {
+        text = [NSString stringWithFormat:@"The recipe for '%@' was updated", drinkName];
+    }
+    // user added a drink to their check-ins
+    else if ([eventType isEqualToString:@"CheckinDrink"]) {
+        text = [NSString stringWithFormat:@"%@ had a '%@'", userName, drinkName];
+    }
+    // user added a drink to their wishlist
+    else if ([eventType isEqualToString:@"WishForDrink"]) {
+        text = [NSString stringWithFormat:@"%@ added a '%@' to his wishlist", userName, drinkName];
+    }
+
+    // set the label text
+    cell.textLabel.text = text;
+
+    // set the relative date
+    NSString *created = [event valueForKey:@"created_at"];
+    NSDate *date = [_dateFormatter dateFromString:created];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ ago", [date relativeDate]];
+
+    // TODO: show only if we already have the drink ditails stored locally
+//    NSInteger drinkID = [[event valueForKeyPath:@"drink.id"] integerValue];
+//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
 }
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -19,7 +19,7 @@
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         self.title = NSLocalizedString(@"Wishlist", @"Wishlist");
-        self.tabBarItem.image = [UIImage imageNamed:@"second"];
+        self.tabBarItem.image = [UIImage imageNamed:@"wishlist"];
         CGRect frame = CGRectMake(0.0, 0.0, 320.0, 456.0);
         _tableView = [[UITableView alloc] initWithFrame:frame];
         _tableView.dataSource = self;

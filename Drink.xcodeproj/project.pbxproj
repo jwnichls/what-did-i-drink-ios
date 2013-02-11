@@ -30,12 +30,16 @@
 		836F7F86167FAA19002F30AB /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F7F7C167FAA19002F30AB /* AFXMLRequestOperation.m */; };
 		836F7F87167FAA19002F30AB /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F7F7E167FAA19002F30AB /* UIImageView+AFNetworking.m */; };
 		8371365A1697463700B98410 /* Drink.m in Sources */ = {isa = PBXBuildFile; fileRef = 837136591697463700B98410 /* Drink.m */; };
-		8377783C153768AB009EE79F /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 83777830153768AB009EE79F /* second.png */; };
-		8377783D153768AB009EE79F /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83777831153768AB009EE79F /* second@2x.png */; };
 		8377787D153768FE009EE79F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83777878153768FE009EE79F /* AppDelegate.m */; };
 		8377787E153768FE009EE79F /* DrinksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377787A153768FE009EE79F /* DrinksViewController.m */; };
 		8377787F153768FE009EE79F /* CheckinsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377787C153768FE009EE79F /* CheckinsViewController.m */; };
 		8377788215376906009EE79F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377788115376906009EE79F /* main.m */; };
+		8383E47B16C86B8F0007C470 /* wishlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 8383E47916C86B8F0007C470 /* wishlist.png */; };
+		8383E47C16C86B8F0007C470 /* wishlist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8383E47A16C86B8F0007C470 /* wishlist@2x.png */; };
+		8383E47F16C86C450007C470 /* checkins.png in Resources */ = {isa = PBXBuildFile; fileRef = 8383E47D16C86C450007C470 /* checkins.png */; };
+		8383E48016C86C450007C470 /* checkins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8383E47E16C86C450007C470 /* checkins@2x.png */; };
+		8383E48316C86E4E0007C470 /* timeline.png in Resources */ = {isa = PBXBuildFile; fileRef = 8383E48116C86E4E0007C470 /* timeline.png */; };
+		8383E48416C86E4E0007C470 /* timeline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8383E48216C86E4E0007C470 /* timeline@2x.png */; };
 		838B218C1537660300F36DB0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 838B218B1537660300F36DB0 /* UIKit.framework */; };
 		838B218E1537660300F36DB0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 838B218D1537660300F36DB0 /* Foundation.framework */; };
 		838B21901537660300F36DB0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 838B218F1537660300F36DB0 /* CoreGraphics.framework */; };
@@ -44,6 +48,8 @@
 		83B72DB016B333F700F2FB0C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B72DAF16B333F700F2FB0C /* CoreData.framework */; };
 		83B72DB316B3489900F2FB0C /* NewDrinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B72DB216B3489800F2FB0C /* NewDrinkViewController.m */; };
 		83B72DB816B48C9C00F2FB0C /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B72DB716B48C9C00F2FB0C /* TimelineViewController.m */; };
+		83BFA34716C8649F00D65CFC /* NSDate-Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BFA34616C8649F00D65CFC /* NSDate-Extensions.m */; };
+		83BFA34A16C866A900D65CFC /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BFA34916C866A900D65CFC /* ISO8601DateFormatter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		83C0FF9B1698D35D00766CBE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C0FF9A1698D35D00766CBE /* MobileCoreServices.framework */; };
 		83C0FFA21698EDF400766CBE /* AFHTTPRequestOperationLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C0FF9E1698EDF400766CBE /* AFHTTPRequestOperationLogger.m */; };
 		83FFD7D215EEB7C40067428C /* drinks.png in Resources */ = {isa = PBXBuildFile; fileRef = 83FFD7D115EEB7C40067428C /* drinks.png */; };
@@ -94,8 +100,6 @@
 		836F7F7E167FAA19002F30AB /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+AFNetworking.m"; path = "AFNetworking/UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		837136581697463700B98410 /* Drink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Drink.h; path = Source/Drink.h; sourceTree = SOURCE_ROOT; };
 		837136591697463700B98410 /* Drink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Drink.m; path = Source/Drink.m; sourceTree = SOURCE_ROOT; };
-		83777830153768AB009EE79F /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
-		83777831153768AB009EE79F /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		83777839153768AB009EE79F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		83777867153768CD009EE79F /* Drink-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Drink-Info.plist"; sourceTree = "<group>"; };
 		83777868153768CD009EE79F /* Drink.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Drink.xcconfig; sourceTree = "<group>"; };
@@ -110,6 +114,12 @@
 		8377787C153768FE009EE79F /* CheckinsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CheckinsViewController.m; path = Source/CheckinsViewController.m; sourceTree = SOURCE_ROOT; };
 		8377788015376906009EE79F /* Drink-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Drink-Prefix.pch"; path = "Source/Drink-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		8377788115376906009EE79F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/main.m; sourceTree = SOURCE_ROOT; };
+		8383E47916C86B8F0007C470 /* wishlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wishlist.png; sourceTree = "<group>"; };
+		8383E47A16C86B8F0007C470 /* wishlist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wishlist@2x.png"; sourceTree = "<group>"; };
+		8383E47D16C86C450007C470 /* checkins.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkins.png; sourceTree = "<group>"; };
+		8383E47E16C86C450007C470 /* checkins@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkins@2x.png"; sourceTree = "<group>"; };
+		8383E48116C86E4E0007C470 /* timeline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timeline.png; sourceTree = "<group>"; };
+		8383E48216C86E4E0007C470 /* timeline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeline@2x.png"; sourceTree = "<group>"; };
 		838B21871537660300F36DB0 /* Drink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		838B218B1537660300F36DB0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		838B218D1537660300F36DB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -127,6 +137,10 @@
 		83B72DB216B3489800F2FB0C /* NewDrinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewDrinkViewController.m; path = Source/NewDrinkViewController.m; sourceTree = SOURCE_ROOT; };
 		83B72DB616B48C9C00F2FB0C /* TimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimelineViewController.h; path = Source/TimelineViewController.h; sourceTree = SOURCE_ROOT; };
 		83B72DB716B48C9C00F2FB0C /* TimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimelineViewController.m; path = Source/TimelineViewController.m; sourceTree = SOURCE_ROOT; };
+		83BFA34516C8649F00D65CFC /* NSDate-Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate-Extensions.h"; path = "Source/NSDate-Extensions.h"; sourceTree = SOURCE_ROOT; };
+		83BFA34616C8649F00D65CFC /* NSDate-Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate-Extensions.m"; path = "Source/NSDate-Extensions.m"; sourceTree = SOURCE_ROOT; };
+		83BFA34816C866A900D65CFC /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ISO8601DateFormatter.h; path = Source/ISO8601DateFormatter.h; sourceTree = SOURCE_ROOT; };
+		83BFA34916C866A900D65CFC /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ISO8601DateFormatter.m; path = Source/ISO8601DateFormatter.m; sourceTree = SOURCE_ROOT; };
 		83C0FF9A1698D35D00766CBE /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		83C0FF9D1698EDF400766CBE /* AFHTTPRequestOperationLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationLogger.h; sourceTree = "<group>"; };
 		83C0FF9E1698EDF400766CBE /* AFHTTPRequestOperationLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationLogger.m; sourceTree = "<group>"; };
@@ -232,10 +246,14 @@
 		83358470168002730066D745 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				83BFA34516C8649F00D65CFC /* NSDate-Extensions.h */,
+				83BFA34616C8649F00D65CFC /* NSDate-Extensions.m */,
 				83358471168002B80066D745 /* UIImage-Extensions.h */,
 				83358472168002B80066D745 /* UIImage-Extensions.m */,
 				83358473168002B80066D745 /* UIView-Extensions.h */,
 				83358474168002B80066D745 /* UIView-Extensions.m */,
+				83BFA34816C866A900D65CFC /* ISO8601DateFormatter.h */,
+				83BFA34916C866A900D65CFC /* ISO8601DateFormatter.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -262,11 +280,15 @@
 		8377782D153768AB009EE79F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8383E47D16C86C450007C470 /* checkins.png */,
+				8383E47E16C86C450007C470 /* checkins@2x.png */,
 				830590A7167FA13E00BCD9F8 /* Default-568h@2x.png */,
 				83FFD7D115EEB7C40067428C /* drinks.png */,
 				8314787115EE9E3100EC21A3 /* drinks@2x.png */,
-				83777830153768AB009EE79F /* second.png */,
-				83777831153768AB009EE79F /* second@2x.png */,
+				8383E48116C86E4E0007C470 /* timeline.png */,
+				8383E48216C86E4E0007C470 /* timeline@2x.png */,
+				8383E47916C86B8F0007C470 /* wishlist.png */,
+				8383E47A16C86B8F0007C470 /* wishlist@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -439,12 +461,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8377783C153768AB009EE79F /* second.png in Resources */,
-				8377783D153768AB009EE79F /* second@2x.png in Resources */,
 				8314787215EE9E3100EC21A3 /* drinks@2x.png in Resources */,
 				83FFD7D215EEB7C40067428C /* drinks.png in Resources */,
 				830590A8167FA13E00BCD9F8 /* Default-568h@2x.png in Resources */,
 				833A66AD169CF0A6001D0A28 /* LoginView.xib in Resources */,
+				8383E47B16C86B8F0007C470 /* wishlist.png in Resources */,
+				8383E47C16C86B8F0007C470 /* wishlist@2x.png in Resources */,
+				8383E47F16C86C450007C470 /* checkins.png in Resources */,
+				8383E48016C86C450007C470 /* checkins@2x.png in Resources */,
+				8383E48316C86E4E0007C470 /* timeline.png in Resources */,
+				8383E48416C86E4E0007C470 /* timeline@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,6 +508,8 @@
 				831EB36E16A519E300F4C129 /* LoginViewController.m in Sources */,
 				83B72DB316B3489900F2FB0C /* NewDrinkViewController.m in Sources */,
 				83B72DB816B48C9C00F2FB0C /* TimelineViewController.m in Sources */,
+				83BFA34716C8649F00D65CFC /* NSDate-Extensions.m in Sources */,
+				83BFA34A16C866A900D65CFC /* ISO8601DateFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
