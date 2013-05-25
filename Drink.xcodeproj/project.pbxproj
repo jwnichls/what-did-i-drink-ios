@@ -20,6 +20,7 @@
 		833584791680050B0066D745 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833584781680050B0066D745 /* SystemConfiguration.framework */; };
 		833A66A7169CCFB4001D0A28 /* WishlistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833A66A6169CCFB4001D0A28 /* WishlistViewController.m */; };
 		833A66AD169CF0A6001D0A28 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 833A66AC169CF0A6001D0A28 /* LoginView.xib */; };
+		83582AC01751230100C64706 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83582ABF1751230100C64706 /* Crashlytics.framework */; };
 		836F7F7F167FAA19002F30AB /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F7F6D167FAA19002F30AB /* AFHTTPClient.m */; };
 		836F7F80167FAA19002F30AB /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F7F6F167FAA19002F30AB /* AFHTTPRequestOperation.m */; };
 		836F7F81167FAA19002F30AB /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F7F71167FAA19002F30AB /* AFImageRequestOperation.m */; };
@@ -79,6 +80,7 @@
 		833A66A6169CCFB4001D0A28 /* WishlistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WishlistViewController.m; path = Source/WishlistViewController.m; sourceTree = SOURCE_ROOT; };
 		833A66A8169CE66D001D0A28 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = Source/LoginViewController.h; sourceTree = SOURCE_ROOT; };
 		833A66AC169CF0A6001D0A28 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginView.xib; path = Resources/Interfaces/LoginView.xib; sourceTree = SOURCE_ROOT; };
+		83582ABF1751230100C64706 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Frameworks/Crashlytics.framework; sourceTree = "<group>"; };
 		836F7F6C167FAA19002F30AB /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPClient.h; path = AFNetworking/AFHTTPClient.h; sourceTree = "<group>"; };
 		836F7F6D167FAA19002F30AB /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPClient.m; path = AFNetworking/AFHTTPClient.m; sourceTree = "<group>"; };
 		836F7F6E167FAA19002F30AB /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPRequestOperation.h; path = AFNetworking/AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				838B218E1537660300F36DB0 /* Foundation.framework in Frameworks */,
 				838B21901537660300F36DB0 /* CoreGraphics.framework in Frameworks */,
 				83B72DAD16B333DB00F2FB0C /* libGoogleAnalytics.a in Frameworks */,
+				83582AC01751230100C64706 /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +349,7 @@
 		838B218A1537660300F36DB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				83582ABF1751230100C64706 /* Crashlytics.framework */,
 				83B72DAF16B333F700F2FB0C /* CoreData.framework */,
 				83B72DA516B333DB00F2FB0C /* Google Analytics */,
 				83C0FF9C1698EDF400766CBE /* AFHTTPRequestOperationLogger */,
@@ -420,6 +424,7 @@
 				838B21831537660300F36DB0 /* Sources */,
 				838B21841537660300F36DB0 /* Frameworks */,
 				838B21851537660300F36DB0 /* Resources */,
+				83582ABE1751228B00C64706 /* Crashalytics */,
 			);
 			buildRules = (
 			);
@@ -475,6 +480,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		83582ABE1751228B00C64706 /* Crashalytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Crashalytics;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Frameworks/Crashlytics.framework/run d428b1fbc4aadc4e5f99cce2c43724eb9e62055e";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		838B21831537660300F36DB0 /* Sources */ = {
@@ -574,6 +596,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 83777869153768CD009EE79F /* Drink_Debug.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Source/Drink-Prefix.pch";
 				INFOPLIST_FILE = "Configurations/Drink-Info.plist";
@@ -592,6 +619,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8377786B153768CD009EE79F /* Drink_Release.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Source/Drink-Prefix.pch";
 				INFOPLIST_FILE = "Configurations/Drink-Info.plist";

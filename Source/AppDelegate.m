@@ -11,6 +11,7 @@
 #import "TimelineViewController.h"
 #import "WishlistViewController.h"
 #import "GAI.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate {
     DrinksViewController *_drinksViewController;
@@ -56,6 +57,11 @@
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
 
+
+    // setup Crashlytics
+    [Crashlytics startWithAPIKey:@"d428b1fbc4aadc4e5f99cce2c43724eb9e62055e"];
+
+    // shof the login view if there is no access token stored locally
     NSString *accessToken = [[NSUserDefaults standardUserDefaults] stringForKey:@"accessToken"];
     if (accessToken == nil) {
         LoginViewController *loginViewController = [[LoginViewController alloc] init];
