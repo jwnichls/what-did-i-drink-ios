@@ -8,6 +8,9 @@
 #import "Client.h"
 #import "DrinkDetailsViewController.h"
 #import "ISO8601DateFormatter.h"
+#import "TimelineTableViewCell.h"
+
+static NSString *kCellIdentifier = @"TimelineCell";
 
 @implementation TimelineViewController {
     __weak AppDelegate *appDelegate;
@@ -29,6 +32,8 @@
         _tableView.dataSource = self;
         _tableView.delegate = self;
         [self.view addSubview:_tableView];
+
+//        [_tableView registerClass:[TimelineTableViewCell class] forCellReuseIdentifier:kCellIdentifier];
 
         _dateFormatter = [[ISO8601DateFormatter alloc] init];
 
@@ -55,7 +60,8 @@
 
         // load timeline asynchroneously from server
         [[Client sharedClient] timelineWithCompletionHandler:^(id eventsJSON, NSError *error2) {
-            _events = eventsJSON;
+            _events = [eventsJSON mutableCopy];
+            [self _updateRelativeDates];
             [_tableView reloadData];
         }];
     }];
@@ -71,11 +77,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kCellIdentifier];
     }
 
     NSDictionary *event = [_events objectAtIndex:indexPath.row];
@@ -107,9 +111,7 @@
     cell.textLabel.text = text;
 
     // set the relative date
-    NSString *created = [event valueForKey:@"created_at"];
-    NSDate *date = [_dateFormatter dateFromString:created];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ ago", [date relativeDate]];
+    cell.detailTextLabel.text = [event valueForKey:@"relative_date"];
 
     // TODO: show only if we already have the drink ditails stored locally
 //    NSInteger drinkID = [[event valueForKeyPath:@"drink.id"] integerValue];
@@ -123,13 +125,31 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     NSDictionary *event = [_events objectAtIndex:indexPath.row];
-    NSInteger drinkID = [[event valueForKey:@"drink_id"] integerValue];
+    NSInteger drinkID = [[event valueForKeyPath:@"drink.id"] integerValue];
     id drinkDetails = [appDelegate._drinks filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"id == %d", drinkID]];
 
     DrinkDetailsViewController *drinkDetailsViewController = [[DrinkDetailsViewController alloc] init];
     drinkDetailsViewController.title = [[drinkDetails valueForKeyPath:@"name"] objectAtIndex:0];
     drinkDetailsViewController.drink = drinkDetails;
     [self.navigationController pushViewController:drinkDetailsViewController animated:YES];
+}
+
+
+#pragma mark Private methods
+
+- (void)_updateRelativeDates
+{
+    NSMutableArray *events = [NSMutableArray arrayWithCapacity:[_events count]];
+
+    for (NSDictionary *event in _events) {
+        NSMutableDictionary *updatedEvent = [event mutableCopy];
+        NSString *created = [event valueForKey:@"created_at"];
+        NSDate *date = [_dateFormatter dateFromString:created];
+        [updatedEvent setValue:[NSString stringWithFormat:@"%@", [date relativeDate]] forKey:@"relative_date"];
+        [events addObject:updatedEvent];
+    }
+
+    _events = events;
 }
 
 @end

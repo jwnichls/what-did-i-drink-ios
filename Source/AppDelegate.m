@@ -30,6 +30,7 @@
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-37810022-1"];
 #endif
 
+    // create the tab bar controller
     self.tabBarController = [[UITabBarController alloc] init];
 
     // timeline

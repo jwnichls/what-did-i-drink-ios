@@ -49,6 +49,7 @@
 		83B72DB016B333F700F2FB0C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B72DAF16B333F700F2FB0C /* CoreData.framework */; };
 		83B72DB316B3489900F2FB0C /* NewDrinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B72DB216B3489800F2FB0C /* NewDrinkViewController.m */; };
 		83B72DB816B48C9C00F2FB0C /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B72DB716B48C9C00F2FB0C /* TimelineViewController.m */; };
+		83BF07E416CB2456004F73E3 /* TimelineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BF07E316CB2456004F73E3 /* TimelineTableViewCell.m */; };
 		83BFA34716C8649F00D65CFC /* NSDate-Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BFA34616C8649F00D65CFC /* NSDate-Extensions.m */; };
 		83BFA34A16C866A900D65CFC /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BFA34916C866A900D65CFC /* ISO8601DateFormatter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		83C0FF9B1698D35D00766CBE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C0FF9A1698D35D00766CBE /* MobileCoreServices.framework */; };
@@ -139,6 +140,8 @@
 		83B72DB216B3489800F2FB0C /* NewDrinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewDrinkViewController.m; path = Source/NewDrinkViewController.m; sourceTree = SOURCE_ROOT; };
 		83B72DB616B48C9C00F2FB0C /* TimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimelineViewController.h; path = Source/TimelineViewController.h; sourceTree = SOURCE_ROOT; };
 		83B72DB716B48C9C00F2FB0C /* TimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimelineViewController.m; path = Source/TimelineViewController.m; sourceTree = SOURCE_ROOT; };
+		83BF07E216CB2456004F73E3 /* TimelineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimelineTableViewCell.h; path = Source/TimelineTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		83BF07E316CB2456004F73E3 /* TimelineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimelineTableViewCell.m; path = Source/TimelineTableViewCell.m; sourceTree = SOURCE_ROOT; };
 		83BFA34516C8649F00D65CFC /* NSDate-Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate-Extensions.h"; path = "Source/NSDate-Extensions.h"; sourceTree = SOURCE_ROOT; };
 		83BFA34616C8649F00D65CFC /* NSDate-Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate-Extensions.m"; path = "Source/NSDate-Extensions.m"; sourceTree = SOURCE_ROOT; };
 		83BFA34816C866A900D65CFC /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ISO8601DateFormatter.h; path = Source/ISO8601DateFormatter.h; sourceTree = SOURCE_ROOT; };
@@ -205,6 +208,8 @@
 				8306A58D1537736C0019AED5 /* SmartTableViewCell.m */,
 				8306A58F15378B2E0019AED5 /* DrinkOverviewTableCell.h */,
 				8306A59015378B2E0019AED5 /* DrinkOverviewTableCell.m */,
+				83BF07E216CB2456004F73E3 /* TimelineTableViewCell.h */,
+				83BF07E316CB2456004F73E3 /* TimelineTableViewCell.m */,
 			);
 			name = "Table Cells";
 			sourceTree = "<group>";
@@ -532,6 +537,7 @@
 				83B72DB816B48C9C00F2FB0C /* TimelineViewController.m in Sources */,
 				83BFA34716C8649F00D65CFC /* NSDate-Extensions.m in Sources */,
 				83BFA34A16C866A900D65CFC /* ISO8601DateFormatter.m in Sources */,
+				83BF07E416CB2456004F73E3 /* TimelineTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
