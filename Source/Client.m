@@ -306,6 +306,28 @@ NSString *const kBaseURLString = @"http://api.whatdididrink.com";
     [self.operationQueue addOperation:operation];
 }
 
+- (void)allVenuesWithCompletionHandler:(void (^)(id JSON, NSError *error))handler
+{
+    NSMutableURLRequest *request = [self _mutableRequestWithMethod:kHTTP_METHOD_GET
+                                                              path:@"/venues"
+                                                        parameters:nil];
+
+    AFHTTPRequestOperation *operation =
+    [self HTTPRequestOperationWithRequest:request
+                                  success:^(AFHTTPRequestOperation *op, id responseObject) {
+                                      if (handler) {
+                                          handler(responseObject, nil);
+                                      }
+                                  }
+                                  failure:^(AFHTTPRequestOperation *op, NSError *error) {
+                                      if (handler) {
+                                          handler(nil, error);
+                                      }
+                                  }];
+
+    [self.operationQueue addOperation:operation];
+}
+
 
 #pragma mark Private methods
 

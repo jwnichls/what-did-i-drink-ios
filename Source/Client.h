@@ -32,6 +32,9 @@
 - (void)addDrinkToWishlist:(NSUInteger)drinkID completion:(void (^)(id JSON, NSError *error))completion;
 - (void)removeDrinkFromWishlist:(NSUInteger)drinkID completion:(void (^)(id JSON, NSError *error))completion;
 
+// venues
+- (void)allVenuesWithCompletionHandler:(void (^)(id JSON, NSError *error))handler;
+
 @end
 
 /*
