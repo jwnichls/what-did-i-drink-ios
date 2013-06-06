@@ -20,6 +20,15 @@
 		833584791680050B0066D745 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833584781680050B0066D745 /* SystemConfiguration.framework */; };
 		833A66A7169CCFB4001D0A28 /* WishlistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833A66A6169CCFB4001D0A28 /* WishlistViewController.m */; };
 		833A66AD169CF0A6001D0A28 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 833A66AC169CF0A6001D0A28 /* LoginView.xib */; };
+		8356D785175FFD4F00C9D757 /* VenuesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8356D784175FFD4F00C9D757 /* VenuesViewController.m */; };
+		8356D7881760018B00C9D757 /* navbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8356D7861760018B00C9D757 /* navbar.png */; };
+		8356D7891760018B00C9D757 /* navbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8356D7871760018B00C9D757 /* navbar@2x.png */; };
+		8356D78C17603AD100C9D757 /* toolbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8356D78A17603AD100C9D757 /* toolbar.png */; };
+		8356D78D17603AD100C9D757 /* toolbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8356D78B17603AD100C9D757 /* toolbar@2x.png */; };
+		8356D792176040C400C9D757 /* chevron.png in Resources */ = {isa = PBXBuildFile; fileRef = 8356D78E176040C400C9D757 /* chevron.png */; };
+		8356D793176040C400C9D757 /* chevron@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8356D78F176040C400C9D757 /* chevron@2x.png */; };
+		8356D794176040C400C9D757 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 8356D790176040C400C9D757 /* location.png */; };
+		8356D795176040C400C9D757 /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8356D791176040C400C9D757 /* location@2x.png */; };
 		83582AC01751230100C64706 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83582ABF1751230100C64706 /* Crashlytics.framework */; };
 		836F7F7F167FAA19002F30AB /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F7F6D167FAA19002F30AB /* AFHTTPClient.m */; };
 		836F7F80167FAA19002F30AB /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F7F6F167FAA19002F30AB /* AFHTTPRequestOperation.m */; };
@@ -81,6 +90,16 @@
 		833A66A6169CCFB4001D0A28 /* WishlistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WishlistViewController.m; path = Source/WishlistViewController.m; sourceTree = SOURCE_ROOT; };
 		833A66A8169CE66D001D0A28 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = Source/LoginViewController.h; sourceTree = SOURCE_ROOT; };
 		833A66AC169CF0A6001D0A28 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginView.xib; path = Resources/Interfaces/LoginView.xib; sourceTree = SOURCE_ROOT; };
+		8356D783175FFD4F00C9D757 /* VenuesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenuesViewController.h; path = Source/VenuesViewController.h; sourceTree = SOURCE_ROOT; };
+		8356D784175FFD4F00C9D757 /* VenuesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenuesViewController.m; path = Source/VenuesViewController.m; sourceTree = SOURCE_ROOT; };
+		8356D7861760018B00C9D757 /* navbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar.png; sourceTree = "<group>"; };
+		8356D7871760018B00C9D757 /* navbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar@2x.png"; sourceTree = "<group>"; };
+		8356D78A17603AD100C9D757 /* toolbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar.png; sourceTree = "<group>"; };
+		8356D78B17603AD100C9D757 /* toolbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar@2x.png"; sourceTree = "<group>"; };
+		8356D78E176040C400C9D757 /* chevron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chevron.png; sourceTree = "<group>"; };
+		8356D78F176040C400C9D757 /* chevron@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chevron@2x.png"; sourceTree = "<group>"; };
+		8356D790176040C400C9D757 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
+		8356D791176040C400C9D757 /* location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@2x.png"; sourceTree = "<group>"; };
 		83582ABF1751230100C64706 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Frameworks/Crashlytics.framework; sourceTree = "<group>"; };
 		836F7F6C167FAA19002F30AB /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPClient.h; path = AFNetworking/AFHTTPClient.h; sourceTree = "<group>"; };
 		836F7F6D167FAA19002F30AB /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPClient.m; path = AFNetworking/AFHTTPClient.m; sourceTree = "<group>"; };
@@ -195,6 +214,8 @@
 				831EB36D16A519E300F4C129 /* LoginViewController.m */,
 				83B72DB616B48C9C00F2FB0C /* TimelineViewController.h */,
 				83B72DB716B48C9C00F2FB0C /* TimelineViewController.m */,
+				8356D783175FFD4F00C9D757 /* VenuesViewController.h */,
+				8356D784175FFD4F00C9D757 /* VenuesViewController.m */,
 				833A66A5169CCFB4001D0A28 /* WishlistViewController.h */,
 				833A66A6169CCFB4001D0A28 /* WishlistViewController.m */,
 			);
@@ -288,6 +309,14 @@
 		8377782D153768AB009EE79F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8356D78E176040C400C9D757 /* chevron.png */,
+				8356D78F176040C400C9D757 /* chevron@2x.png */,
+				8356D790176040C400C9D757 /* location.png */,
+				8356D791176040C400C9D757 /* location@2x.png */,
+				8356D78A17603AD100C9D757 /* toolbar.png */,
+				8356D78B17603AD100C9D757 /* toolbar@2x.png */,
+				8356D7861760018B00C9D757 /* navbar.png */,
+				8356D7871760018B00C9D757 /* navbar@2x.png */,
 				8383E47D16C86C450007C470 /* checkins.png */,
 				8383E47E16C86C450007C470 /* checkins@2x.png */,
 				830590A7167FA13E00BCD9F8 /* Default-568h@2x.png */,
@@ -481,6 +510,14 @@
 				8383E48016C86C450007C470 /* checkins@2x.png in Resources */,
 				8383E48316C86E4E0007C470 /* timeline.png in Resources */,
 				8383E48416C86E4E0007C470 /* timeline@2x.png in Resources */,
+				8356D7881760018B00C9D757 /* navbar.png in Resources */,
+				8356D7891760018B00C9D757 /* navbar@2x.png in Resources */,
+				8356D78C17603AD100C9D757 /* toolbar.png in Resources */,
+				8356D78D17603AD100C9D757 /* toolbar@2x.png in Resources */,
+				8356D792176040C400C9D757 /* chevron.png in Resources */,
+				8356D793176040C400C9D757 /* chevron@2x.png in Resources */,
+				8356D794176040C400C9D757 /* location.png in Resources */,
+				8356D795176040C400C9D757 /* location@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,6 +575,7 @@
 				83BFA34716C8649F00D65CFC /* NSDate-Extensions.m in Sources */,
 				83BFA34A16C866A900D65CFC /* ISO8601DateFormatter.m in Sources */,
 				83BF07E416CB2456004F73E3 /* TimelineTableViewCell.m in Sources */,
+				8356D785175FFD4F00C9D757 /* VenuesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

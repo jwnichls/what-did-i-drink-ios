@@ -18,3 +18,9 @@
     #import "UIImage-Extensions.h"
     #import "NSDate-Extensions.h"
 #endif
+
+#define TABLE_VIEW_BACKGROUND_COLOR [UIColor colorWithRed:0.231 green:0.263 blue:0.302 alpha:1.0]
+#define TABLE_VIEW_SEPARATOR_COLOR [UIColor colorWithRed:0.816 green:0.867 blue:0.890 alpha:1.0]
+
+#define TABLE_VIEW_CELL_TEXT_FONT [UIFont systemFontOfSize:18.0f]
+#define TABLE_VIEW_CELL_TEXT_COLOR [UIColor colorWithRed:0.816 green:0.867 blue:0.890 alpha:1.0]

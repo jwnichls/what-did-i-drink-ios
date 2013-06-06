@@ -23,6 +23,8 @@
         CGFloat width = [[UIScreen mainScreen] applicationFrame].size.width;
         _recipeTextView = [[UITextView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, height)];
         _recipeTextView.font = [UIFont systemFontOfSize:18.0];
+        _recipeTextView.backgroundColor = TABLE_VIEW_BACKGROUND_COLOR;
+        _recipeTextView.textColor = TABLE_VIEW_CELL_TEXT_COLOR;
         [self.view addSubview:_recipeTextView];
 
         // created_at

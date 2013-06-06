@@ -32,6 +32,8 @@
         _tableView = [[UITableView alloc] initWithFrame:frame];
         _tableView.dataSource = self;
         _tableView.delegate = self;
+        _tableView.backgroundColor = TABLE_VIEW_BACKGROUND_COLOR;
+        _tableView.separatorColor = TABLE_VIEW_SEPARATOR_COLOR;
         [self.view addSubview:_tableView];
 
         appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -168,8 +170,11 @@
 
     id name = [drinkDetails valueForKeyPath:@"name"];
     if ((name == nil) || (name == [NSNull null])) name = [NSString stringWithFormat:@"ERROR: id = %@", [drinkDetails valueForKeyPath:@"id"]];
+    cell.textLabel.font = TABLE_VIEW_CELL_TEXT_FONT;
+    cell.textLabel.textColor = TABLE_VIEW_CELL_TEXT_COLOR;
     cell.textLabel.text = name;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chevron.png"]];
 
     return cell;
 }

@@ -24,6 +24,8 @@
         _tableView = [[UITableView alloc] initWithFrame:frame];
         _tableView.dataSource = self;
         _tableView.delegate = self;
+        _tableView.backgroundColor = TABLE_VIEW_BACKGROUND_COLOR;
+        _tableView.separatorColor = TABLE_VIEW_SEPARATOR_COLOR;
         [self.view addSubview:_tableView];
 
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"kCellIdentifier"];
@@ -79,7 +81,8 @@
 
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %d", drinkID.integerValue];
     NSDictionary *dict = [[appDelegate._drinks filteredArrayUsingPredicate:predicate] objectAtIndex:0];
-    
+    cell.textLabel.textColor = TABLE_VIEW_CELL_TEXT_COLOR;
+    cell.textLabel.font = TABLE_VIEW_CELL_TEXT_FONT;
     cell.textLabel.text = [dict objectForKey:@"name"];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
