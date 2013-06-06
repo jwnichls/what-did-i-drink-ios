@@ -11,6 +11,9 @@
 		8306A58A15376AF70019AED5 /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 8306A58915376AF70019AED5 /* Client.m */; };
 		8306A58E1537736C0019AED5 /* SmartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8306A58D1537736C0019AED5 /* SmartTableViewCell.m */; };
 		8306A59115378B2E0019AED5 /* DrinkOverviewTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8306A59015378B2E0019AED5 /* DrinkOverviewTableCell.m */; };
+		830DBAD917604699004E5D2D /* VenueDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 830DBAD817604699004E5D2D /* VenueDetailsViewController.m */; };
+		830DBADC1760479B004E5D2D /* venue.png in Resources */ = {isa = PBXBuildFile; fileRef = 830DBADA1760479B004E5D2D /* venue.png */; };
+		830DBADD1760479B004E5D2D /* venue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 830DBADB1760479B004E5D2D /* venue@2x.png */; };
 		8314787215EE9E3100EC21A3 /* drinks@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8314787115EE9E3100EC21A3 /* drinks@2x.png */; };
 		831AFC5715D9BC6400EF63B3 /* DrinkDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831AFC5615D9BC6400EF63B3 /* DrinkDetailsViewController.m */; };
 		831AFC7C15D9BD5600EF63B3 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 831AFC7115D9BD5600EF63B3 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -74,6 +77,10 @@
 		8306A58D1537736C0019AED5 /* SmartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SmartTableViewCell.m; path = Source/SmartTableViewCell.m; sourceTree = SOURCE_ROOT; };
 		8306A58F15378B2E0019AED5 /* DrinkOverviewTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrinkOverviewTableCell.h; path = Source/DrinkOverviewTableCell.h; sourceTree = SOURCE_ROOT; };
 		8306A59015378B2E0019AED5 /* DrinkOverviewTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrinkOverviewTableCell.m; path = Source/DrinkOverviewTableCell.m; sourceTree = SOURCE_ROOT; };
+		830DBAD717604699004E5D2D /* VenueDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueDetailsViewController.h; path = Source/VenueDetailsViewController.h; sourceTree = SOURCE_ROOT; };
+		830DBAD817604699004E5D2D /* VenueDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueDetailsViewController.m; path = Source/VenueDetailsViewController.m; sourceTree = SOURCE_ROOT; };
+		830DBADA1760479B004E5D2D /* venue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = venue.png; sourceTree = "<group>"; };
+		830DBADB1760479B004E5D2D /* venue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "venue@2x.png"; sourceTree = "<group>"; };
 		8314787115EE9E3100EC21A3 /* drinks@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drinks@2x.png"; sourceTree = "<group>"; };
 		831AFC5515D9BC6400EF63B3 /* DrinkDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrinkDetailsViewController.h; path = Source/DrinkDetailsViewController.h; sourceTree = SOURCE_ROOT; };
 		831AFC5615D9BC6400EF63B3 /* DrinkDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrinkDetailsViewController.m; path = Source/DrinkDetailsViewController.m; sourceTree = SOURCE_ROOT; };
@@ -214,6 +221,8 @@
 				831EB36D16A519E300F4C129 /* LoginViewController.m */,
 				83B72DB616B48C9C00F2FB0C /* TimelineViewController.h */,
 				83B72DB716B48C9C00F2FB0C /* TimelineViewController.m */,
+				830DBAD717604699004E5D2D /* VenueDetailsViewController.h */,
+				830DBAD817604699004E5D2D /* VenueDetailsViewController.m */,
 				8356D783175FFD4F00C9D757 /* VenuesViewController.h */,
 				8356D784175FFD4F00C9D757 /* VenuesViewController.m */,
 				833A66A5169CCFB4001D0A28 /* WishlistViewController.h */,
@@ -324,6 +333,8 @@
 				8314787115EE9E3100EC21A3 /* drinks@2x.png */,
 				8383E48116C86E4E0007C470 /* timeline.png */,
 				8383E48216C86E4E0007C470 /* timeline@2x.png */,
+				830DBADA1760479B004E5D2D /* venue.png */,
+				830DBADB1760479B004E5D2D /* venue@2x.png */,
 				8383E47916C86B8F0007C470 /* wishlist.png */,
 				8383E47A16C86B8F0007C470 /* wishlist@2x.png */,
 			);
@@ -518,6 +529,8 @@
 				8356D793176040C400C9D757 /* chevron@2x.png in Resources */,
 				8356D794176040C400C9D757 /* location.png in Resources */,
 				8356D795176040C400C9D757 /* location@2x.png in Resources */,
+				830DBADC1760479B004E5D2D /* venue.png in Resources */,
+				830DBADD1760479B004E5D2D /* venue@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,6 +589,7 @@
 				83BFA34A16C866A900D65CFC /* ISO8601DateFormatter.m in Sources */,
 				83BF07E416CB2456004F73E3 /* TimelineTableViewCell.m in Sources */,
 				8356D785175FFD4F00C9D757 /* VenuesViewController.m in Sources */,
+				830DBAD917604699004E5D2D /* VenueDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

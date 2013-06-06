@@ -6,6 +6,7 @@
 #import "VenuesViewController.h"
 #import "AppDelegate.h"
 #import "Client.h"
+#import "VenueDetailsViewController.h"
 
 @implementation VenuesViewController {
     __weak AppDelegate *appDelegate;
@@ -66,6 +67,22 @@
 }
 
 
+
+#pragma mark - UITableViewDelegate methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    id venue = [_venues objectAtIndex:indexPath.row];
+
+    VenueDetailsViewController *drinkDetailsViewController = [[VenueDetailsViewController alloc] init];
+    drinkDetailsViewController.title = [venue valueForKeyPath:@"name"];
+    drinkDetailsViewController.venue = venue;
+    [self.navigationController pushViewController:drinkDetailsViewController animated:YES];
+}
+
+
 #pragma mark - UITableViewDataSource methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -81,6 +98,7 @@
     cell.textLabel.font = TABLE_VIEW_CELL_TEXT_FONT;
     cell.textLabel.text = [venue objectForKey:@"name"];
     cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chevron.png"]];
 
     return cell;
 }

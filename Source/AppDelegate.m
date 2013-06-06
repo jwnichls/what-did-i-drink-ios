@@ -93,13 +93,13 @@
     // customize the appearance of the navigation bar
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navbar.png"] forBarMetrics:UIBarMetricsDefault];
     NSDictionary *titleTextAttributes = @{
-                                          UITextAttributeFont : [UIFont fontWithName:@"Helvetica Neue" size:24.0f],
+                                          UITextAttributeFont : [UIFont fontWithName:@"Helvetica Neue" size:22.0f],
                                           UITextAttributeTextColor : [UIColor colorWithRed:0.988 green:0.988 blue:0.988 alpha:1.0],
                                           UITextAttributeTextShadowColor : [UIColor colorWithRed:0.988 green:0.988 blue:0.988 alpha:1.0],
                                           UITextAttributeTextShadowOffset : [NSValue valueWithUIOffset:UIOffsetMake(0.0, 0.0)]
                                          };
     [[UINavigationBar appearance] setTitleTextAttributes:titleTextAttributes];
-    [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:-2.0f forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:-1.0f forBarMetrics:UIBarMetricsDefault];
 
 
     // customize the appearance of the tool bar
