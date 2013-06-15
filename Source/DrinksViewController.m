@@ -28,7 +28,7 @@
     if (self) {
         self.title = NSLocalizedString(@"Drinks", @"Drinks");
         self.tabBarItem.image = [UIImage imageNamed:@"drinks"];
-        CGRect frame = CGRectMake(0.0, 0.0, 320.0, 456.0);
+        CGRect frame = CGRectMake(0.0, 0.0, 320.0, 578.0 - 59.0f);
         _tableView = [[UITableView alloc] initWithFrame:frame];
         _tableView.dataSource = self;
         _tableView.delegate = self;
@@ -58,14 +58,14 @@
                                               target:self
                                               action:@selector(_addDrink)];
 
-    // add search bar
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 40.0)];
-    view.backgroundColor = [UIColor blueColor];
-    _tableView.tableHeaderView = view;
-    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 44.0)];
-    _searchBar.tintColor = [UIColor whiteColor];
-    _searchBar.delegate = self;
-    [view addSubview:_searchBar];
+//    // add search bar
+//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 40.0)];
+//    view.backgroundColor = [UIColor blueColor];
+//    _tableView.tableHeaderView = view;
+//    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 44.0)];
+//    _searchBar.tintColor = [UIColor whiteColor];
+//    _searchBar.delegate = self;
+//    [view addSubview:_searchBar];
 
     // load all drinks asynchroneously from server
     [[Client sharedClient] allDrinksWithCompletionHandler:^(id JSON, NSError *error) {
@@ -79,10 +79,6 @@
     [super viewWillAppear:animated];
 
     [_searchBar resignFirstResponder];
-
-    if (!_isFiltered) {
-        _tableView.contentOffset = CGPointMake(0.0, 44.0);
-    }
 }
 
 - (void)loadData
@@ -177,6 +173,11 @@
     cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chevron.png"]];
 
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell.backgroundColor = TABLE_VIEW_BACKGROUND_COLOR;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath

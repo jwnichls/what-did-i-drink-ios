@@ -27,7 +27,9 @@
     self.trackedViewName = @"Venue Details";
 
     self.view.backgroundColor = TABLE_VIEW_BACKGROUND_COLOR;
-    [self.view addSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"venue.png"]]];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"venue.png"]];
+    imageView.y += 64.0f;
+    [self.view addSubview:imageView];
 }
 
 - (void)setVenue:(id)venue

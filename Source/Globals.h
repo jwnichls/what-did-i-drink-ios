@@ -6,8 +6,8 @@
 
 // UIColor Macros
 
-#define HSB(hue, saturation, brightness, alpha) [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1.0]
-#define HSBA(hue, saturation, brightness, alpha) [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:alpha]
+#define HSB(h, s, b) [UIColor colorWithHue:h saturation:s brightness:b alpha:1.0]
+#define HSBA(h, s, b, a) [UIColor colorWithHue:h saturation:s brightness:b alpha:a]
 #define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
 #define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 

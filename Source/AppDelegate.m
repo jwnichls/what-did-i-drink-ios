@@ -91,21 +91,17 @@
 - (void)_customizeAppearance
 {
     // customize the appearance of the navigation bar
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navbar.png"] forBarMetrics:UIBarMetricsDefault];
+//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navbar.png"] forBarMetrics:UIBarMetricsDefault];
     NSDictionary *titleTextAttributes = @{
-                                          UITextAttributeFont : [UIFont fontWithName:@"Helvetica Neue" size:22.0f],
-                                          UITextAttributeTextColor : [UIColor colorWithRed:0.988 green:0.988 blue:0.988 alpha:1.0],
-                                          UITextAttributeTextShadowColor : [UIColor colorWithRed:0.988 green:0.988 blue:0.988 alpha:1.0],
-                                          UITextAttributeTextShadowOffset : [NSValue valueWithUIOffset:UIOffsetMake(0.0, 0.0)]
+                                          UITextAttributeFont : [UIFont systemFontOfSize:22.0f],
+                                          UITextAttributeTextColor : [UIColor colorWithRed:0.988 green:0.988 blue:0.988 alpha:1.0]
                                          };
     [[UINavigationBar appearance] setTitleTextAttributes:titleTextAttributes];
-    [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:-1.0f forBarMetrics:UIBarMetricsDefault];
-
+    [[UINavigationBar appearance] setBarTintColor:RGB(84.0f, 192.0f, 255.0f)];
 
     // customize the appearance of the tool bar
     [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"toolbar.png"]];
-    [[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
-    //TODO: [[UITabBar appearance] setSelectionIndicatorImage:nil];
+//    [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithHue:202 saturation:67 brightness:100 alpha:1.0]];
 }
 
 @end

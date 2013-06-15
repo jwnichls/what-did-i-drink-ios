@@ -488,6 +488,11 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = N/A;
+				TargetAttributes = {
+					838B21861537660300F36DB0 = {
+						DevelopmentTeam = U67574366T;
+					};
+				};
 			};
 			buildConfigurationList = 838B21811537660300F36DB0 /* Build configuration list for PBXProject "Drink" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -654,6 +659,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 83777869153768CD009EE79F /* Drink_Debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -677,6 +683,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8377786B153768CD009EE79F /* Drink_Release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",

@@ -18,10 +18,12 @@
 {
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
+        self.view.backgroundColor = TABLE_VIEW_BACKGROUND_COLOR;
+
         // recipe
         CGFloat height = [[UIScreen mainScreen] applicationFrame].size.height - 4.0f - 40.0f /* navigation bar */;
         CGFloat width = [[UIScreen mainScreen] applicationFrame].size.width;
-        _recipeTextView = [[UITextView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, height)];
+        _recipeTextView = [[UITextView alloc] initWithFrame:CGRectMake(0.0, 64.0, width, height)];
         _recipeTextView.font = [UIFont systemFontOfSize:18.0];
         _recipeTextView.backgroundColor = TABLE_VIEW_BACKGROUND_COLOR;
         _recipeTextView.textColor = TABLE_VIEW_CELL_TEXT_COLOR;
@@ -60,7 +62,7 @@
 - (void)setDrink:(id)drink
 {
     _drink = drink;
-    _recipeTextView.text = [drink valueForKey:@"recipe"];
+    _recipeTextView.text = [drink valueForKey:@"recipe_raw"];
 }
 
 - (void)_addToCheckins

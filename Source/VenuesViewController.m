@@ -21,7 +21,7 @@
     if (self) {
         self.title = NSLocalizedString(@"Venues", @"Venues");
         self.tabBarItem.image = [UIImage imageNamed:@"location"];
-        CGRect frame = CGRectMake(0.0, 0.0, 320.0, 456.0);
+        CGRect frame = CGRectMake(0.0, 0.0, 320.0, 578.0 - 59.0f);
         _tableView = [[UITableView alloc] initWithFrame:frame];
         _tableView.dataSource = self;
         _tableView.delegate = self;
@@ -101,6 +101,11 @@
     cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chevron.png"]];
 
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell.backgroundColor = TABLE_VIEW_BACKGROUND_COLOR;
 }
 
 @end
