@@ -7,14 +7,24 @@
 #import "AFNetworking.h"
 #import "Checkin.h"
 #import "Drink.h"
+#import "GTMOAuth2ViewControllerTouch.h"
 
 NSString *const kHTTP_METHOD_DELETE = @"DELETE";
 NSString *const kHTTP_METHOD_GET = @"GET";
 NSString *const kHTTP_METHOD_POST = @"POST";
 NSString *const kHTTP_METHOD_PUT = @"PUT";
 
+NSString *const kClientID = @"00b595070d01d585a22f63f93a75245aa0a213ad49eb77523b7120e11c479206";
+NSString *const kClientSecret = @"80f556d63db78f47371e75a8d93a2a9a4e4ae081c9e5c7a96deda72722e4005a";
+NSString *const kRedirectURL = @"http://whatdididrink.com/fake/callback";
+
 
 NSString *const kBaseURLString = @"http://api.whatdididrink.com";
+NSString *const kAuthorizeURL = @"http://whatdididrink.com/oauth/authorize";
+NSString *const kTokenURL = @"http://whatdididrink.com/oauth/token";
+
+NSString *const kKeychainItemName = @"Drink? OAuth2 Token";
+
 
 @interface Client () {
     void(^_onFetchDrinksBlock)(id JSON, NSError *error);
@@ -24,6 +34,8 @@ NSString *const kBaseURLString = @"http://api.whatdididrink.com";
 
 
 @implementation Client
+
+@synthesize auth;
 
 + (Client *)sharedClient
 {
@@ -46,7 +58,33 @@ NSString *const kBaseURLString = @"http://api.whatdididrink.com";
     [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
     [self setDefaultHeader:@"Accept" value:@"application/json"];
 
+    auth = [self createNewAuthObject];
+    if (auth) {
+        // get the saved authentication, if any, from the keychain
+        [GTMOAuth2ViewControllerTouch authorizeFromKeychainForName:kKeychainItemName
+                                                    authentication:auth
+                                                             error:nil];
+    }
     return self;
+}
+
+- (GTMOAuth2ViewControllerTouch *)getOAuthLoginController
+{
+    NSURL *authURL = [NSURL URLWithString:kAuthorizeURL];
+
+    GTMOAuth2ViewControllerTouch *viewController;
+    viewController = [[GTMOAuth2ViewControllerTouch alloc] initWithAuthentication:auth
+                                                                 authorizationURL:authURL
+                                                                 keychainItemName:kKeychainItemName
+                                                                         delegate:self
+                                                                 finishedSelector:@selector(viewController:finishedWithAuth:error:)];
+
+    return viewController;
+}
+
+- (BOOL)isAuthorized
+{
+    return [auth canAuthorize];
 }
 
 - (void)allDrinksWithCompletionHandler:(void (^)(id JSON, NSError *error))completion
@@ -100,20 +138,29 @@ NSString *const kBaseURLString = @"http://api.whatdididrink.com";
                                                               path:@"/drinks"
                                                         parameters:parameters];
 
-    AFHTTPRequestOperation *operation =
-    [self HTTPRequestOperationWithRequest:request
-                                  success:^(AFHTTPRequestOperation *op, id responseObject) {
-                                      if (completion) {
-                                          completion(responseObject, nil);
-                                      }
-                                  }
-                                  failure:^(AFHTTPRequestOperation *op, NSError *error) {
-                                      if (completion) {
-                                          completion(nil, error);
-                                      }
-                                  }];
+    [[self auth] authorizeRequest:request
+                completionHandler:^(NSError *error) {
 
-    [self.operationQueue addOperation:operation];
+                    if (error != nil) {
+                        // TODO: Authorization failed
+                    } else {
+                        // Authorization succeeded
+                        AFHTTPRequestOperation *operation =
+                        [self HTTPRequestOperationWithRequest:request
+                                                      success:^(AFHTTPRequestOperation *op, id responseObject) {
+                                                          if (completion) {
+                                                              completion(responseObject, nil);
+                                                          }
+                                                      }
+                                                      failure:^(AFHTTPRequestOperation *op, NSError *netError) {
+                                                          if (completion) {
+                                                              completion(nil, netError);
+                                                          }
+                                                      }];
+                        
+                        [self.operationQueue addOperation:operation];
+                    }
+                }];
 }
 
 - (void)removeDrinkWithID:(NSUInteger)drinkID completion:(void (^)(id JSON, NSError *error))completion
@@ -122,20 +169,29 @@ NSString *const kBaseURLString = @"http://api.whatdididrink.com";
                                                               path:[NSString stringWithFormat:@"/drinks/%d", drinkID]
                                                         parameters:nil];
 
-    AFHTTPRequestOperation *operation =
-    [self HTTPRequestOperationWithRequest:request
-                                  success:^(AFHTTPRequestOperation *op, id responseObject) {
-                                      if (completion) {
-                                          completion(responseObject, nil);
-                                      }
-                                  }
-                                  failure:^(AFHTTPRequestOperation *op, NSError *error) {
-                                      if (completion) {
-                                          completion(nil, error);
-                                      }
-                                  }];
+    [[self auth] authorizeRequest:request
+                completionHandler:^(NSError *error) {
+                    
+                    if (error != nil) {
+                        // TODO: Authorization failed
+                    } else {
+                        // Authorization succeeded
+                        AFHTTPRequestOperation *operation =
+                        [self HTTPRequestOperationWithRequest:request
+                                                      success:^(AFHTTPRequestOperation *op, id responseObject) {
+                                                          if (completion) {
+                                                              completion(responseObject, nil);
+                                                          }
+                                                      }
+                                                      failure:^(AFHTTPRequestOperation *op, NSError *netError) {
+                                                          if (completion) {
+                                                              completion(nil, netError);
+                                                          }
+                                                      }];
 
-    [self.operationQueue addOperation:operation];
+                        [self.operationQueue addOperation:operation];
+                    }
+                }];
 }
 
 
@@ -146,20 +202,29 @@ NSString *const kBaseURLString = @"http://api.whatdididrink.com";
                                                               path:@"/checkins"
                                                         parameters:nil];
     
-    AFHTTPRequestOperation *operation =
-    [self HTTPRequestOperationWithRequest:request
-                                  success:^(AFHTTPRequestOperation *op, id responseObject) {
-                                      if (completion) {
-                                          completion(responseObject, nil);
-                                      }
-                                  }
-                                  failure:^(AFHTTPRequestOperation *op, NSError *error) {
-                                      if (completion) {
-                                          completion(nil, error);
-                                      }
-                                  }];
+    [[self auth] authorizeRequest:request
+                completionHandler:^(NSError *error) {
+                    
+                    if (error != nil) {
+                        // TODO: Authorization failed
+                    } else {
+                        // Authorization succeeded
+                        AFHTTPRequestOperation *operation =
+                        [self HTTPRequestOperationWithRequest:request
+                                                      success:^(AFHTTPRequestOperation *op, id responseObject) {
+                                                          if (completion) {
+                                                              completion(responseObject, nil);
+                                                          }
+                                                      }
+                                                      failure:^(AFHTTPRequestOperation *op, NSError *netError) {
+                                                          if (completion) {
+                                                              completion(nil, netError);
+                                                          }
+                                                      }];
 
-    [self.operationQueue addOperation:operation];
+                        [self.operationQueue addOperation:operation];
+                    }
+                }];
 }
 
 - (void)addCheckin:(Checkin *)checkin completion:(void (^)(id JSON, NSError *error))completion
@@ -170,20 +235,29 @@ NSString *const kBaseURLString = @"http://api.whatdididrink.com";
                                                               path:@"/checkins"
                                                         parameters:parameters];
 
-    AFHTTPRequestOperation *operation =
-    [self HTTPRequestOperationWithRequest:request
-                                  success:^(AFHTTPRequestOperation *op, id responseObject) {
-                                      if (completion) {
-                                          completion(responseObject, nil);
-                                      }
-                                  }
-                                  failure:^(AFHTTPRequestOperation *op, NSError *error) {
-                                      if (completion) {
-                                          completion(nil, error);
-                                      }
-                                  }];
+    [[self auth] authorizeRequest:request
+                completionHandler:^(NSError *error) {
+                    
+                    if (error != nil) {
+                        // TODO: Authorization failed
+                    } else {
+                        // Authorization succeeded
+                        AFHTTPRequestOperation *operation =
+                        [self HTTPRequestOperationWithRequest:request
+                                                      success:^(AFHTTPRequestOperation *op, id responseObject) {
+                                                          if (completion) {
+                                                              completion(responseObject, nil);
+                                                          }
+                                                      }
+                                                      failure:^(AFHTTPRequestOperation *op, NSError *netError) {
+                                                          if (completion) {
+                                                              completion(nil, netError);
+                                                          }
+                                                      }];
 
-    [self.operationQueue addOperation:operation];
+                        [self.operationQueue addOperation:operation];
+                    }
+                }];
 }
 
 - (void)detailsForCheckinWithID:(NSUInteger)checkinID completion:(void (^)(id JSON, NSError *error))completion
@@ -192,20 +266,29 @@ NSString *const kBaseURLString = @"http://api.whatdididrink.com";
                                                               path:[NSString stringWithFormat:@"/checkins/%ld", (unsigned long)checkinID]
                                                         parameters:nil];
 
-    AFHTTPRequestOperation *operation =
-    [self HTTPRequestOperationWithRequest:request
-                                  success:^(AFHTTPRequestOperation *op, id responseObject) {
-                                      if (completion) {
-                                          completion(responseObject, nil);
-                                      }
-                                  }
-                                  failure:^(AFHTTPRequestOperation *op, NSError *error) {
-                                      if (completion) {
-                                          completion(nil, error);
-                                      }
-                                  }];
+    [[self auth] authorizeRequest:request
+                completionHandler:^(NSError *error) {
+                    
+                    if (error != nil) {
+                        // TODO: Authorization failed
+                    } else {
+                        // Authorization succeeded
+                        AFHTTPRequestOperation *operation =
+                        [self HTTPRequestOperationWithRequest:request
+                                                      success:^(AFHTTPRequestOperation *op, id responseObject) {
+                                                          if (completion) {
+                                                              completion(responseObject, nil);
+                                                          }
+                                                      }
+                                                      failure:^(AFHTTPRequestOperation *op, NSError *netError) {
+                                                          if (completion) {
+                                                              completion(nil, netError);
+                                                          }
+                                                      }];
 
-    [self.operationQueue addOperation:operation];
+                        [self.operationQueue addOperation:operation];
+                    }
+                }];
 }
 
 
@@ -224,9 +307,9 @@ NSString *const kBaseURLString = @"http://api.whatdididrink.com";
                                           handler(responseObject, nil);
                                       }
                                   }
-                                  failure:^(AFHTTPRequestOperation *op, NSError *error) {
+                                  failure:^(AFHTTPRequestOperation *op, NSError *netError) {
                                       if (handler) {
-                                          handler(nil, error);
+                                          handler(nil, netError);
                                       }
                                   }];
 
@@ -242,20 +325,29 @@ NSString *const kBaseURLString = @"http://api.whatdididrink.com";
                                                               path:@"/wishlist"
                                                         parameters:nil];
     
-    AFHTTPRequestOperation *operation =
-    [self HTTPRequestOperationWithRequest:request
-                                  success:^(AFHTTPRequestOperation *op, id responseObject) {
-                                      if (completion) {
-                                          completion(responseObject, nil);
-                                      }
-                                  }
-                                  failure:^(AFHTTPRequestOperation *op, NSError *error) {
-                                      if (completion) {
-                                          completion(nil, error);
-                                      }
-                                  }];
+    [[self auth] authorizeRequest:request
+                completionHandler:^(NSError *error) {
+                    
+                    if (error != nil) {
+                        // TODO: Authorization failed
+                    } else {
+                        // Authorization succeeded
+                        AFHTTPRequestOperation *operation =
+                        [self HTTPRequestOperationWithRequest:request
+                                                      success:^(AFHTTPRequestOperation *op, id responseObject) {
+                                                          if (completion) {
+                                                              completion(responseObject, nil);
+                                                          }
+                                                      }
+                                                      failure:^(AFHTTPRequestOperation *op, NSError *netError) {
+                                                          if (completion) {
+                                                              completion(nil, netError);
+                                                          }
+                                                      }];
 
-    [self.operationQueue addOperation:operation];
+                        [self.operationQueue addOperation:operation];
+                    }
+                }];
 }
 
 - (void)addDrinkToWishlist:(NSUInteger)drinkID completion:(void (^)(id JSON, NSError *error))completion
@@ -266,20 +358,29 @@ NSString *const kBaseURLString = @"http://api.whatdididrink.com";
                                                               path:@"/wishlist"
                                                         parameters:parameters];
 
-    AFHTTPRequestOperation *operation =
-    [self HTTPRequestOperationWithRequest:request
-                                  success:^(AFHTTPRequestOperation *op, id responseObject) {
-                                      if (completion) {
-                                          completion(responseObject, nil);
-                                      }
-                                  }
-                                  failure:^(AFHTTPRequestOperation *op, NSError *error) {
-                                      if (completion) {
-                                          completion(nil, error);
-                                      }
-                                  }];
+    [[self auth] authorizeRequest:request
+                completionHandler:^(NSError *error) {
+                    
+                    if (error != nil) {
+                        // TODO: Authorization failed
+                    } else {
+                        // Authorization succeeded
+                        AFHTTPRequestOperation *operation =
+                        [self HTTPRequestOperationWithRequest:request
+                                                      success:^(AFHTTPRequestOperation *op, id responseObject) {
+                                                          if (completion) {
+                                                              completion(responseObject, nil);
+                                                          }
+                                                      }
+                                                      failure:^(AFHTTPRequestOperation *op, NSError *netError) {
+                                                          if (completion) {
+                                                              completion(nil, netError);
+                                                          }
+                                                      }];
 
-    [self.operationQueue addOperation:operation];
+                        [self.operationQueue addOperation:operation];
+                    }
+                }];
 }
 
 - (void)removeDrinkFromWishlist:(NSUInteger)drinkID completion:(void (^)(id JSON, NSError *error))completion
@@ -290,20 +391,29 @@ NSString *const kBaseURLString = @"http://api.whatdididrink.com";
                                                               path:@"/wishlist"
                                                         parameters:parameters];
 
-    AFHTTPRequestOperation *operation =
-    [self HTTPRequestOperationWithRequest:request
-                                  success:^(AFHTTPRequestOperation *op, id responseObject) {
-                                      if (completion) {
-                                          completion(responseObject, nil);
-                                      }
-                                  }
-                                  failure:^(AFHTTPRequestOperation *op, NSError *error) {
-                                      if (completion) {
-                                          completion(nil, error);
-                                      }
-                                  }];
+    [[self auth] authorizeRequest:request
+                completionHandler:^(NSError *error) {
+                    
+                    if (error != nil) {
+                        // TODO: Authorization failed
+                    } else {
+                        // Authorization succeeded
+                        AFHTTPRequestOperation *operation =
+                        [self HTTPRequestOperationWithRequest:request
+                                                      success:^(AFHTTPRequestOperation *op, id responseObject) {
+                                                          if (completion) {
+                                                              completion(responseObject, nil);
+                                                          }
+                                                      }
+                                                      failure:^(AFHTTPRequestOperation *op, NSError *netError) {
+                                                          if (completion) {
+                                                              completion(nil, netError);
+                                                          }
+                                                      }];
 
-    [self.operationQueue addOperation:operation];
+                        [self.operationQueue addOperation:operation];
+                    }
+                }];
 }
 
 
@@ -311,17 +421,35 @@ NSString *const kBaseURLString = @"http://api.whatdididrink.com";
 
 - (NSMutableURLRequest *)_mutableRequestWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters
 {
-    self.accessToken = [[NSUserDefaults standardUserDefaults] stringForKey:@"accessToken"];
-    if (self.accessToken == nil) return nil;
-
-    NSMutableDictionary *params = [@{ @"access_token" : self.accessToken } mutableCopy];
-    [params addEntriesFromDictionary:parameters];
-
-    NSMutableURLRequest *request = [self requestWithMethod:method path:path parameters:params];
+    NSMutableURLRequest *request = [self requestWithMethod:method path:path parameters:parameters];
     [request addValue:@"application/vnd.drink.v1" forHTTPHeaderField:@"Accept"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-
+    
     return request;
 }
+
+- (GTMOAuth2Authentication *)createNewAuthObject {
+    
+    return [GTMOAuth2Authentication authenticationWithServiceProvider:@"Drink?"
+                                                             tokenURL:[NSURL URLWithString:kTokenURL]
+                                                          redirectURI:kRedirectURL
+                                                             clientID:kClientID
+                                                         clientSecret:kClientSecret];
+}
+
+- (void)viewController:(GTMOAuth2ViewControllerTouch *)viewController
+      finishedWithAuth:(GTMOAuth2Authentication *)completedAuth
+                 error:(NSError *)error {
+    if (error != nil) {
+        // Authentication failed
+        // TODO: Notify someone
+    } else {
+        auth = completedAuth;
+        
+        // TODO: Remove this at some point after we're doing HTTPS requests
+        [auth setShouldAuthorizeAllRequests:YES];
+    }
+}
+
 
 @end

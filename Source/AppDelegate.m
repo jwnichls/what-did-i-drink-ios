@@ -5,6 +5,7 @@
 
 #import "AppDelegate.h"
 #import "AFNetworking.h"
+#import "Client.h"
 #import "AFHTTPRequestOperationLogger.h"
 #import "CheckinsViewController.h"
 #import "DrinksViewController.h"
@@ -62,10 +63,9 @@
     [Crashlytics startWithAPIKey:@"d428b1fbc4aadc4e5f99cce2c43724eb9e62055e"];
 
     // shof the login view if there is no access token stored locally
-    NSString *accessToken = [[NSUserDefaults standardUserDefaults] stringForKey:@"accessToken"];
-    if (accessToken == nil) {
-        LoginViewController *loginViewController = [[LoginViewController alloc] init];
-        loginViewController.delegate = self;
+    Client *client = [Client sharedClient];
+    if (![client isAuthorized]) {
+        UIViewController *loginViewController = [client getOAuthLoginController];
         [self.window.rootViewController presentModalViewController:loginViewController animated:NO];
     }
 

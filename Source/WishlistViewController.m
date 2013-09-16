@@ -45,11 +45,14 @@
 
     self.trackedViewName = @"Wishlist";
 
-    // asynchroneouslyload all wishlist entries from server
-    [[Client sharedClient] wishlistWithCompletionHandler:^(id JSON, NSError *error) {
-        _wishlist = [JSON mutableCopy];
-        [_tableView reloadData];
-    }];
+    if ([[Client sharedClient] isAuthorized])
+    {
+        // asynchroneouslyload all wishlist entries from server
+        [[Client sharedClient] wishlistWithCompletionHandler:^(id JSON, NSError *error) {
+            _wishlist = [JSON mutableCopy];
+            [_tableView reloadData];
+        }];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

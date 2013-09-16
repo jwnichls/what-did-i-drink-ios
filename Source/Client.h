@@ -5,13 +5,17 @@
 
 #import "AFHTTPClient.h"
 
-@class Drink, Checkin;
+@class Drink, Checkin, GTMOAuth2Authentication, GTMOAuth2ViewControllerTouch;
 
 @interface Client : AFHTTPClient
 
-@property (nonatomic) NSString *accessToken;
+@property (nonatomic, readonly) GTMOAuth2Authentication *auth;
 
 + (Client *)sharedClient;
+
+// OAuth authentication
+- (GTMOAuth2ViewControllerTouch *)getOAuthLoginController;
+- (BOOL)isAuthorized;
 
 // drinks
 - (void)allDrinksWithCompletionHandler:(void (^)(id JSON, NSError *error))handler;

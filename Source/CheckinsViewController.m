@@ -45,11 +45,14 @@
 
     self.trackedViewName = @"Checkins";
 
-    // load all checkins asynchroneously from server
-    [[Client sharedClient] allCheckinsWithCompletionHandler:^(id JSON, NSError *error) {
-        _checkins = [JSON mutableCopy];
-        [_tableView reloadData];
-    }];
+    if ([[Client sharedClient] isAuthorized])
+    {
+        // load all checkins asynchroneously from server
+        [[Client sharedClient] allCheckinsWithCompletionHandler:^(id JSON, NSError *error) {
+            _checkins = [JSON mutableCopy];
+            [_tableView reloadData];
+        }];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
