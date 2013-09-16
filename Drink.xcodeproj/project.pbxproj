@@ -54,6 +54,12 @@
 		83C0FF9B1698D35D00766CBE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C0FF9A1698D35D00766CBE /* MobileCoreServices.framework */; };
 		83C0FFA21698EDF400766CBE /* AFHTTPRequestOperationLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C0FF9E1698EDF400766CBE /* AFHTTPRequestOperationLogger.m */; };
 		83FFD7D215EEB7C40067428C /* drinks.png in Resources */ = {isa = PBXBuildFile; fileRef = 83FFD7D115EEB7C40067428C /* drinks.png */; };
+		87E203ED17E682A80025F481 /* GTMHTTPFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E203E517E682A80025F481 /* GTMHTTPFetcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		87E203EE17E682A80025F481 /* GTMOAuth2ViewControllerTouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E203E717E682A80025F481 /* GTMOAuth2ViewControllerTouch.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		87E203EF17E682A80025F481 /* GTMOAuth2ViewTouch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E203E817E682A80025F481 /* GTMOAuth2ViewTouch.xib */; };
+		87E203F017E682A80025F481 /* GTMOAuth2Authentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E203EA17E682A80025F481 /* GTMOAuth2Authentication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		87E203F117E682A80025F481 /* GTMOAuth2SignIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E203EC17E682A80025F481 /* GTMOAuth2SignIn.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		87E203F817E684950025F481 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E203F717E684950025F481 /* Security.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -147,6 +153,16 @@
 		83C0FF9D1698EDF400766CBE /* AFHTTPRequestOperationLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationLogger.h; sourceTree = "<group>"; };
 		83C0FF9E1698EDF400766CBE /* AFHTTPRequestOperationLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationLogger.m; sourceTree = "<group>"; };
 		83FFD7D115EEB7C40067428C /* drinks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drinks.png; sourceTree = "<group>"; };
+		87E203E417E682A80025F481 /* GTMHTTPFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMHTTPFetcher.h; sourceTree = SOURCE_ROOT; };
+		87E203E517E682A80025F481 /* GTMHTTPFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMHTTPFetcher.m; sourceTree = SOURCE_ROOT; };
+		87E203E617E682A80025F481 /* GTMOAuth2ViewControllerTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMOAuth2ViewControllerTouch.h; sourceTree = SOURCE_ROOT; };
+		87E203E717E682A80025F481 /* GTMOAuth2ViewControllerTouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMOAuth2ViewControllerTouch.m; sourceTree = SOURCE_ROOT; };
+		87E203E817E682A80025F481 /* GTMOAuth2ViewTouch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GTMOAuth2ViewTouch.xib; sourceTree = SOURCE_ROOT; };
+		87E203E917E682A80025F481 /* GTMOAuth2Authentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMOAuth2Authentication.h; sourceTree = SOURCE_ROOT; };
+		87E203EA17E682A80025F481 /* GTMOAuth2Authentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMOAuth2Authentication.m; sourceTree = SOURCE_ROOT; };
+		87E203EB17E682A80025F481 /* GTMOAuth2SignIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMOAuth2SignIn.h; sourceTree = SOURCE_ROOT; };
+		87E203EC17E682A80025F481 /* GTMOAuth2SignIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMOAuth2SignIn.m; sourceTree = SOURCE_ROOT; };
+		87E203F717E684950025F481 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87E203F817E684950025F481 /* Security.framework in Frameworks */,
 				83B72DB016B333F700F2FB0C /* CoreData.framework in Frameworks */,
 				83C0FF9B1698D35D00766CBE /* MobileCoreServices.framework in Frameworks */,
 				833584791680050B0066D745 /* SystemConfiguration.framework in Frameworks */,
@@ -349,6 +366,7 @@
 		838B218A1537660300F36DB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				87E203F717E684950025F481 /* Security.framework */,
 				83582ABF1751230100C64706 /* Crashlytics.framework */,
 				83B72DAF16B333F700F2FB0C /* CoreData.framework */,
 				83B72DA516B333DB00F2FB0C /* Google Analytics */,
@@ -367,6 +385,7 @@
 		838B21911537660300F36DB0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				87E2039D17E2F1B70025F481 /* OAuthClient */,
 				83358477168002C30066D745 /* Globals.h */,
 				83358470168002730066D745 /* Extensions */,
 				83777877153768FE009EE79F /* AppDelegate.h */,
@@ -412,6 +431,22 @@
 			);
 			name = AFHTTPRequestOperationLogger;
 			path = Frameworks/AFHTTPRequestOperationLogger;
+			sourceTree = "<group>";
+		};
+		87E2039D17E2F1B70025F481 /* OAuthClient */ = {
+			isa = PBXGroup;
+			children = (
+				87E203E417E682A80025F481 /* GTMHTTPFetcher.h */,
+				87E203E517E682A80025F481 /* GTMHTTPFetcher.m */,
+				87E203E617E682A80025F481 /* GTMOAuth2ViewControllerTouch.h */,
+				87E203E717E682A80025F481 /* GTMOAuth2ViewControllerTouch.m */,
+				87E203E817E682A80025F481 /* GTMOAuth2ViewTouch.xib */,
+				87E203E917E682A80025F481 /* GTMOAuth2Authentication.h */,
+				87E203EA17E682A80025F481 /* GTMOAuth2Authentication.m */,
+				87E203EB17E682A80025F481 /* GTMOAuth2SignIn.h */,
+				87E203EC17E682A80025F481 /* GTMOAuth2SignIn.m */,
+			);
+			name = OAuthClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -476,6 +511,7 @@
 				8383E48016C86C450007C470 /* checkins@2x.png in Resources */,
 				8383E48316C86E4E0007C470 /* timeline.png in Resources */,
 				8383E48416C86E4E0007C470 /* timeline@2x.png in Resources */,
+				87E203EF17E682A80025F481 /* GTMOAuth2ViewTouch.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +568,10 @@
 				83B72DB816B48C9C00F2FB0C /* TimelineViewController.m in Sources */,
 				83BFA34716C8649F00D65CFC /* NSDate-Extensions.m in Sources */,
 				83BFA34A16C866A900D65CFC /* ISO8601DateFormatter.m in Sources */,
+				87E203ED17E682A80025F481 /* GTMHTTPFetcher.m in Sources */,
+				87E203EE17E682A80025F481 /* GTMOAuth2ViewControllerTouch.m in Sources */,
+				87E203F017E682A80025F481 /* GTMOAuth2Authentication.m in Sources */,
+				87E203F117E682A80025F481 /* GTMOAuth2SignIn.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
