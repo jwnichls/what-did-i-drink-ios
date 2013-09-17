@@ -7,14 +7,25 @@
 
 @class Drink, Checkin, GTMOAuth2Authentication, GTMOAuth2ViewControllerTouch;
 
+@protocol OAuthLoginCompletion
+
+@required
+
+- (void)oauthAuthenticationComplete;
+
+@end
+
 @interface Client : AFHTTPClient
+{
+    id <OAuthLoginCompletion> authenticationDelegate;
+}
 
 @property (nonatomic, readonly) GTMOAuth2Authentication *auth;
 
 + (Client *)sharedClient;
 
 // OAuth authentication
-- (GTMOAuth2ViewControllerTouch *)getOAuthLoginController;
+- (GTMOAuth2ViewControllerTouch *)getOAuthLoginControllerWithDelegate:(id <OAuthLoginCompletion>)delegate;
 - (BOOL)isAuthorized;
 
 // drinks

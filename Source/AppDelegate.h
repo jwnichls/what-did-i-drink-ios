@@ -3,9 +3,9 @@
 //  Copyright (c) 2012 N/A. All rights reserved.
 //
 
-#import "LoginViewController.h"
+#import "Client.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate, LoginViewControllerDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate, OAuthLoginCompletion>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController *navigationController;

@@ -60,6 +60,8 @@
 		87E203F017E682A80025F481 /* GTMOAuth2Authentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E203EA17E682A80025F481 /* GTMOAuth2Authentication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		87E203F117E682A80025F481 /* GTMOAuth2SignIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E203EC17E682A80025F481 /* GTMOAuth2SignIn.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		87E203F817E684950025F481 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E203F717E684950025F481 /* Security.framework */; };
+		87E203FA17E790650025F481 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 87E203F917E790650025F481 /* Icon.png */; };
+		87E203FC17E7906B0025F481 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87E203FB17E7906B0025F481 /* Icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -163,6 +165,8 @@
 		87E203EB17E682A80025F481 /* GTMOAuth2SignIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMOAuth2SignIn.h; sourceTree = SOURCE_ROOT; };
 		87E203EC17E682A80025F481 /* GTMOAuth2SignIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMOAuth2SignIn.m; sourceTree = SOURCE_ROOT; };
 		87E203F717E684950025F481 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		87E203F917E790650025F481 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../../Icon.png; sourceTree = "<group>"; };
+		87E203FB17E7906B0025F481 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../../Icon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +304,8 @@
 		8377782D153768AB009EE79F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				87E203FB17E7906B0025F481 /* Icon@2x.png */,
+				87E203F917E790650025F481 /* Icon.png */,
 				8383E47D16C86C450007C470 /* checkins.png */,
 				8383E47E16C86C450007C470 /* checkins@2x.png */,
 				830590A7167FA13E00BCD9F8 /* Default-568h@2x.png */,
@@ -512,6 +518,8 @@
 				8383E48316C86E4E0007C470 /* timeline.png in Resources */,
 				8383E48416C86E4E0007C470 /* timeline@2x.png in Resources */,
 				87E203EF17E682A80025F481 /* GTMOAuth2ViewTouch.xib in Resources */,
+				87E203FA17E790650025F481 /* Icon.png in Resources */,
+				87E203FC17E7906B0025F481 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,6 +667,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8377786B153768CD009EE79F /* Drink_Release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeffrey Nichols (5HQ535XLJ5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeffrey Nichols (5HQ535XLJ5)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -673,6 +683,8 @@
 					"\"$(SRCROOT)/Frameworks/Google Analytics\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "49DB734B-EE7C-4932-B63C-1BAEE6B45307";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "49DB734B-EE7C-4932-B63C-1BAEE6B45307";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

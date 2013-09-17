@@ -59,19 +59,21 @@ NSString *const kKeychainItemName = @"Drink? OAuth2 Token";
     [self setDefaultHeader:@"Accept" value:@"application/json"];
 
     auth = [self createNewAuthObject];
-    if (auth) {
+    /*if (auth) {
         // get the saved authentication, if any, from the keychain
         [GTMOAuth2ViewControllerTouch authorizeFromKeychainForName:kKeychainItemName
                                                     authentication:auth
                                                              error:nil];
-    }
+    }*/
     return self;
 }
 
-- (GTMOAuth2ViewControllerTouch *)getOAuthLoginController
+- (GTMOAuth2ViewControllerTouch *)getOAuthLoginControllerWithDelegate:(id <OAuthLoginCompletion>)delegate
 {
     NSURL *authURL = [NSURL URLWithString:kAuthorizeURL];
-
+    
+    authenticationDelegate = delegate;
+    
     GTMOAuth2ViewControllerTouch *viewController;
     viewController = [[GTMOAuth2ViewControllerTouch alloc] initWithAuthentication:auth
                                                                  authorizationURL:authURL
@@ -430,11 +432,14 @@ NSString *const kKeychainItemName = @"Drink? OAuth2 Token";
 
 - (GTMOAuth2Authentication *)createNewAuthObject {
     
-    return [GTMOAuth2Authentication authenticationWithServiceProvider:@"Drink?"
-                                                             tokenURL:[NSURL URLWithString:kTokenURL]
-                                                          redirectURI:kRedirectURL
-                                                             clientID:kClientID
-                                                         clientSecret:kClientSecret];
+    GTMOAuth2Authentication *newAuth = [GTMOAuth2Authentication authenticationWithServiceProvider:@"Drink?"
+                                                                                         tokenURL:[NSURL URLWithString:kTokenURL]
+                                                                                      redirectURI:kRedirectURL
+                                                                                         clientID:kClientID
+                                                                                     clientSecret:kClientSecret];
+    [newAuth setShouldAuthorizeAllRequests:YES];
+    
+    return newAuth;
 }
 
 - (void)viewController:(GTMOAuth2ViewControllerTouch *)viewController
@@ -445,10 +450,10 @@ NSString *const kKeychainItemName = @"Drink? OAuth2 Token";
         // TODO: Notify someone
     } else {
         auth = completedAuth;
-        
-        // TODO: Remove this at some point after we're doing HTTPS requests
-        [auth setShouldAuthorizeAllRequests:YES];
     }
+
+    if (authenticationDelegate)
+        [authenticationDelegate oauthAuthenticationComplete];
 }
 
 

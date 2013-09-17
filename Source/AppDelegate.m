@@ -65,7 +65,7 @@
     // shof the login view if there is no access token stored locally
     Client *client = [Client sharedClient];
     if (![client isAuthorized]) {
-        UIViewController *loginViewController = [client getOAuthLoginController];
+        UIViewController *loginViewController = [client getOAuthLoginControllerWithDelegate:self];
         [self.window.rootViewController presentModalViewController:loginViewController animated:NO];
     }
 
@@ -75,7 +75,7 @@
 
 #pragma mark LoginViewControllerDelegate methods
 
-- (void)loginViewControllerDidFinish
+- (void)oauthAuthenticationComplete
 {
     [_drinksViewController loadData];
 
