@@ -20,7 +20,7 @@ NSString *const kRedirectURL = @"http://whatdididrink.com/fake/callback";
 
 
 NSString *const kBaseURLString = @"http://api.whatdididrink.com";
-NSString *const kAuthorizeURL = @"http://whatdididrink.com/oauth/authorize";
+NSString *const kAuthorizeURL = @"http://m.whatdididrink.com/oauth/authorize";
 NSString *const kTokenURL = @"http://whatdididrink.com/oauth/token";
 
 NSString *const kKeychainItemName = @"Drink? OAuth2 Token";
@@ -59,12 +59,12 @@ NSString *const kKeychainItemName = @"Drink? OAuth2 Token";
     [self setDefaultHeader:@"Accept" value:@"application/json"];
 
     auth = [self createNewAuthObject];
-    /*if (auth) {
+    if (auth) {
         // get the saved authentication, if any, from the keychain
         [GTMOAuth2ViewControllerTouch authorizeFromKeychainForName:kKeychainItemName
                                                     authentication:auth
                                                              error:nil];
-    }*/
+    }
     return self;
 }
 
