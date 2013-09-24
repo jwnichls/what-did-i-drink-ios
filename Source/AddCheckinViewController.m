@@ -4,16 +4,16 @@
 //
 
 #import "AddCheckinViewController.h"
+#import <CoreLocation/CoreLocation.h>
 #import "GAI.h"
-#import "Client.h"
-#import "Drink.h"
+//#import "Drink.h"
+#import "Checkin.h"
 
 // TODO:
 // scroll up so that the text field the user is entering information into is always at the top
 
 @implementation AddCheckinViewController {
-    UITextField *_textField;
-    UITextView *_textView;
+    CLLocationManager *_locationManager;
 }
 
 - (id)init
@@ -32,6 +32,16 @@
 
     self.trackedViewName = @"Add Checkin";
 
+    if ([CLLocationManager locationServicesEnabled] == NO) {
+        // TODO: ask the user to enable location services for us
+    }
+    else {
+        _locationManager = [[CLLocationManager alloc] init];
+        _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+        _locationManager.pausesLocationUpdatesAutomatically = YES;
+        [_locationManager startUpdatingLocation];
+    }
+
     // drink name
     self.drinkTextField.delegate = self;
     self.drinkTextField.placeholder = NSLocalizedString(@"Name", @"");
@@ -41,30 +51,9 @@
 
     // venue name
     self.venueTextField.delegate = self;
+    self.venueTextField.placeholder = NSLocalizedString(@"Venue", @"");
+    self.venueTextField.backgroundColor = [UIColor whiteColor];
     self.venueTextField.returnKeyType = UIReturnKeyDone;
-}
-
-
-#pragma mark UITextFieldDelegate methods
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [self.drinkTextField becomeFirstResponder];
-
-    return YES;
-}
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    return YES;
-}
-
-
-#pragma mark UITextViewDelegate methods
-
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-{
-    return YES;
 }
 
 
@@ -79,38 +68,17 @@
 
 - (IBAction)done:(id)sender
 {
+    Checkin *checkin = [Checkin new];
+    checkin.name = self.drinkTextField.text;
+    checkin.longitude = _locationManager.location.coordinate.longitude;
+    checkin.latitude = _locationManager.location.coordinate.latitude;
+    checkin.createdTime = [NSDate date];
+    checkin.modifiedTime = [NSDate date];
+    [checkin save];
+
     if ((_delegate) && ([_delegate respondsToSelector:@selector(addCheckinViewControllerDidFinish)])) {
         [_delegate addCheckinViewControllerDidFinish];
     }
-
-//    Drink *drink = [[Drink alloc] init];
-//    drink.name = _textField.text;
-//    drink.recipe = _textView.text;
-//    drink.created_at = @""; // current UTC time in ISO 8601 combined date & time format
-
-//    [[Client sharedClient] addDrink:drink completion:^(id JSON, NSError *error) {
-//        if (error == nil) {
-//#if (!DEBUG)
-//            id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-//            tracker.sessionStart = YES;
-//            [tracker sendEventWithCategory:@"app_flow"
-//                                withAction:@"add drink"
-//                                 withLabel:nil
-//                                 withValue:nil];
-//#endif
-//
-//            if ((_delegate) && ([_delegate respondsToSelector:@selector(newDrinkViewController:didFinishWithDrink:)])) {
-//                [_delegate newDrinkViewController:self didFinishWithDrink:JSON];
-//            }
-//        }
-//        else {
-//            NSLog(@"ERROR: %@", error.localizedDescription);
-//
-//            if ((_delegate) && ([_delegate respondsToSelector:@selector(newDrinkViewController:didFinishWithDrink:)])) {
-//                [_delegate newDrinkViewController:self didFinishWithDrink:nil];
-//            }
-//        }
-//    }];
 }
 
 @end

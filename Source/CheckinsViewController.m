@@ -5,11 +5,12 @@
 
 #import "CheckinsViewController.h"
 #import "Checkin.h"
-#import "Client.h"
 #import "CheckinDetailsViewController.h"
+#import "Checkin.h"
 
 @implementation CheckinsViewController {
     __strong UITableView *_tableView;
+    NSArray *_people;
 }
 
 - (id)init
@@ -31,14 +32,19 @@
         [self.view addSubview:_tableView];
 
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"kCellIdentifier"];
+
+        [self _reloadCheckins:nil];
+        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_reloadCheckins:) name:FCModelInsertNotification object:Checkin.class];
+        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_reloadCheckins:) name:FCModelDeleteNotification object:Checkin.class];
     }
 
     return self;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (void)dealloc
 {
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    [NSNotificationCenter.defaultCenter removeObserver:self name:FCModelInsertNotification object:Checkin.class];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:FCModelDeleteNotification object:Checkin.class];
 }
 
 - (void)viewDidLoad
@@ -46,13 +52,6 @@
     [super viewDidLoad];
 
     self.trackedViewName = @"Checkins";
-
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-
 }
 
 
@@ -60,14 +59,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return [_people count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kCellIdentifier"];
-    cell.textLabel.text = @"Checkin";
+    cell.textLabel.text = [[_people objectAtIndex:indexPath.row] name];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+//    CheckinCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CheckinCell" forIndexPath:indexPath];
+//    [cell configureWithCheckin:_checkins objectAtIndex:indexPAth.row];
 
     return cell;
 }
@@ -100,6 +102,12 @@
     AddCheckinViewController *viewController = [[AddCheckinViewController alloc] init];
     viewController.delegate = self;
     [self presentViewController:viewController animated:YES completion:NULL];
+}
+
+- (void)_reloadCheckins:(NSNotification *)notification
+{
+    _people = [Checkin allInstances];
+    [_tableView reloadData];
 }
 
 @end

@@ -1,15 +1,10 @@
+//
+//  Created by Chris Kau on 9/24/13.
+//  Copyright (c) 2013 N/A. All rights reserved.
+//
+
 #import "Venue.h"
 
-
-@interface Venue ()
-
-// Private interface goes here.
-
-@end
-
-
 @implementation Venue
-
-// Custom logic goes here.
 
 @end

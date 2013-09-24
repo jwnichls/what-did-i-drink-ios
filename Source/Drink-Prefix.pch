@@ -13,7 +13,6 @@
     #import <MobileCoreServices/MobileCoreServices.h>
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
-    #import <CoreData/CoreData.h>
     #import "Globals.h"
     #import "UIView-Extensions.h"
     #import "UIImage-Extensions.h"

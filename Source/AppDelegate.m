@@ -6,136 +6,131 @@
 #import "AppDelegate.h"
 #import "AFNetworking.h"
 #import "AFHTTPRequestOperationLogger.h"
+#import "Checkin.h"
 #import "CheckinsViewController.h"
+#import "Client.h"
 #import "GAI.h"
 #import <Crashlytics/Crashlytics.h>
+#import "FCModel.h"
+#import "Venue.h"
 
 @implementation AppDelegate
-
-@synthesize managedObjectContext = _managedObjectContext;
-@synthesize managedObjectModel = _managedObjectModel;
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
-
     
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // setup AFNetworking
-    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
-    [[AFHTTPRequestOperationLogger sharedLogger] startLogging];
+    [self _configureAFNetworking];
 
 #if (!DEBUG)
-    // setup Google Analytics
-    [GAI sharedInstance].dispatchInterval = 20;
-    [GAI sharedInstance].debug = YES;
-    [[GAI sharedInstance] trackerWithTrackingId:@"UA-37810022-1"];
+    [self _configureGoogleAnalytics];
 #endif
+
+    [self _configureDatabase];
+
+    [self _updateVenueData];
 
     [self _customizeAppearance];
 
     // checkins
     CheckinsViewController *checkinsViewController = [[CheckinsViewController alloc] init];
-    checkinsViewController.moc = self.managedObjectContext;
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:checkinsViewController];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
 
-
-    // setup Crashlytics
-    [Crashlytics startWithAPIKey:@"d428b1fbc4aadc4e5f99cce2c43724eb9e62055e"];
+    [self _configureCrashlytics];
 
     return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
-    {
-        [self saveContext];
-    }
     
-- (void)applicationWillTerminate:(UIApplication *)application
-    {
-        [self saveContext];
-    }
-    
-- (void)saveContext
-    {
-        NSError *error = nil;
-        if (_managedObjectContext != nil) {
-            [_managedObjectContext processPendingChanges];
-            
-            if ([_managedObjectContext hasChanges] && ![_managedObjectContext save:&error]) {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-                abort();
-            }
-        }
-    }
-    
-    
-#pragma mark - Core Data stack
-    
-- (NSManagedObjectContext *)managedObjectContext
-{
-    if (_managedObjectContext != nil) {
-        return _managedObjectContext;
-    }
-
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (coordinator != nil) {
-        _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
-    }
-
-    return _managedObjectContext;
-}
-
-- (NSManagedObjectModel *)managedObjectModel
-{
-    if (_managedObjectModel != nil) {
-        return _managedObjectModel;
-    }
-
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"DataModel" withExtension:@"momd"];
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-
-    return _managedObjectModel;
-}
-
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
-{
-    if (_persistentStoreCoordinator != nil) {
-        return _persistentStoreCoordinator;
-    }
-
-    NSURL *storeURL = [[self _applicationDocumentsDirectory] URLByAppendingPathComponent:@"drink.sqlite"];
-
-    NSError *error = nil;
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *storePath = [documentsDirectory stringByAppendingPathComponent:@"drink.sqlite"];
-    NSDictionary *attributes = @{ NSFileProtectionKey : NSFileProtectionComplete };
-    if (![[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:storePath error:&error]) {
-        NSLog(@"ERROR: Could not encrypt file %@, %@", error, [error userInfo]);
-        abort();
-    }
-
-    return _persistentStoreCoordinator;
-}
-
-
 #pragma mark Private methods
 
-- (NSURL *)_applicationDocumentsDirectory
+- (NSString *)_applicationDocumentsDirectory
 {
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+}
+
+- (void)_configureAFNetworking
+{
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+    [[AFHTTPRequestOperationLogger sharedLogger] startLogging];
+}
+
+- (void)_configureCrashlytics
+{
+    [Crashlytics startWithAPIKey:@"d428b1fbc4aadc4e5f99cce2c43724eb9e62055e"];
+}
+
+- (void)_configureDatabase
+{
+    NSString *dbPath = [[self _applicationDocumentsDirectory] stringByAppendingPathComponent:@"drink.sqlite3"];
+    NSLog(@"INFO: DB Path: %@", dbPath);
+
+    // New DB on every launch for testing (comment out for persistence testing)
+    [[NSFileManager defaultManager] removeItemAtPath:dbPath error:NULL];
+
+    [FCModel openDatabaseAtPath:dbPath withSchemaBuilder:^(FMDatabase *db, int *schemaVersion) {
+        [db setCrashOnErrors:YES];
+        db.traceExecution = YES; // Log every query (useful to learn what FCModel is doing or analyze performance)
+        [db beginTransaction];
+
+        void (^failedAt)(int statement) = ^(int statement){
+            [db rollback];
+            NSAssert3(0, @"Migration statement %d failed, code %d: %@", statement, db.lastErrorCode, db.lastErrorMessage);
+        };
+
+        if (*schemaVersion < 1) {
+            if (! [db executeUpdate:
+                   @"CREATE TABLE Checkin ("
+                   @"    id           INTEGER PRIMARY KEY AUTOINCREMENT,"
+                   @"    name         TEXT NOT NULL DEFAULT '',"
+                   @"    latitude     REAL,"
+                   @"    longitude    REAL,"
+                   @"    drink_id     INTEGER NOT NULL,"
+                   @"    venue_id     INTEGER NOT NULL,"
+                   @"    createdTime  INTEGER NOT NULL,"
+                   @"    modifiedTime INTEGER NOT NULL"
+                   @");"
+                   ]) failedAt(1);
+            if (! [db executeUpdate:@"CREATE UNIQUE INDEX IF NOT EXISTS name ON Checkin (name);"]) failedAt(2);
+
+            if (! [db executeUpdate:
+                   @"CREATE TABLE Venue ("
+                   @"    id           INTEGER PRIMARY KEY AUTOINCREMENT,"
+                   @"    name         TEXT NOT NULL DEFAULT '',"
+                   @"    address      TEXT,"
+                   @"    postalCode   TEXT,"
+                   @"    city         TEXT,"
+                   @"    state        TEXT,"
+                   @"    latitude     REAL,"
+                   @"    longitude    REAL,"
+                   @"    createdTime  INTEGER NOT NULL,"
+                   @"    modifiedTime INTEGER NOT NULL"
+                   @");"
+                   ]) failedAt(1);
+            if (! [db executeUpdate:@"CREATE UNIQUE INDEX IF NOT EXISTS name ON Venue (name);"]) failedAt(2);
+
+            *schemaVersion = 1;
+        }
+
+        [db commit];
+    }];
+
+    // Put some data in the table
+    Checkin *p = [Checkin new];
+    p.name = @"Bob";
+    p.createdTime = [NSDate date];
+    p.modifiedTime = [NSDate date];
+    [p save];
+}
+
+- (void)_configureGoogleAnalytics
+{
+    // setup Google Analytics
+    [GAI sharedInstance].dispatchInterval = 20;
+    [GAI sharedInstance].debug = YES;
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-37810022-1"];
 }
 
 - (void)_customizeAppearance
@@ -152,6 +147,27 @@
     // customize the appearance of the tool bar
 //    [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"toolbar.png"]];
 //    [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithHue:202 saturation:67 brightness:100 alpha:1.0]];
+}
+
+- (void)_updateVenueData
+{
+    [[Client sharedClient] allVenuesWithCompletionHandler:^(id JSON, NSError *error) {
+//        NSArray *venues = [NSJSONSerialization JSONObjectWithData:JSON options:0 error:NULL];
+
+        for (NSDictionary *dict in JSON) {
+            Venue *venue = [Venue new];
+            venue.name = [dict valueForKey:@"name"];
+            venue.address = [dict valueForKey:@"address"];
+            venue.city = [dict valueForKey:@"city"];
+            venue.postalCode = [dict valueForKey:@"postalCode"];
+            venue.state = [dict valueForKey:@"state"];
+            venue.longitude = [[dict valueForKey:@"lng"] floatValue];
+            venue.latitude = [[dict valueForKey:@"lat"] floatValue];
+//            venue.createdTime = [dict valueForKey:@"created_at"];
+//            venue.modifiedTime = [dict valueForKey:@"modified_at"];
+            [venue save];
+        }
+    }];
 }
 
 @end
