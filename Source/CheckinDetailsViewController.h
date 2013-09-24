@@ -4,10 +4,11 @@
 //
 
 #import "GAITrackedViewController.h"
+#import "Checkin.h"
 
-@interface DrinkDetailsViewController : GAITrackedViewController
+@interface CheckinDetailsViewController : GAITrackedViewController
 
-@property (nonatomic) id drink;
+@property (nonatomic) Checkin *checkin;
 
 // designated initializer
 - (id)init;

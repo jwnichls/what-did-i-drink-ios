@@ -164,26 +164,26 @@ NSString *const kBaseURLString = @"http://api.whatdididrink.com";
 
 - (void)addCheckin:(Checkin *)checkin completion:(void (^)(id JSON, NSError *error))completion
 {
-    NSDictionary *parameters = @{ @"drink_id" : [NSNumber numberWithInteger:checkin.drink_id] };
-
-    NSMutableURLRequest *request = [self _mutableRequestWithMethod:kHTTP_METHOD_POST
-                                                              path:@"/checkins"
-                                                        parameters:parameters];
-
-    AFHTTPRequestOperation *operation =
-    [self HTTPRequestOperationWithRequest:request
-                                  success:^(AFHTTPRequestOperation *op, id responseObject) {
-                                      if (completion) {
-                                          completion(responseObject, nil);
-                                      }
-                                  }
-                                  failure:^(AFHTTPRequestOperation *op, NSError *error) {
-                                      if (completion) {
-                                          completion(nil, error);
-                                      }
-                                  }];
-
-    [self.operationQueue addOperation:operation];
+//    NSDictionary *parameters = @{ @"drink_id" : [NSNumber numberWithInteger:checkin.drink_id] };
+//
+//    NSMutableURLRequest *request = [self _mutableRequestWithMethod:kHTTP_METHOD_POST
+//                                                              path:@"/checkins"
+//                                                        parameters:parameters];
+//
+//    AFHTTPRequestOperation *operation =
+//    [self HTTPRequestOperationWithRequest:request
+//                                  success:^(AFHTTPRequestOperation *op, id responseObject) {
+//                                      if (completion) {
+//                                          completion(responseObject, nil);
+//                                      }
+//                                  }
+//                                  failure:^(AFHTTPRequestOperation *op, NSError *error) {
+//                                      if (completion) {
+//                                          completion(nil, error);
+//                                      }
+//                                  }];
+//
+//    [self.operationQueue addOperation:operation];
 }
 
 - (void)detailsForCheckinWithID:(NSUInteger)checkinID completion:(void (^)(id JSON, NSError *error))completion

@@ -3,8 +3,8 @@
 //  Copyright (c) 2013 N/A. All rights reserved.
 //
 
-#import "Checkin.h"
+#import "_Checkin.h"
 
-@implementation Checkin
+@interface Checkin : _Checkin {}
 
 @end

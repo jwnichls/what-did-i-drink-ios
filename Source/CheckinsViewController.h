@@ -4,7 +4,8 @@
 //
 
 #import "GAITrackedViewController.h"
+#import "AddCheckinViewController.h"
 
-@interface CheckinsViewController : GAITrackedViewController <UITableViewDataSource, UITableViewDelegate>
-
+@interface CheckinsViewController : GAITrackedViewController <UITableViewDataSource, UITableViewDelegate, AddCheckinViewControllerDelegate>
+@property (nonatomic) NSManagedObjectContext *moc;
 @end

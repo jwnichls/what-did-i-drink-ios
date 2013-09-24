@@ -5,6 +5,15 @@
 
 #import "Drink.h"
 
+@interface Drink ()
+
+// Private interface goes here.
+
+@end
+
+
 @implementation Drink
 
+// Custom logic goes here.
+    
 @end

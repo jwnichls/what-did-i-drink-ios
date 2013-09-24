@@ -4,13 +4,11 @@
 //
 
 #import "CheckinsViewController.h"
-#import "AppDelegate.h"
+#import "Checkin.h"
 #import "Client.h"
+#import "CheckinDetailsViewController.h"
 
 @implementation CheckinsViewController {
-    __weak AppDelegate *appDelegate;
-
-    __strong NSMutableArray *_checkins;
     __strong UITableView *_tableView;
 }
 
@@ -20,15 +18,19 @@
     if (self) {
         self.title = NSLocalizedString(@"Checkins", @"Checkins");
         self.tabBarItem.image = [UIImage imageNamed:@"checkins"];
-        CGRect frame = CGRectMake(0.0, 0.0, 320.0, 456.0);
+
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                               target:self
+                                                                                               action:@selector(_addCheckin)];
+
+        // TODO: show a message if there are no check-ins yet
+        CGRect frame = CGRectMake(0.0, 0.0, 320.0, self.view.frame.size.height);
         _tableView = [[UITableView alloc] initWithFrame:frame];
         _tableView.dataSource = self;
         _tableView.delegate = self;
         [self.view addSubview:_tableView];
 
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"kCellIdentifier"];
-
-        appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     }
 
     return self;
@@ -45,45 +47,59 @@
 
     self.trackedViewName = @"Checkins";
 
-    // load all checkins asynchroneously from server
-    [[Client sharedClient] allCheckinsWithCompletionHandler:^(id JSON, NSError *error) {
-        _checkins = [JSON mutableCopy];
-        [_tableView reloadData];
-    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
 
-    // load all checkins asynchroneously from server
-    [[Client sharedClient] allCheckinsWithCompletionHandler:^(id JSON, NSError *error) {
-        _checkins = [JSON mutableCopy];
-        [_tableView reloadData];
-    }];
 }
 
 
-#pragma mark - UITableViewDataSource methods
+#pragma mark UITableViewDataSource methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _checkins.count;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kCellIdentifier"];
-    NSDictionary *checkin = [_checkins objectAtIndex:indexPath.row];
-    NSNumber *drinkID = [checkin objectForKey:@"drink_id"];
-
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %d", drinkID.integerValue];
-    NSDictionary *dict = [[appDelegate._drinks filteredArrayUsingPredicate:predicate] objectAtIndex:0];
-    
-    cell.textLabel.text = [dict objectForKey:@"name"];
-    cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.textLabel.text = @"Checkin";
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CheckinDetailsViewController *viewController = [[CheckinDetailsViewController alloc] init];
+// TODO:   viewController.checkin = 
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
+
+#pragma mark AddCheckinViewControllerDelegate methods
+
+- (void)addCheckinViewControllerDidCancel
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)addCheckinViewControllerDidFinish
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+
+#pragma mark Private methods
+
+- (void)_addCheckin
+{
+    AddCheckinViewController *viewController = [[AddCheckinViewController alloc] init];
+    viewController.delegate = self;
+    [self presentViewController:viewController animated:YES completion:NULL];
 }
 
 @end
