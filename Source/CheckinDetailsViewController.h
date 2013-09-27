@@ -8,6 +8,11 @@
 
 @interface CheckinDetailsViewController : GAITrackedViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *drinkLabel;
+@property (weak, nonatomic) IBOutlet UILabel *venueLabel;
+@property (weak, nonatomic) IBOutlet UITextView *notesTextView;
+@property (weak, nonatomic) IBOutlet UILabel *creatorLabel;
+
 @property (nonatomic) Checkin *checkin;
 
 // designated initializer

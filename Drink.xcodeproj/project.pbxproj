@@ -71,9 +71,14 @@
 		8383E48016C86C450007C470 /* checkins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8383E47E16C86C450007C470 /* checkins@2x.png */; };
 		8383E48316C86E4E0007C470 /* timeline.png in Resources */ = {isa = PBXBuildFile; fileRef = 8383E48116C86E4E0007C470 /* timeline.png */; };
 		8383E48416C86E4E0007C470 /* timeline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8383E48216C86E4E0007C470 /* timeline@2x.png */; };
+		8386699017F391F0000891C6 /* CheckinDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8386698F17F391F0000891C6 /* CheckinDetailsView.xib */; };
+		8386699317F3B38D000891C6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 8386699217F3B38D000891C6 /* User.m */; };
 		838B218C1537660300F36DB0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 838B218B1537660300F36DB0 /* UIKit.framework */; };
 		838B218E1537660300F36DB0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 838B218D1537660300F36DB0 /* Foundation.framework */; };
 		838B21901537660300F36DB0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 838B218F1537660300F36DB0 /* CoreGraphics.framework */; };
+		8391BB4E17F50F5B00E0B2F1 /* checkins.json in Resources */ = {isa = PBXBuildFile; fileRef = 8391BB4D17F50F5B00E0B2F1 /* checkins.json */; };
+		8391BB5017F5114B00E0B2F1 /* drinks.json in Resources */ = {isa = PBXBuildFile; fileRef = 8391BB4F17F5114B00E0B2F1 /* drinks.json */; };
+		8391BB5317F5123E00E0B2F1 /* Drink.m in Sources */ = {isa = PBXBuildFile; fileRef = 8391BB5217F5123E00E0B2F1 /* Drink.m */; };
 		83B72DAD16B333DB00F2FB0C /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B72DAB16B333DB00F2FB0C /* libGoogleAnalytics.a */; };
 		83B72DB316B3489900F2FB0C /* AddCheckinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B72DB216B3489800F2FB0C /* AddCheckinViewController.m */; };
 		83BFA34716C8649F00D65CFC /* NSDate-Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BFA34616C8649F00D65CFC /* NSDate-Extensions.m */; };
@@ -166,10 +171,17 @@
 		8383E47E16C86C450007C470 /* checkins@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkins@2x.png"; sourceTree = "<group>"; };
 		8383E48116C86E4E0007C470 /* timeline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timeline.png; sourceTree = "<group>"; };
 		8383E48216C86E4E0007C470 /* timeline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeline@2x.png"; sourceTree = "<group>"; };
+		8386698F17F391F0000891C6 /* CheckinDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CheckinDetailsView.xib; path = Resources/Interfaces/CheckinDetailsView.xib; sourceTree = SOURCE_ROOT; };
+		8386699117F3B38D000891C6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Source/DataModel/User.h; sourceTree = SOURCE_ROOT; };
+		8386699217F3B38D000891C6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Source/DataModel/User.m; sourceTree = SOURCE_ROOT; };
 		838B21871537660300F36DB0 /* Drink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		838B218B1537660300F36DB0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		838B218D1537660300F36DB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		838B218F1537660300F36DB0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		8391BB4D17F50F5B00E0B2F1 /* checkins.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkins.json; sourceTree = "<group>"; };
+		8391BB4F17F5114B00E0B2F1 /* drinks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = drinks.json; sourceTree = "<group>"; };
+		8391BB5117F5123E00E0B2F1 /* Drink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Drink.h; path = Source/DataModel/Drink.h; sourceTree = SOURCE_ROOT; };
+		8391BB5217F5123E00E0B2F1 /* Drink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Drink.m; path = Source/DataModel/Drink.m; sourceTree = SOURCE_ROOT; };
 		83B72DA616B333DB00F2FB0C /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
 		83B72DA716B333DB00F2FB0C /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
 		83B72DA816B333DB00F2FB0C /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
@@ -287,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				833D482317F222D60006BD62 /* AddCheckinView.xib */,
+				8386698F17F391F0000891C6 /* CheckinDetailsView.xib */,
 			);
 			name = Interfaces;
 			path = Images/Interfaces;
@@ -323,6 +336,7 @@
 		8377782C153768AB009EE79F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8391BB4C17F50F5B00E0B2F1 /* Data */,
 				8377782D153768AB009EE79F /* Images */,
 				833A66AB169CF083001D0A28 /* Interfaces */,
 				83777837153768AB009EE79F /* Strings */,
@@ -382,8 +396,12 @@
 				836DDE1317E7E28E00DE990D /* DataModel.xcdatamodeld */,
 				833D483D17F2397E0006BD62 /* Checkin.h */,
 				833D483E17F2397E0006BD62 /* Checkin.m */,
+				8386699117F3B38D000891C6 /* User.h */,
+				8386699217F3B38D000891C6 /* User.m */,
 				833D484417F24E250006BD62 /* Venue.h */,
 				833D484517F24E250006BD62 /* Venue.m */,
+				8391BB5117F5123E00E0B2F1 /* Drink.h */,
+				8391BB5217F5123E00E0B2F1 /* Drink.m */,
 			);
 			name = "Data Model";
 			sourceTree = "<group>";
@@ -452,6 +470,15 @@
 				8377788115376906009EE79F /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8391BB4C17F50F5B00E0B2F1 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				8391BB4D17F50F5B00E0B2F1 /* checkins.json */,
+				8391BB4F17F5114B00E0B2F1 /* drinks.json */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		83B72DA516B333DB00F2FB0C /* Google Analytics */ = {
@@ -538,13 +565,16 @@
 				8314787215EE9E3100EC21A3 /* drinks@2x.png in Resources */,
 				83FFD7D215EEB7C40067428C /* drinks.png in Resources */,
 				830590A8167FA13E00BCD9F8 /* Default-568h@2x.png in Resources */,
+				8391BB5017F5114B00E0B2F1 /* drinks.json in Resources */,
 				8383E47B16C86B8F0007C470 /* wishlist.png in Resources */,
 				833D482417F222D60006BD62 /* AddCheckinView.xib in Resources */,
+				8386699017F391F0000891C6 /* CheckinDetailsView.xib in Resources */,
 				8383E47C16C86B8F0007C470 /* wishlist@2x.png in Resources */,
 				8383E47F16C86C450007C470 /* checkins.png in Resources */,
 				8383E48016C86C450007C470 /* checkins@2x.png in Resources */,
 				8383E48316C86E4E0007C470 /* timeline.png in Resources */,
 				8383E48416C86E4E0007C470 /* timeline@2x.png in Resources */,
+				8391BB4E17F50F5B00E0B2F1 /* checkins.json in Resources */,
 				8356D7881760018B00C9D757 /* navbar.png in Resources */,
 				8356D7891760018B00C9D757 /* navbar@2x.png in Resources */,
 				8356D78C17603AD100C9D757 /* toolbar.png in Resources */,
@@ -592,6 +622,7 @@
 				833D483817F2387F0006BD62 /* FMDatabaseQueue.m in Sources */,
 				836F7F7F167FAA19002F30AB /* AFHTTPClient.m in Sources */,
 				836F7F80167FAA19002F30AB /* AFHTTPRequestOperation.m in Sources */,
+				8386699317F3B38D000891C6 /* User.m in Sources */,
 				836F7F81167FAA19002F30AB /* AFImageRequestOperation.m in Sources */,
 				833D483517F2387F0006BD62 /* FMDatabase.m in Sources */,
 				833D483A17F2387F0006BD62 /* FMResultSet.m in Sources */,
@@ -606,6 +637,7 @@
 				83358475168002B80066D745 /* UIImage-Extensions.m in Sources */,
 				83358476168002B80066D745 /* UIView-Extensions.m in Sources */,
 				83C0FFA21698EDF400766CBE /* AFHTTPRequestOperationLogger.m in Sources */,
+				8391BB5317F5123E00E0B2F1 /* Drink.m in Sources */,
 				83B72DB316B3489900F2FB0C /* AddCheckinViewController.m in Sources */,
 				833D483617F2387F0006BD62 /* FMDatabaseAdditions.m in Sources */,
 				83BFA34716C8649F00D65CFC /* NSDate-Extensions.m in Sources */,

@@ -10,13 +10,15 @@
 
 @interface Checkin : FCModel
 
-// database columns:
+// database columns
 @property (nonatomic, assign) int64_t id;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic) CGFloat latitude;
 @property (nonatomic) CGFloat longitude;
+@property (nonatomic, assign) NSUInteger user_id;
 @property (nonatomic, assign) NSUInteger drink_id;
 @property (nonatomic, assign) NSUInteger venue_id;
+@property (nonatomic, copy) NSString *notes;
 @property (nonatomic) NSDate *createdTime;
 @property (nonatomic) NSDate *modifiedTime;
 

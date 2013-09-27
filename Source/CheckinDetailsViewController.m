@@ -5,13 +5,15 @@
 
 #import "CheckinDetailsViewController.h"
 #import "Checkin.h"
+#import "Drink.h"
+#import "Venue.h"
 
 @implementation CheckinDetailsViewController {
 }
 
 - (id)init
 {
-    self = [super initWithNibName:nil bundle:nil];
+    self = [super initWithNibName:@"CheckinDetailsView" bundle:nil];
     if (self) {
     }
 
@@ -23,11 +25,21 @@
     [super viewDidLoad];
 
     self.trackedViewName = @"Checkin Details";
+
+    Drink *drink = [Drink instanceWithPrimaryKey:@(_checkin.drink_id)];
+    self.drinkLabel.text = drink.name;
+    self.creatorLabel.text = drink.creator;
+
+    Venue *venue = [Venue instanceWithPrimaryKey:@(_checkin.venue_id)];
+    self.venueLabel.text = venue.name;
+    self.notesTextView.text = _checkin.notes;
 }
 
 - (void)setCheckin:(Checkin *)checkin
 {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
+    _checkin = checkin;
+
+    self.navigationItem.title = _checkin.name;
 }
 
 @end

@@ -7,10 +7,11 @@
 #import "Checkin.h"
 #import "CheckinDetailsViewController.h"
 #import "Checkin.h"
+#import "User.h"
 
 @implementation CheckinsViewController {
     __strong UITableView *_tableView;
-    NSArray *_people;
+    NSArray *_checkins;
 }
 
 - (id)init
@@ -34,6 +35,7 @@
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"kCellIdentifier"];
 
         [self _reloadCheckins:nil];
+
         [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_reloadCheckins:) name:FCModelInsertNotification object:Checkin.class];
         [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_reloadCheckins:) name:FCModelDeleteNotification object:Checkin.class];
     }
@@ -59,13 +61,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_people count];
+    return [_checkins count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kCellIdentifier"];
-    cell.textLabel.text = [[_people objectAtIndex:indexPath.row] name];
+    cell.textLabel.text = [[_checkins objectAtIndex:indexPath.row] name];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
 //    CheckinCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CheckinCell" forIndexPath:indexPath];
@@ -77,7 +79,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CheckinDetailsViewController *viewController = [[CheckinDetailsViewController alloc] init];
-// TODO:   viewController.checkin = 
+    viewController.checkin = _checkins[indexPath.row];
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
@@ -106,7 +108,9 @@
 
 - (void)_reloadCheckins:(NSNotification *)notification
 {
-    _people = [Checkin allInstances];
+    User *user = [[User allInstances] firstObject];
+    _checkins = [user checkins];
+    self.title = [NSString stringWithFormat:@"%@ (%d)", NSLocalizedString(@"Checkins", @"Checkins"), [_checkins count]];
     [_tableView reloadData];
 }
 

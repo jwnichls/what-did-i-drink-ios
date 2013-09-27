@@ -7,4 +7,9 @@
 
 @implementation Venue
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%@; %@; %@; %@; %f, %f>", self.name, self.address, self.city, self.postalCode, self.longitude, self.latitude];
+}
+
 @end
