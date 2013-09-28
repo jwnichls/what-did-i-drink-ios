@@ -10,7 +10,7 @@
 
 - (NSArray *)checkins
 {
-    return [Checkin instancesWhere:@"user_id = ?", @(_id)];
+    return [Checkin instancesWhere:@"user_id = ? ORDER BY createdTime DESC", @(_id)];
 }
 
 @end

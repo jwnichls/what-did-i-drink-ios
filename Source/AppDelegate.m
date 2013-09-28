@@ -10,9 +10,10 @@
 #import "CheckinsViewController.h"
 #import "Client.h"
 #import "Drink.h"
-#import "GAI.h"
-#import <Crashlytics/Crashlytics.h>
 #import "FCModel.h"
+#import "GAI.h"
+#import "ISO8601DateFormatter.h"
+#import <Crashlytics/Crashlytics.h>
 #import "User.h"
 #import "Venue.h"
 
@@ -32,9 +33,9 @@
 
     [self _configureDatabase];
 
-    [self _updateVenueData];
-    [self _importDrinkData];
-    [self _importCheckinData];
+//    [self _updateVenueData];
+//    [self _importDrinkData];
+//    [self _importCheckinData];
 
     [self _customizeAppearance];
 
@@ -84,7 +85,7 @@
     NSLog(@"INFO: DB Path: %@", dbPath);
 
     // New DB on every launch for testing (comment out for persistence testing)
-    [[NSFileManager defaultManager] removeItemAtPath:dbPath error:NULL];
+//    [[NSFileManager defaultManager] removeItemAtPath:dbPath error:NULL];
 
     [FCModel openDatabaseAtPath:dbPath withSchemaBuilder:^(FMDatabase *db, int *schemaVersion) {
         [db setCrashOnErrors:YES];
@@ -132,7 +133,7 @@
                    @"    user_id      INTEGER NOT NULL,"
                    @"    drink_id     INTEGER NOT NULL,"
                    @"    venue_id     INTEGER NOT NULL,"
-                   @"    notes        TEXT,"
+                   @"    notes        TEXT DEFAULT '',"
                    @"    createdTime  INTEGER NOT NULL,"
                    @"    modifiedTime INTEGER NOT NULL"
                    @");"
@@ -247,6 +248,8 @@
 
 - (void)_importCheckinData
 {
+    ISO8601DateFormatter *dateFormatter = [[ISO8601DateFormatter alloc] init];
+
     NSString *path = [[NSBundle mainBundle] pathForResource:@"checkins" ofType:@"json"];
     NSData *data = [[NSData alloc] initWithContentsOfFile:path];
 
@@ -269,8 +272,14 @@
             id drink_id = [dict valueForKey:@"drink_id"];
             if (drink_id && drink_id != [NSNull null]) checkin.drink_id = [drink_id integerValue];
             checkin.notes = [dict valueForKey:@"notes"];
-            checkin.createdTime = [dict valueForKey:@"created_at"];
-            checkin.modifiedTime = [dict valueForKey:@"updated_at"];
+
+            // convert and import 'created_at' from ISO8601
+            NSDate *createdTime = [dateFormatter dateFromString:[dict valueForKey:@"created_at"]];
+            checkin.createdTime = createdTime;
+
+            // convert and import 'created_at' from ISO8601
+            NSDate *modifiedTime = [dateFormatter dateFromString:[dict valueForKey:@"updated_at"]];
+            checkin.modifiedTime = modifiedTime;
             [checkin save];
         }
     }

@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *venueLabel;
 @property (weak, nonatomic) IBOutlet UITextView *notesTextView;
 @property (weak, nonatomic) IBOutlet UILabel *creatorLabel;
+@property (weak, nonatomic) IBOutlet UILabel *createdTimeLabel;
 
 @property (nonatomic) Checkin *checkin;
 

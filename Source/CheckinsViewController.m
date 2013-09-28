@@ -6,8 +6,9 @@
 #import "CheckinsViewController.h"
 #import "Checkin.h"
 #import "CheckinDetailsViewController.h"
-#import "Checkin.h"
+#import "CheckinTableViewCell.h"
 #import "User.h"
+
 
 @implementation CheckinsViewController {
     __strong UITableView *_tableView;
@@ -26,13 +27,14 @@
                                                                                                action:@selector(_addCheckin)];
 
         // TODO: show a message if there are no check-ins yet
+
         CGRect frame = CGRectMake(0.0, 0.0, 320.0, self.view.frame.size.height);
         _tableView = [[UITableView alloc] initWithFrame:frame];
         _tableView.dataSource = self;
         _tableView.delegate = self;
         [self.view addSubview:_tableView];
 
-        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"kCellIdentifier"];
+        [_tableView registerClass:[CheckinTableViewCell class] forCellReuseIdentifier:@"CellIdentifier"];
 
         [self _reloadCheckins:nil];
 
@@ -66,18 +68,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kCellIdentifier"];
-    cell.textLabel.text = [[_checkins objectAtIndex:indexPath.row] name];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
-//    CheckinCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CheckinCell" forIndexPath:indexPath];
-//    [cell configureWithCheckin:_checkins objectAtIndex:indexPAth.row];
+    CheckinTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
+    [cell configureWithCheckin:[_checkins objectAtIndex:indexPath.row]];
 
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
     CheckinDetailsViewController *viewController = [[CheckinDetailsViewController alloc] init];
     viewController.checkin = _checkins[indexPath.row];
     [self.navigationController pushViewController:viewController animated:YES];
@@ -93,7 +93,10 @@
 
 - (void)addCheckinViewControllerDidFinish
 {
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    [self dismissViewControllerAnimated:YES completion:^{
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [_tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    }];
 }
 
 

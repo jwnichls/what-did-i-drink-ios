@@ -26,13 +26,18 @@
 
     self.trackedViewName = @"Checkin Details";
 
+    self.createdTimeLabel.text = [_checkin.createdTime description];
+
     Drink *drink = [Drink instanceWithPrimaryKey:@(_checkin.drink_id)];
     self.drinkLabel.text = drink.name;
     self.creatorLabel.text = drink.creator;
 
     Venue *venue = [Venue instanceWithPrimaryKey:@(_checkin.venue_id)];
     self.venueLabel.text = venue.name;
-    self.notesTextView.text = _checkin.notes;
+
+    if ((_checkin.notes != nil) && (_checkin.notes != [NSNull null])) {
+        self.notesTextView.text = _checkin.notes;
+    }
 }
 
 - (void)setCheckin:(Checkin *)checkin

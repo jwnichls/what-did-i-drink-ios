@@ -7,23 +7,32 @@
 #import <CoreLocation/CoreLocation.h>
 #import "AppDelegate.h"
 #import "GAI.h"
-//#import "Drink.h"
+#import "Drink.h"
 #import "Checkin.h"
 #import "User.h"
 #import "Venue.h"
 
-// TODO:
-// scroll up so that the text field the user is entering information into is always at the top
+
+@interface VenueStub : NSObject
+@property (nonatomic, assign) int64_t id;
+@property (nonatomic, copy) NSString *name;
+@end
+
+@implementation VenueStub
+@end
+
 
 @implementation AddCheckinViewController {
     CLLocationManager *_locationManager;
     NSArray *_venueNames;
+    NSUInteger _selectedRow;
 }
 
 - (id)init
 {
     self = [super initWithNibName:@"AddCheckinView" bundle:nil];
     if (self) {
+        _selectedRow = -1;
     }
 
     return self;
@@ -64,14 +73,17 @@
 
     [[FCModel databaseQueue] inDatabase:^(FMDatabase *db) {
         CGFloat distance = 1500.0;
-        FMResultSet *resultSet = [db executeQueryWithFormat:@"SELECT name, city, distance(latitude, longitude, %f, %f) AS dist FROM Venue WHERE dist < %f ORDER BY dist", latitude, longitude, distance];
+        FMResultSet *resultSet = [db executeQueryWithFormat:@"SELECT id, name, city, distance(latitude, longitude, %f, %f) AS dist FROM Venue WHERE dist < %f ORDER BY dist", latitude, longitude, distance];
 
         // TODO: handle if we have no location data and therefore no venues
 
         NSMutableArray *names = [NSMutableArray array];
         while ([resultSet next]) {
-            NSString *name = [NSString stringWithFormat:@"%@ %@ (%.0f km)", [resultSet stringForColumnIndex:0], [resultSet stringForColumnIndex:1], [resultSet doubleForColumnIndex:2]];
-            [names addObject:name];
+            NSString *name = [NSString stringWithFormat:@"%@ %@ (%.0f km)", [resultSet stringForColumnIndex:1], [resultSet stringForColumnIndex:2], [resultSet doubleForColumnIndex:3]];
+            VenueStub *stub = [[VenueStub alloc] init];
+            stub.id = [resultSet intForColumnIndex:0];
+            stub.name = name;
+            [names addObject:stub];
         }
 
         _venueNames = names;
@@ -102,12 +114,15 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return _venueNames[row];
+    VenueStub *stub = _venueNames[row];
+    return stub.name;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    self.venueTextField.text = _venueNames[row];
+    _selectedRow = row;
+    VenueStub *stub = _venueNames[row];
+    self.venueTextField.text = stub.name;
 }
 
 
@@ -122,14 +137,30 @@
 
 - (IBAction)done:(id)sender
 {
-    // TODO: create checkin, venue, and drink; save all, with their relationships
     User *user = [[User allInstances] firstObject];
+
+    Drink *drink = [Drink firstInstanceWhere:@"name = ?", self.drinkTextField.text];
+    if (drink == nil) {
+        drink = [Drink new];
+        drink.name = self.drinkTextField.text;
+        drink.createdTime = [NSDate date];
+        drink.modifiedTime = [NSDate date];
+        [drink save];
+    }
+
+    int64_t venue_id = 0;
+    if ([_venueNames count] >= _selectedRow) {
+        VenueStub *stub = _venueNames[_selectedRow];
+        venue_id = stub.id;
+    }
 
     Checkin *checkin = [Checkin new];
     checkin.user_id = user.id;
     checkin.name = self.drinkTextField.text;
     checkin.longitude = _locationManager.location.coordinate.longitude;
     checkin.latitude = _locationManager.location.coordinate.latitude;
+    checkin.drink_id = drink.id;
+    checkin.venue_id = venue_id;
     checkin.createdTime = [NSDate date];
     checkin.modifiedTime = [NSDate date];
     [checkin save];
