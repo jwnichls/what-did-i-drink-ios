@@ -33,9 +33,9 @@
 
     [self _configureDatabase];
 
-//    [self _updateVenueData];
-//    [self _importDrinkData];
-//    [self _importCheckinData];
+    [self _updateVenueData];
+    [self _importDrinkData];
+    [self _importCheckinData];
 
     [self _customizeAppearance];
 
@@ -85,7 +85,7 @@
     NSLog(@"INFO: DB Path: %@", dbPath);
 
     // New DB on every launch for testing (comment out for persistence testing)
-//    [[NSFileManager defaultManager] removeItemAtPath:dbPath error:NULL];
+    [[NSFileManager defaultManager] removeItemAtPath:dbPath error:NULL];
 
     [FCModel openDatabaseAtPath:dbPath withSchemaBuilder:^(FMDatabase *db, int *schemaVersion) {
         [db setCrashOnErrors:YES];
@@ -157,39 +157,39 @@
                    ]) failedAt(7);
             if (! [db executeUpdate:@"CREATE UNIQUE INDEX IF NOT EXISTS name ON Venue (name);"]) failedAt(8);
 
-
-            // create function to calculate distance in km between 2 locations
-            // distance function for SQLite: http://www.thismuchiknow.co.uk/?p=71
-            [db makeFunctionNamed:@"distance" maximumArguments:4 withBlock:^(sqlite3_context *context, int argc, sqlite3_value **argv) {
-                // check that we have four arguments (lat1, lon1, lat2, lon2)
-                assert(argc == 4);
-
-                // check that all four arguments are non-null
-                if (sqlite3_value_type(argv[0]) == SQLITE_NULL || sqlite3_value_type(argv[1]) == SQLITE_NULL || sqlite3_value_type(argv[2]) == SQLITE_NULL || sqlite3_value_type(argv[3]) == SQLITE_NULL) {
-                    sqlite3_result_null(context);
-                    return;
-                }
-
-                // get the four argument values
-                double lat1 = sqlite3_value_double(argv[0]);
-                double lon1 = sqlite3_value_double(argv[1]);
-                double lat2 = sqlite3_value_double(argv[2]);
-                double lon2 = sqlite3_value_double(argv[3]);
-
-                // convert lat1 and lat2 into radians now, to avoid doing it twice below
-                double lat1rad = DEG2RAD(lat1);
-                double lat2rad = DEG2RAD(lat2);
-
-                // apply the spherical law of cosines to our latitudes and longitudes, and set the result appropriately
-                // 6378.1 is the approximate radius of the earth in kilometres
-                sqlite3_result_double(context, acos(sin(lat1rad) * sin(lat2rad) + cos(lat1rad) * cos(lat2rad) * cos(DEG2RAD(lon2) - DEG2RAD(lon1))) * 6378.1);
-            }];
-
-
             // increase the schema version
             *schemaVersion = 1;
         }
 
+        
+        // create function to calculate distance in km between 2 locations
+        // distance function for SQLite: http://www.thismuchiknow.co.uk/?p=71
+        [db makeFunctionNamed:@"distance" maximumArguments:4 withBlock:^(sqlite3_context *context, int argc, sqlite3_value **argv) {
+            // check that we have four arguments (lat1, lon1, lat2, lon2)
+            assert(argc == 4);
+            
+            // check that all four arguments are non-null
+            if (sqlite3_value_type(argv[0]) == SQLITE_NULL || sqlite3_value_type(argv[1]) == SQLITE_NULL || sqlite3_value_type(argv[2]) == SQLITE_NULL || sqlite3_value_type(argv[3]) == SQLITE_NULL) {
+                sqlite3_result_null(context);
+                return;
+            }
+            
+            // get the four argument values
+            double lat1 = sqlite3_value_double(argv[0]);
+            double lon1 = sqlite3_value_double(argv[1]);
+            double lat2 = sqlite3_value_double(argv[2]);
+            double lon2 = sqlite3_value_double(argv[3]);
+            
+            // convert lat1 and lat2 into radians now, to avoid doing it twice below
+            double lat1rad = DEG2RAD(lat1);
+            double lat2rad = DEG2RAD(lat2);
+            
+            // apply the spherical law of cosines to our latitudes and longitudes, and set the result appropriately
+            // 6378.1 is the approximate radius of the earth in kilometres
+            sqlite3_result_double(context, acos(sin(lat1rad) * sin(lat2rad) + cos(lat1rad) * cos(lat2rad) * cos(DEG2RAD(lon2) - DEG2RAD(lon1))) * 6378.1);
+        }];
+
+        
         [db commit];
     }];
 

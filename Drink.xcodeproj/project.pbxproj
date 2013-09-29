@@ -32,6 +32,7 @@
 		83358476168002B80066D745 /* UIView-Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83358474168002B80066D745 /* UIView-Extensions.m */; };
 		833584791680050B0066D745 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833584781680050B0066D745 /* SystemConfiguration.framework */; };
 		833BD22417F79A91002C8F37 /* CheckinTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 833BD22317F79A91002C8F37 /* CheckinTableViewCell.m */; };
+		833BD22617F79D3D002C8F37 /* CheckinTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 833BD22517F79D3D002C8F37 /* CheckinTableViewCell.xib */; };
 		833D482417F222D60006BD62 /* AddCheckinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 833D482317F222D60006BD62 /* AddCheckinView.xib */; };
 		833D482817F238710006BD62 /* FCModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 833D482717F238710006BD62 /* FCModel.m */; };
 		833D483517F2387F0006BD62 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 833D482B17F2387F0006BD62 /* FMDatabase.m */; };
@@ -108,6 +109,7 @@
 		833584781680050B0066D745 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		833BD22217F79A91002C8F37 /* CheckinTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CheckinTableViewCell.h; path = Source/CheckinTableViewCell.h; sourceTree = SOURCE_ROOT; };
 		833BD22317F79A91002C8F37 /* CheckinTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CheckinTableViewCell.m; path = Source/CheckinTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		833BD22517F79D3D002C8F37 /* CheckinTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CheckinTableViewCell.xib; path = Resources/Interfaces/CheckinTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		833D482317F222D60006BD62 /* AddCheckinView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddCheckinView.xib; path = Resources/Interfaces/AddCheckinView.xib; sourceTree = SOURCE_ROOT; };
 		833D482617F238710006BD62 /* FCModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCModel.h; sourceTree = "<group>"; };
 		833D482717F238710006BD62 /* FCModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCModel.m; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 			children = (
 				833D482317F222D60006BD62 /* AddCheckinView.xib */,
 				8386698F17F391F0000891C6 /* CheckinDetailsView.xib */,
+				833BD22517F79D3D002C8F37 /* CheckinTableViewCell.xib */,
 			);
 			name = Interfaces;
 			path = Images/Interfaces;
@@ -584,6 +587,7 @@
 				8356D7891760018B00C9D757 /* navbar@2x.png in Resources */,
 				8356D78C17603AD100C9D757 /* toolbar.png in Resources */,
 				8356D78D17603AD100C9D757 /* toolbar@2x.png in Resources */,
+				833BD22617F79D3D002C8F37 /* CheckinTableViewCell.xib in Resources */,
 				8356D792176040C400C9D757 /* chevron.png in Resources */,
 				8356D793176040C400C9D757 /* chevron@2x.png in Resources */,
 				8356D794176040C400C9D757 /* location.png in Resources */,

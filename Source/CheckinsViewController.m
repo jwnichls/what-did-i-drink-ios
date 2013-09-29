@@ -32,9 +32,11 @@
         _tableView = [[UITableView alloc] initWithFrame:frame];
         _tableView.dataSource = self;
         _tableView.delegate = self;
+        _tableView.rowHeight = 82.0f;
         [self.view addSubview:_tableView];
 
-        [_tableView registerClass:[CheckinTableViewCell class] forCellReuseIdentifier:@"CellIdentifier"];
+        UINib *cellNib = [UINib nibWithNibName:@"CheckinTableViewCell" bundle:nil];
+        [_tableView registerNib:cellNib forCellReuseIdentifier:@"CheckinCellIdentifier"];
 
         [self _reloadCheckins:nil];
 
@@ -68,7 +70,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CheckinTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
+    CheckinTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CheckinCellIdentifier" forIndexPath:indexPath];
     [cell configureWithCheckin:[_checkins objectAtIndex:indexPath.row]];
 
     return cell;

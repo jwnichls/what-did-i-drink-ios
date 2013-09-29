@@ -65,7 +65,6 @@
 @property (readonly) NSInteger year;
 
 // Formatting dates
-- (NSString *)relativeDateAsString;
 - (NSString *)relativeDate;
 - (NSString *)weekDayName;
 

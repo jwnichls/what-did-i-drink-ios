@@ -8,6 +8,10 @@
 
 @interface CheckinTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *venueNameLabel;
+
 - (void)configureWithCheckin:(Checkin *)checkin;
 
 @end

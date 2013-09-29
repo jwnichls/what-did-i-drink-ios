@@ -87,7 +87,12 @@
         }
 
         _venueNames = names;
+
         [self.venuePicker reloadAllComponents];
+        [self.venuePicker selectRow:0 inComponent:0 animated:NO];
+        _selectedRow = 0;
+        VenueStub *stub = _venueNames[0];
+        self.venueTextField.text = stub.name;
     }];
 }
 

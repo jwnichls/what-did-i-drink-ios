@@ -4,6 +4,7 @@
 //
 
 #import "CheckinTableViewCell.h"
+#import "Venue.h"
 
 @implementation CheckinTableViewCell {
     Checkin *_checkin;
@@ -13,23 +14,21 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
+        // initialization code
     }
+
     return self;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 - (void)configureWithCheckin:(Checkin *)checkin
 {
     _checkin = checkin;
 
-    self.textLabel.text = checkin.name;
+    self.nameLabel.text = checkin.name;
+    Venue *venue = [Venue instanceWithPrimaryKey:@(checkin.venue_id)];
+    self.venueNameLabel.text = venue.name;
+    self.dateLabel.text = [checkin.createdTime relativeDate];
+
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 

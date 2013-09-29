@@ -275,24 +275,6 @@
 }
 
 // Formatting dates
-- (NSString *)relativeDateAsString
-{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
-
-    if ([self isYesterday]) {
-        return @"Yesterday";
-    }
-    else if ([self isToday]) {
-        [formatter setDateFormat:@"h:mm a"];
-    }
-    else {
-        [formatter setDateFormat:@"MM/dd/yy"];
-    }
-
-    return [formatter stringFromDate:self];
-}
-
 - (NSString *)relativeDate
 {
     NSInteger minutes = abs([self minutesAfterDate:[NSDate date]]);
@@ -302,8 +284,10 @@
         return [NSString stringWithFormat:@"%ldh", lround(minutes / 60)];
     else if (minutes < 60 * 24 * 7)
         return [NSString stringWithFormat:@"%ldd", lround(minutes / (60 * 24))];
-    else
+    else if (minutes < 60 * 24 * 365)
         return [NSString stringWithFormat:@"%ldw", lround(minutes / (60 * 24 * 7))];
+    else
+        return [NSString stringWithFormat:@"%ldy", lround(minutes / (60 * 24 * 365))];
 }
 
 - (NSString *)weekDayName
