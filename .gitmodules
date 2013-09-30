@@ -13,3 +13,6 @@
 [submodule "Frameworks/fmdb"]
 	path = Frameworks/fmdb
 	url = https://github.com/ccgus/fmdb.git
+[submodule "Frameworks/TMCache"]
+	path = Frameworks/TMCache
+	url = https://github.com/tumblr/TMCache.git

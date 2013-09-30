@@ -28,6 +28,9 @@
 		8314787215EE9E3100EC21A3 /* drinks@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8314787115EE9E3100EC21A3 /* drinks@2x.png */; };
 		831AFC5715D9BC6400EF63B3 /* CheckinDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831AFC5615D9BC6400EF63B3 /* CheckinDetailsViewController.m */; };
 		831AFC7C15D9BD5600EF63B3 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 831AFC7115D9BD5600EF63B3 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		831CD8CE17FA35AE006CAA96 /* TMCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 831CD8C917FA35AE006CAA96 /* TMCache.m */; };
+		831CD8CF17FA35AE006CAA96 /* TMDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 831CD8CB17FA35AE006CAA96 /* TMDiskCache.m */; };
+		831CD8D017FA35AE006CAA96 /* TMMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 831CD8CD17FA35AE006CAA96 /* TMMemoryCache.m */; };
 		83358475168002B80066D745 /* UIImage-Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83358472168002B80066D745 /* UIImage-Extensions.m */; };
 		83358476168002B80066D745 /* UIView-Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83358474168002B80066D745 /* UIView-Extensions.m */; };
 		833584791680050B0066D745 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833584781680050B0066D745 /* SystemConfiguration.framework */; };
@@ -101,6 +104,12 @@
 		831AFC5615D9BC6400EF63B3 /* CheckinDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CheckinDetailsViewController.m; path = Source/CheckinDetailsViewController.m; sourceTree = SOURCE_ROOT; };
 		831AFC7015D9BD5600EF63B3 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		831AFC7115D9BD5600EF63B3 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		831CD8C817FA35AE006CAA96 /* TMCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMCache.h; sourceTree = "<group>"; };
+		831CD8C917FA35AE006CAA96 /* TMCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMCache.m; sourceTree = "<group>"; };
+		831CD8CA17FA35AE006CAA96 /* TMDiskCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDiskCache.h; sourceTree = "<group>"; };
+		831CD8CB17FA35AE006CAA96 /* TMDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDiskCache.m; sourceTree = "<group>"; };
+		831CD8CC17FA35AE006CAA96 /* TMMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMMemoryCache.h; sourceTree = "<group>"; };
+		831CD8CD17FA35AE006CAA96 /* TMMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMMemoryCache.m; sourceTree = "<group>"; };
 		83358471168002B80066D745 /* UIImage-Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage-Extensions.h"; path = "Source/UIImage-Extensions.h"; sourceTree = SOURCE_ROOT; };
 		83358472168002B80066D745 /* UIImage-Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage-Extensions.m"; path = "Source/UIImage-Extensions.m"; sourceTree = SOURCE_ROOT; };
 		83358473168002B80066D745 /* UIView-Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView-Extensions.h"; path = "Source/UIView-Extensions.h"; sourceTree = SOURCE_ROOT; };
@@ -285,6 +294,20 @@
 			path = Frameworks/JSONKit;
 			sourceTree = "<group>";
 		};
+		831CD8C717FA35AE006CAA96 /* TMCache */ = {
+			isa = PBXGroup;
+			children = (
+				831CD8C817FA35AE006CAA96 /* TMCache.h */,
+				831CD8C917FA35AE006CAA96 /* TMCache.m */,
+				831CD8CA17FA35AE006CAA96 /* TMDiskCache.h */,
+				831CD8CB17FA35AE006CAA96 /* TMDiskCache.m */,
+				831CD8CC17FA35AE006CAA96 /* TMMemoryCache.h */,
+				831CD8CD17FA35AE006CAA96 /* TMMemoryCache.m */,
+			);
+			name = TMCache;
+			path = Frameworks/TMCache/TMCache;
+			sourceTree = "<group>";
+		};
 		83358470168002730066D745 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -434,6 +457,7 @@
 		838B218A1537660300F36DB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				831CD8C717FA35AE006CAA96 /* TMCache */,
 				833D484217F24A450006BD62 /* CoreData.framework */,
 				833D484017F24A1E0006BD62 /* CoreLocation.framework */,
 				833D483B17F238C40006BD62 /* libsqlite3.dylib */,
@@ -622,7 +646,9 @@
 			files = (
 				8377787D153768FE009EE79F /* AppDelegate.m in Sources */,
 				8377787F153768FE009EE79F /* CheckinsViewController.m in Sources */,
+				831CD8CF17FA35AE006CAA96 /* TMDiskCache.m in Sources */,
 				8377788215376906009EE79F /* main.m in Sources */,
+				831CD8CE17FA35AE006CAA96 /* TMCache.m in Sources */,
 				833BD22417F79A91002C8F37 /* CheckinTableViewCell.m in Sources */,
 				833D484617F24E250006BD62 /* Venue.m in Sources */,
 				8306A58A15376AF70019AED5 /* Client.m in Sources */,
@@ -646,6 +672,7 @@
 				833D483F17F2397E0006BD62 /* Checkin.m in Sources */,
 				83358475168002B80066D745 /* UIImage-Extensions.m in Sources */,
 				83358476168002B80066D745 /* UIView-Extensions.m in Sources */,
+				831CD8D017FA35AE006CAA96 /* TMMemoryCache.m in Sources */,
 				83C0FFA21698EDF400766CBE /* AFHTTPRequestOperationLogger.m in Sources */,
 				8391BB5317F5123E00E0B2F1 /* Drink.m in Sources */,
 				83B72DB316B3489900F2FB0C /* AddCheckinViewController.m in Sources */,
