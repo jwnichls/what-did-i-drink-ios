@@ -6,10 +6,10 @@
 #import "CheckinDetailsViewController.h"
 #import "Checkin.h"
 #import "Drink.h"
+#import "TMCache.h"
 #import "Venue.h"
 
-@implementation CheckinDetailsViewController {
-}
+@implementation CheckinDetailsViewController
 
 - (id)init
 {
@@ -31,6 +31,12 @@
     Drink *drink = [Drink instanceWithPrimaryKey:@(_checkin.drink_id)];
     self.drinkLabel.text = drink.name;
     self.creatorLabel.text = drink.creator;
+
+    UIImage *image = [[TMCache sharedCache] objectForKey:[NSString stringWithFormat:@"%lld", drink.id]];
+    if (image) {
+        self.imageView.image = image;
+    }
+
 
     Venue *venue = [Venue instanceWithPrimaryKey:@(_checkin.venue_id)];
     self.venueLabel.text = venue.name;

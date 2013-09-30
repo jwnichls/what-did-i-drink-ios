@@ -4,6 +4,7 @@
 //
 
 #import "AppDelegate.h"
+#import <Crashlytics/Crashlytics.h>
 #import "AFNetworking.h"
 #import "AFHTTPRequestOperationLogger.h"
 #import "Checkin.h"
@@ -13,7 +14,7 @@
 #import "FCModel.h"
 #import "GAI.h"
 #import "ISO8601DateFormatter.h"
-#import <Crashlytics/Crashlytics.h>
+#import "TMCache.h"
 #import "User.h"
 #import "Venue.h"
 
@@ -287,6 +288,8 @@
 
 - (void)_importDrinkData
 {
+    NSOperationQueue *imageDownloadQueue = [[NSOperationQueue alloc] init];
+
     NSString *path = [[NSBundle mainBundle] pathForResource:@"drinks" ofType:@"json"];
     NSData *data = [[NSData alloc] initWithContentsOfFile:path];
 
@@ -297,9 +300,24 @@
             Drink *drink = [Drink instanceWithPrimaryKey:[dict valueForKey:@"id"]];
             drink.name = [dict valueForKey:@"name"];
             drink.creator = [dict valueForKey:@"created_by"];
+// TODO:            drink.recipe = [dict valueForKey:@"recipe_raw"];
             drink.createdTime = [NSDate date];
             drink.modifiedTime = [NSDate date];
             [drink save];
+
+            // download images
+            NSArray *images = [dict valueForKey:@"images"];
+            if ((images != nil) && ([images count] > 0)) {
+                NSString *imageURL = [[images valueForKeyPath:@"image.image"] objectAtIndex:0];
+                NSURL *url = [NSURL URLWithString:[@"http://whatdididrink.com" stringByAppendingPathComponent:imageURL]];
+                NSURLRequest *request = [NSURLRequest requestWithURL:url];
+                AFImageRequestOperation *operation =
+                    [AFImageRequestOperation imageRequestOperationWithRequest:request
+                                                                      success:^(UIImage *image) {
+                                                                          [[TMCache sharedCache] setObject:image forKey:[NSString stringWithFormat:@"%lld", drink.id]];
+                                                                      }];
+                [imageDownloadQueue addOperation:operation];
+            }
         }
     }
 }
