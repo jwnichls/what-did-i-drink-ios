@@ -6,8 +6,6 @@
 
 #import "AppDelegate.h"
 #import <Crashlytics/Crashlytics.h>
-#import "AFNetworking.h"
-#import "AFHTTPRequestOperationLogger.h"
 #import "Checkin.h"
 #import "CheckinsViewController.h"
 #import "Client.h"
@@ -25,8 +23,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self _configureAFNetworking];
-
 #if (!DEBUG)
     [self _configureGoogleAnalytics];
 #endif
@@ -35,7 +31,7 @@
 
     [self _configureDatabase];
 
-    [self _updateVenueData];
+    [self _importVenueData];
     [self _importDrinkData];
     [self _importCheckinData];
 
@@ -65,12 +61,6 @@
 - (NSString *)_applicationDocumentsDirectory
 {
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-}
-
-- (void)_configureAFNetworking
-{
-    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
-    [[AFHTTPRequestOperationLogger sharedLogger] startLogging];
 }
 
 - (void)_configureCrashlytics
@@ -153,7 +143,7 @@
             // create the Venue table
             if (! [db executeUpdate:
                    @"CREATE TABLE Venue ("
-                   @"    id           INTEGER PRIMARY KEY AUTOINCREMENT,"
+                   @"    id           INTEGER PRIMARY KEY,"
                    @"    name         TEXT NOT NULL DEFAULT '',"
                    @"    address      TEXT,"
                    @"    postalCode   TEXT,"
@@ -297,13 +287,11 @@
 
 - (void)_importDrinkData
 {
-    NSOperationQueue *imageDownloadQueue = [[NSOperationQueue alloc] init];
-
     NSString *path = [[NSBundle mainBundle] pathForResource:@"drinks" ofType:@"json"];
-    NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+    NSData *drinkData = [[NSData alloc] initWithContentsOfFile:path];
 
-    if (data) {
-        id JSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    if (drinkData) {
+        id JSON = [NSJSONSerialization JSONObjectWithData:drinkData options:0 error:nil];
 
         for (NSDictionary *dict in JSON) {
             Drink *drink = [Drink instanceWithPrimaryKey:[dict valueForKey:@"id"]];
@@ -317,16 +305,45 @@
             // download images
             NSArray *images = [dict valueForKey:@"images"];
             if ((images != nil) && ([images count] > 0)) {
+                NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+                sessionConfiguration.allowsCellularAccess = YES;
+                NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
+
                 NSString *imageURL = [[images valueForKeyPath:@"image.image"] objectAtIndex:0];
                 NSURL *url = [NSURL URLWithString:[@"http://whatdididrink.com" stringByAppendingPathComponent:imageURL]];
-                NSURLRequest *request = [NSURLRequest requestWithURL:url];
-                AFImageRequestOperation *operation =
-                    [AFImageRequestOperation imageRequestOperationWithRequest:request
-                                                                      success:^(UIImage *image) {
-                                                                          [[TMCache sharedCache] setObject:image forKey:[NSString stringWithFormat:@"%lld", drink.id]];
-                                                                      }];
-                [imageDownloadQueue addOperation:operation];
+
+                NSURLSessionDataTask *dataTask = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    [[TMCache sharedCache] setObject:image forKey:[NSString stringWithFormat:@"%lld", drink.id]];
+                }];
+                [dataTask resume];
             }
+        }
+    }
+}
+
+- (void)_importVenueData
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"venues" ofType:@"json"];
+    NSData *venueData = [[NSData alloc] initWithContentsOfFile:path];
+
+    if (venueData) {
+        id JSON = [NSJSONSerialization JSONObjectWithData:venueData options:0 error:nil];
+
+        for (NSDictionary *dict in JSON) {
+            NSNumber *venue_id = [dict valueForKey:@"id"];
+
+            Venue *venue = [Venue instanceWithPrimaryKey:venue_id];
+            venue.name = [dict valueForKey:@"name"];
+            venue.address = [dict valueForKey:@"address"];
+            venue.city = [dict valueForKey:@"city"];
+            venue.postalCode = [dict valueForKey:@"postalCode"];
+            venue.state = [dict valueForKey:@"state"];
+            venue.longitude = [[dict valueForKey:@"lng"] floatValue];
+            venue.latitude = [[dict valueForKey:@"lat"] floatValue];
+//            venue.createdTime = [dict valueForKey:@"created_at"];
+//            venue.modifiedTime = [dict valueForKey:@"modified_at"];
+            [venue save];
         }
     }
 }

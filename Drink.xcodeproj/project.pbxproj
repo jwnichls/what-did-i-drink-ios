@@ -63,7 +63,6 @@
 		838B218C1537660300F36DB0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 838B218B1537660300F36DB0 /* UIKit.framework */; };
 		838B218E1537660300F36DB0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 838B218D1537660300F36DB0 /* Foundation.framework */; };
 		838B21901537660300F36DB0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 838B218F1537660300F36DB0 /* CoreGraphics.framework */; };
-		8391BB4E17F50F5B00E0B2F1 /* checkins.json in Resources */ = {isa = PBXBuildFile; fileRef = 8391BB4D17F50F5B00E0B2F1 /* checkins.json */; };
 		8391BB5017F5114B00E0B2F1 /* drinks.json in Resources */ = {isa = PBXBuildFile; fileRef = 8391BB4F17F5114B00E0B2F1 /* drinks.json */; };
 		8391BB5317F5123E00E0B2F1 /* Drink.m in Sources */ = {isa = PBXBuildFile; fileRef = 8391BB5217F5123E00E0B2F1 /* Drink.m */; };
 		83B72DAD16B333DB00F2FB0C /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B72DAB16B333DB00F2FB0C /* libGoogleAnalytics.a */; };
@@ -186,7 +185,6 @@
 		838B218B1537660300F36DB0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		838B218D1537660300F36DB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		838B218F1537660300F36DB0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		8391BB4D17F50F5B00E0B2F1 /* checkins.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkins.json; sourceTree = "<group>"; };
 		8391BB4F17F5114B00E0B2F1 /* drinks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = drinks.json; sourceTree = "<group>"; };
 		8391BB5117F5123E00E0B2F1 /* Drink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Drink.h; path = Source/DataModel/Drink.h; sourceTree = SOURCE_ROOT; };
 		8391BB5217F5123E00E0B2F1 /* Drink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Drink.m; path = Source/DataModel/Drink.m; sourceTree = SOURCE_ROOT; };
@@ -260,6 +258,8 @@
 				8377787C153768FE009EE79F /* CheckinsViewController.m */,
 				831AFC5515D9BC6400EF63B3 /* CheckinDetailsViewController.h */,
 				831AFC5615D9BC6400EF63B3 /* CheckinDetailsViewController.m */,
+				83EAE91617FF6517003A1A67 /* SettingsViewController.h */,
+				83EAE91717FF6517003A1A67 /* SettingsViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -336,6 +336,7 @@
 				833D482317F222D60006BD62 /* AddCheckinView.xib */,
 				8386698F17F391F0000891C6 /* CheckinDetailsView.xib */,
 				833BD22517F79D3D002C8F37 /* CheckinTableViewCell.xib */,
+				83EAE91917FF654D003A1A67 /* SettingsView.xib */,
 			);
 			name = Interfaces;
 			path = Images/Interfaces;
@@ -516,8 +517,9 @@
 		8391BB4C17F50F5B00E0B2F1 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				8391BB4D17F50F5B00E0B2F1 /* checkins.json */,
+				83EAE91D17FF8224003A1A67 /* checkins.json */,
 				8391BB4F17F5114B00E0B2F1 /* drinks.json */,
+				83EAE91B17FF81DD003A1A67 /* venues.json */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -662,6 +664,7 @@
 				8377787D153768FE009EE79F /* AppDelegate.m in Sources */,
 				8377787F153768FE009EE79F /* CheckinsViewController.m in Sources */,
 				831CD8CF17FA35AE006CAA96 /* TMDiskCache.m in Sources */,
+				83EAE91817FF6517003A1A67 /* SettingsViewController.m in Sources */,
 				8377788215376906009EE79F /* main.m in Sources */,
 				831CD8CE17FA35AE006CAA96 /* TMCache.m in Sources */,
 				833BD22417F79A91002C8F37 /* CheckinTableViewCell.m in Sources */,
