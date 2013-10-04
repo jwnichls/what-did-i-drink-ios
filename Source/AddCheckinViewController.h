@@ -8,7 +8,7 @@
 @protocol AddCheckinViewControllerDelegate;
 @class Drink;
 
-@interface AddCheckinViewController : GAITrackedViewController <UITextFieldDelegate, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+@interface AddCheckinViewController : GAITrackedViewController <UITextFieldDelegate, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (nonatomic, weak) id<AddCheckinViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UITextField *drinkTextField;
 @property (weak, nonatomic) IBOutlet UITextField *venueTextField;
@@ -16,6 +16,7 @@
 
 - (IBAction)cancel:(id)sender;
 - (IBAction)done:(id)sender;
+- (IBAction)takePicture:(id)sender;
 
 @end
 

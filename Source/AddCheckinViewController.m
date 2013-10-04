@@ -9,6 +9,7 @@
 #import "GAI.h"
 #import "Drink.h"
 #import "Checkin.h"
+#import "TMCache.h"
 #import "User.h"
 #import "Venue.h"
 
@@ -26,6 +27,7 @@
     CLLocationManager *_locationManager;
     NSArray *_venueNames;
     NSUInteger _selectedRow;
+    UIImage *_image;
 }
 
 - (id)init
@@ -91,8 +93,11 @@
         [self.venuePicker reloadAllComponents];
         [self.venuePicker selectRow:0 inComponent:0 animated:NO];
         _selectedRow = 0;
-        VenueStub *stub = _venueNames[0];
-        self.venueTextField.text = stub.name;
+
+        if ([_venueNames count] > 0) {
+            VenueStub *stub = _venueNames[0];
+            self.venueTextField.text = stub.name;
+        }
     }];
 }
 
@@ -131,10 +136,24 @@
 }
 
 
-#pragma mark Private methods
+#pragma mark UIImagePickerViewControllerDelegate methods
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^(void) {
+        _image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    });
+
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+
+#pragma mark Action methods
 
 - (IBAction)cancel:(id)sender
 {
+    _image = nil;
+
     if ((_delegate) && ([_delegate respondsToSelector:@selector(addCheckinViewControllerDidCancel)])) {
         [_delegate addCheckinViewControllerDidCancel];
     }
@@ -151,10 +170,14 @@
         drink.createdTime = [NSDate date];
         drink.modifiedTime = [NSDate date];
         [drink save];
+
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^(void) {
+            [[TMCache sharedCache] setObject:_image forKey:[NSString stringWithFormat:@"%lld", drink.id]];
+        });
     }
 
     int64_t venue_id = 0;
-    if ([_venueNames count] >= _selectedRow) {
+    if (([_venueNames count] > 0) && ([_venueNames count] >= _selectedRow)) {
         VenueStub *stub = _venueNames[_selectedRow];
         venue_id = stub.id;
     }
@@ -170,8 +193,27 @@
     checkin.modifiedTime = [NSDate date];
     [checkin save];
 
+    _image = nil;
+
     if ((_delegate) && ([_delegate respondsToSelector:@selector(addCheckinViewControllerDidFinish)])) {
         [_delegate addCheckinViewControllerDidFinish];
+    }
+}
+
+- (IBAction)takePicture:(id)sender
+{
+    UIImagePickerControllerSourceType sourceType = NULL;
+#if TARGET_IPHONE_SIMULATOR
+    sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+#else
+    sourceType = UIImagePickerControllerSourceTypeCamera;
+#endif
+
+    if ([UIImagePickerController isSourceTypeAvailable:sourceType]) {
+        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+        imagePickerController.delegate = self;
+        imagePickerController.sourceType = sourceType;
+        [self presentViewController:imagePickerController animated:YES completion:NULL];
     }
 }
 
