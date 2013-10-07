@@ -161,7 +161,7 @@
 
 - (IBAction)done:(id)sender
 {
-    User *user = [[User allInstances] firstObject];
+    User *user = [User currentUser];
 
     Drink *drink = [Drink firstInstanceWhere:@"name = ?", self.drinkTextField.text];
     if (drink == nil) {

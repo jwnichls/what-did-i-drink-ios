@@ -7,6 +7,8 @@
 
 @interface User : FCModel
 
++ (instancetype)currentUser;
+
 // database columns
 @property (nonatomic, assign) int64_t id;
 @property (nonatomic, copy) NSString *name;

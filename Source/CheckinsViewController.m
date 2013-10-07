@@ -113,7 +113,7 @@
 
 - (void)_reloadCheckins:(NSNotification *)notification
 {
-    User *user = [[User allInstances] firstObject];
+    User *user = [User currentUser];
     _checkins = [user checkins];
     self.title = [NSString stringWithFormat:@"%@ (%d)", NSLocalizedString(@"Checkins", @"Checkins"), [_checkins count]];
     [_tableView reloadData];

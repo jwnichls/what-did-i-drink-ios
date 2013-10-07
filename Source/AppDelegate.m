@@ -256,7 +256,7 @@
     if (data) {
         id JSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 
-        User *user = [[User allInstances] firstObject];
+        User *user = [User currentUser];
 
         for (NSDictionary *dict in JSON) {
             Checkin *checkin = [Checkin new];
