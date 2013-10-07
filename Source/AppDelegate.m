@@ -149,6 +149,7 @@
                    @"    postalCode   TEXT,"
                    @"    city         TEXT,"
                    @"    state        TEXT,"
+                   @"    country      TEXT,"
                    @"    latitude     REAL,"
                    @"    longitude    REAL,"
                    @"    createdTime  INTEGER NOT NULL,"

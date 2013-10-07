@@ -27,6 +27,7 @@
     CLLocationManager *_locationManager;
     NSArray *_venueNames;
     NSUInteger _selectedRow;
+    BOOL _didEnterVenueName;
     UIImage *_image;
 }
 
@@ -131,6 +132,8 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     _selectedRow = row;
+    _didEnterVenueName = NO;
+
     VenueStub *stub = _venueNames[row];
     self.venueTextField.text = stub.name;
 }
@@ -145,6 +148,18 @@
     });
 
     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+
+#pragma mark UITextFieldDelegate methods
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if ((textField == self.venueTextField) && ([self.venueTextField.text length] > 0)) {
+        _didEnterVenueName = YES;
+    }
+
+    return YES;
 }
 
 
@@ -177,9 +192,39 @@
     }
 
     int64_t venue_id = 0;
-    if (([_venueNames count] > 0) && ([_venueNames count] >= _selectedRow)) {
-        VenueStub *stub = _venueNames[_selectedRow];
-        venue_id = stub.id;
+
+    // if the user has entered a venue name manually, create a new venue with
+    // the user-provided name and the lat & long of the current location
+    if (_didEnterVenueName) {
+        Venue *venue = [Venue new];
+        venue.name = self.venueTextField.text;
+        venue.longitude = _locationManager.location.coordinate.longitude;
+        venue.latitude = _locationManager.location.coordinate.latitude;
+        venue.createdTime = [NSDate date];
+        venue.modifiedTime = [NSDate date];
+        [venue save];
+
+        venue_id = venue.id;
+
+        // try and get address information using the current location
+        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+        [geocoder reverseGeocodeLocation:_locationManager.location completionHandler:^(NSArray *placemarks, NSError* error) {
+            CLPlacemark *placemark = [placemarks firstObject];
+            if (placemark != nil) {
+                venue.address = placemark.thoroughfare;
+                venue.city = placemark.locality;
+                venue.state = placemark.administrativeArea;
+                venue.postalCode = placemark.postalCode;
+                venue.country = placemark.country;
+                [venue save];
+            }
+        }];
+    }
+    else {
+        if (([_venueNames count] > 0) && ([_venueNames count] >= _selectedRow)) {
+            VenueStub *stub = _venueNames[_selectedRow];
+            venue_id = stub.id;
+        }
     }
 
     Checkin *checkin = [Checkin new];

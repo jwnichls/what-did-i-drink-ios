@@ -14,6 +14,7 @@
 @property (nonatomic, copy) NSString *postalCode;
 @property (nonatomic, copy) NSString *city;
 @property (nonatomic, copy) NSString *state;
+@property (nonatomic, copy) NSString *country;
 @property (nonatomic) CGFloat latitude;
 @property (nonatomic) CGFloat longitude;
 //t.boolean  "verified"
