@@ -71,19 +71,13 @@
 		83BFA34A16C866A900D65CFC /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BFA34916C866A900D65CFC /* ISO8601DateFormatter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		83C0FF9B1698D35D00766CBE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C0FF9A1698D35D00766CBE /* MobileCoreServices.framework */; };
 		83C0FFA21698EDF400766CBE /* AFHTTPRequestOperationLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C0FF9E1698EDF400766CBE /* AFHTTPRequestOperationLogger.m */; };
-		83EAE91517FF5DF1003A1A67 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83EAE91417FF5DF1003A1A67 /* Images.xcassets */; };
 		83EAE91817FF6517003A1A67 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EAE91717FF6517003A1A67 /* SettingsViewController.m */; };
-		83EAE91A17FF654D003A1A67 /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83EAE91917FF654D003A1A67 /* SettingsView.xib */; };
-		83EAE91C17FF81DD003A1A67 /* venues.json in Resources */ = {isa = PBXBuildFile; fileRef = 83EAE91B17FF81DD003A1A67 /* venues.json */; };
-		83EAE91E17FF8224003A1A67 /* checkins.json in Resources */ = {isa = PBXBuildFile; fileRef = 83EAE91D17FF8224003A1A67 /* checkins.json */; };
-		83FFD7D215EEB7C40067428C /* drinks.png in Resources */ = {isa = PBXBuildFile; fileRef = 83FFD7D115EEB7C40067428C /* drinks.png */; };
-		83EAE91817FF6517003A1A67 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EAE91717FF6517003A1A67 /* SettingsViewController.m */; };
-		83EAE91A17FF654D003A1A67 /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83EAE91917FF654D003A1A67 /* SettingsView.xib */; };
-		83EAE91C17FF81DD003A1A67 /* venues.json in Resources */ = {isa = PBXBuildFile; fileRef = 83EAE91B17FF81DD003A1A67 /* venues.json */; };
-		83EAE91E17FF8224003A1A67 /* checkins.json in Resources */ = {isa = PBXBuildFile; fileRef = 83EAE91D17FF8224003A1A67 /* checkins.json */; };
 		83EAE91F17FF8703003A1A67 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83EAE91417FF5DF1003A1A67 /* Images.xcassets */; };
 		83EAE92217FF8782003A1A67 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 83EAE92017FF8782003A1A67 /* camera.png */; };
 		83EAE92317FF8782003A1A67 /* camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83EAE92117FF8782003A1A67 /* camera@2x.png */; };
+		83F8AE26180340760002DE99 /* checkins.json in Resources */ = {isa = PBXBuildFile; fileRef = 83EAE91D17FF8224003A1A67 /* checkins.json */; };
+		83F8AE27180340760002DE99 /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83EAE91917FF654D003A1A67 /* SettingsView.xib */; };
+		83F8AE28180340760002DE99 /* venues.json in Resources */ = {isa = PBXBuildFile; fileRef = 83EAE91B17FF81DD003A1A67 /* venues.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -204,11 +198,6 @@
 		83C0FF9D1698EDF400766CBE /* AFHTTPRequestOperationLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationLogger.h; sourceTree = "<group>"; };
 		83C0FF9E1698EDF400766CBE /* AFHTTPRequestOperationLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationLogger.m; sourceTree = "<group>"; };
 		83EAE91417FF5DF1003A1A67 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		83EAE91617FF6517003A1A67 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = Source/SettingsViewController.h; sourceTree = SOURCE_ROOT; };
-		83EAE91717FF6517003A1A67 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = Source/SettingsViewController.m; sourceTree = SOURCE_ROOT; };
-		83EAE91917FF654D003A1A67 /* SettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsView.xib; path = Resources/Interfaces/SettingsView.xib; sourceTree = SOURCE_ROOT; };
-		83EAE91B17FF81DD003A1A67 /* venues.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = venues.json; sourceTree = "<group>"; };
-		83EAE91D17FF8224003A1A67 /* checkins.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkins.json; sourceTree = "<group>"; };
 		83EAE91617FF6517003A1A67 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = Source/SettingsViewController.h; sourceTree = SOURCE_ROOT; };
 		83EAE91717FF6517003A1A67 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = Source/SettingsViewController.m; sourceTree = SOURCE_ROOT; };
 		83EAE91917FF654D003A1A67 /* SettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsView.xib; path = Resources/Interfaces/SettingsView.xib; sourceTree = SOURCE_ROOT; };
@@ -574,7 +563,7 @@
 		838B217E1537660300F36DB0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = N/A;
 				TargetAttributes = {
 					838B21861537660300F36DB0 = {
@@ -608,33 +597,14 @@
 				83EAE92317FF8782003A1A67 /* camera@2x.png in Resources */,
 				83EAE91F17FF8703003A1A67 /* Images.xcassets in Resources */,
 				830590A8167FA13E00BCD9F8 /* Default-568h@2x.png in Resources */,
-				83EAE91E17FF8224003A1A67 /* checkins.json in Resources */,
+				83F8AE26180340760002DE99 /* checkins.json in Resources */,
 				8391BB5017F5114B00E0B2F1 /* drinks.json in Resources */,
-				83EAE91C17FF81DD003A1A67 /* venues.json in Resources */,
-				8383E47B16C86B8F0007C470 /* wishlist.png in Resources */,
+				83F8AE28180340760002DE99 /* venues.json in Resources */,
 				83EAE92217FF8782003A1A67 /* camera.png in Resources */,
-				83EAE91C17FF81DD003A1A67 /* venues.json in Resources */,
 				833D482417F222D60006BD62 /* AddCheckinView.xib in Resources */,
 				8386699017F391F0000891C6 /* CheckinDetailsView.xib in Resources */,
-				8383E47C16C86B8F0007C470 /* wishlist@2x.png in Resources */,
-				8383E47F16C86C450007C470 /* checkins.png in Resources */,
-				8383E48016C86C450007C470 /* checkins@2x.png in Resources */,
-				8383E48316C86E4E0007C470 /* timeline.png in Resources */,
-				8383E48416C86E4E0007C470 /* timeline@2x.png in Resources */,
-				8356D7881760018B00C9D757 /* navbar.png in Resources */,
-				8356D7891760018B00C9D757 /* navbar@2x.png in Resources */,
-				8356D78C17603AD100C9D757 /* toolbar.png in Resources */,
-				83EAE91A17FF654D003A1A67 /* SettingsView.xib in Resources */,
-				8356D78D17603AD100C9D757 /* toolbar@2x.png in Resources */,
-				83EAE91A17FF654D003A1A67 /* SettingsView.xib in Resources */,
+				83F8AE27180340760002DE99 /* SettingsView.xib in Resources */,
 				833BD22617F79D3D002C8F37 /* CheckinTableViewCell.xib in Resources */,
-				8356D792176040C400C9D757 /* chevron.png in Resources */,
-				8356D793176040C400C9D757 /* chevron@2x.png in Resources */,
-				8356D794176040C400C9D757 /* location.png in Resources */,
-				83EAE91E17FF8224003A1A67 /* checkins.json in Resources */,
-				8356D795176040C400C9D757 /* location@2x.png in Resources */,
-				830DBADC1760479B004E5D2D /* venue.png in Resources */,
-				830DBADD1760479B004E5D2D /* venue@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,7 +702,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -748,6 +717,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -756,7 +726,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
