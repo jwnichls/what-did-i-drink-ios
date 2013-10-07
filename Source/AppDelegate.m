@@ -13,12 +13,14 @@
 #import "FCModel.h"
 #import "GAI.h"
 #import "ISO8601DateFormatter.h"
+#include "SettingsViewController.h"
 #import "TMCache.h"
 #import "User.h"
 #import "Venue.h"
 
 @implementation AppDelegate {
     CLLocationManager *_locationManager;
+    SettingsViewController *_settingsViewController;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -31,10 +33,6 @@
 
     [self _configureDatabase];
 
-    [self _importVenueData];
-    [self _importDrinkData];
-    [self _importCheckinData];
-
     [self _customizeAppearance];
 
     // checkins
@@ -43,6 +41,10 @@
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = self.navigationController;
+
+    _settingsViewController = [[SettingsViewController alloc] init];
+    [self.window addSubview:_settingsViewController.view];
+
     [self.window makeKeyAndVisible];
 
     [self _configureCrashlytics];
@@ -77,7 +79,7 @@
     NSLog(@"INFO: DB Path: %@", dbPath);
 
     // New DB on every launch for testing (comment out for persistence testing)
-    [[NSFileManager defaultManager] removeItemAtPath:dbPath error:NULL];
+//    [[NSFileManager defaultManager] removeItemAtPath:dbPath error:NULL];
 
     [FCModel openDatabaseAtPath:dbPath withSchemaBuilder:^(FMDatabase *db, int *schemaVersion) {
         // crash on every error to help with debugging
@@ -247,107 +249,6 @@
 //    [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithHue:202 saturation:67 brightness:100 alpha:1.0]];
 }
 
-- (void)_importCheckinData
-{
-    ISO8601DateFormatter *dateFormatter = [[ISO8601DateFormatter alloc] init];
-
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"checkins" ofType:@"json"];
-    NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-
-    if (data) {
-        id JSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-
-        User *user = [User currentUser];
-
-        for (NSDictionary *dict in JSON) {
-            Checkin *checkin = [Checkin new];
-            checkin.user_id = user.id;
-            // TODO: this should not be necessary, we should only save the id of the drink
-            Drink *drink = [Drink instanceWithPrimaryKey:[dict valueForKey:@"drink_id"]];
-            checkin.name = drink.name;
-//            id location = [dict valueForKey:@"location"];
-//            checkin.longitude = 0;
-//            checkin.latitude = 0;
-            id venue_id = [dict valueForKey:@"venue_id"];
-            if (venue_id != [NSNull null]) checkin.venue_id = [venue_id integerValue];
-            id drink_id = [dict valueForKey:@"drink_id"];
-            if (drink_id && drink_id != [NSNull null]) checkin.drink_id = [drink_id integerValue];
-            checkin.notes = [dict valueForKey:@"notes"];
-
-            // convert and import 'created_at' from ISO8601
-            NSDate *createdTime = [dateFormatter dateFromString:[dict valueForKey:@"created_at"]];
-            checkin.createdTime = createdTime;
-
-            // convert and import 'created_at' from ISO8601
-            NSDate *modifiedTime = [dateFormatter dateFromString:[dict valueForKey:@"updated_at"]];
-            checkin.modifiedTime = modifiedTime;
-            [checkin save];
-        }
-    }
-}
-
-- (void)_importDrinkData
-{
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"drinks" ofType:@"json"];
-    NSData *drinkData = [[NSData alloc] initWithContentsOfFile:path];
-
-    if (drinkData) {
-        id JSON = [NSJSONSerialization JSONObjectWithData:drinkData options:0 error:nil];
-
-        for (NSDictionary *dict in JSON) {
-            Drink *drink = [Drink instanceWithPrimaryKey:[dict valueForKey:@"id"]];
-            drink.name = [dict valueForKey:@"name"];
-            drink.creator = [dict valueForKey:@"created_by"];
-// TODO:            drink.recipe = [dict valueForKey:@"recipe_raw"];
-            drink.createdTime = [NSDate date];
-            drink.modifiedTime = [NSDate date];
-            [drink save];
-
-            // download images
-            NSArray *images = [dict valueForKey:@"images"];
-            if ((images != nil) && ([images count] > 0)) {
-                NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
-                sessionConfiguration.allowsCellularAccess = YES;
-                NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
-
-                NSString *imageURL = [[images valueForKeyPath:@"image.image"] objectAtIndex:0];
-                NSURL *url = [NSURL URLWithString:[@"http://whatdididrink.com" stringByAppendingPathComponent:imageURL]];
-
-                NSURLSessionDataTask *dataTask = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                    UIImage *image = [UIImage imageWithData:data];
-                    [[TMCache sharedCache] setObject:image forKey:[NSString stringWithFormat:@"%lld", drink.id]];
-                }];
-                [dataTask resume];
-            }
-        }
-    }
-}
-
-- (void)_importVenueData
-{
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"venues" ofType:@"json"];
-    NSData *venueData = [[NSData alloc] initWithContentsOfFile:path];
-
-    if (venueData) {
-        id JSON = [NSJSONSerialization JSONObjectWithData:venueData options:0 error:nil];
-
-        for (NSDictionary *dict in JSON) {
-            NSNumber *venue_id = [dict valueForKey:@"id"];
-
-            Venue *venue = [Venue instanceWithPrimaryKey:venue_id];
-            venue.name = [dict valueForKey:@"name"];
-            venue.address = [dict valueForKey:@"address"];
-            venue.city = [dict valueForKey:@"city"];
-            venue.postalCode = [dict valueForKey:@"postalCode"];
-            venue.state = [dict valueForKey:@"state"];
-            venue.longitude = [[dict valueForKey:@"lng"] floatValue];
-            venue.latitude = [[dict valueForKey:@"lat"] floatValue];
-//            venue.createdTime = [dict valueForKey:@"created_at"];
-//            venue.modifiedTime = [dict valueForKey:@"modified_at"];
-            [venue save];
-        }
-    }
-}
 
 - (void)_updateVenueData
 {

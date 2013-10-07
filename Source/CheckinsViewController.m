@@ -12,6 +12,8 @@
 
 @implementation CheckinsViewController {
     __strong UITableView *_tableView;
+    UITapGestureRecognizer *_gestureRecognizer;
+
     NSArray *_checkins;
 }
 
@@ -22,12 +24,21 @@
         self.title = NSLocalizedString(@"Checkins", @"Checkins");
         self.tabBarItem.image = [UIImage imageNamed:@"checkins"];
 
+        // create & add a add checkin button
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                                target:self
                                                                                                action:@selector(_addCheckin)];
 
+        // create & add a button to reveal the settings
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize
+                                                                                        target:self
+                                                                                        action:@selector(_showSettings)];
+
+
         // TODO: show a message if there are no check-ins yet
 
+
+        // configure the table view
         CGRect frame = CGRectMake(0.0, 0.0, 320.0, self.view.frame.size.height);
         _tableView = [[UITableView alloc] initWithFrame:frame];
         _tableView.dataSource = self;
@@ -38,6 +49,8 @@
         UINib *cellNib = [UINib nibWithNibName:@"CheckinTableViewCell" bundle:nil];
         [_tableView registerNib:cellNib forCellReuseIdentifier:@"CheckinCellIdentifier"];
 
+
+        // load all checkins
         [self _reloadCheckins:nil];
 
         [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_reloadCheckins:) name:FCModelInsertNotification object:Checkin.class];
@@ -117,6 +130,30 @@
     _checkins = [user checkins];
     self.title = [NSString stringWithFormat:@"%@ (%d)", NSLocalizedString(@"Checkins", @"Checkins"), [_checkins count]];
     [_tableView reloadData];
+}
+
+- (void)_showSettings
+{
+    _gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_hideSettings)];
+    [self.view addGestureRecognizer:_gestureRecognizer];
+
+    self.navigationItem.leftBarButtonItem.enabled = NO;
+
+    [UIView animateWithDuration:0.5 animations:^{
+        self.navigationController.view.x += 300.0f;
+    }];
+}
+
+- (void)_hideSettings
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        self.navigationController.view.x = 0.0f;
+    }];
+
+    [self.view removeGestureRecognizer:_gestureRecognizer];
+    _gestureRecognizer = nil;
+
+    self.navigationItem.leftBarButtonItem.enabled = YES;
 }
 
 @end

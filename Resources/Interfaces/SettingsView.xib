@@ -7,6 +7,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsViewController">
             <connections>
+                <outlet property="deleteAllLocalDataButton" destination="w1o-1y-nqr" id="duT-sg-UKN"/>
+                <outlet property="importCheckinsButton" destination="j8o-Ed-8Sg" id="Rfg-4W-ukO"/>
+                <outlet property="importDrinksButton" destination="JSe-Cc-rXb" id="4ti-oZ-ZhJ"/>
+                <outlet property="importVenuesButton" destination="K7c-ia-joV" id="4ZW-WH-hco"/>
                 <outlet property="view" destination="1" id="fAl-Ao-pqJ"/>
             </connections>
         </placeholder>
@@ -22,7 +26,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="importVenueData:" destination="-1" eventType="touchUpInside" id="a42-Ss-d07"/>
+                        <action selector="importVenues:" destination="-1" eventType="touchUpInside" id="vlT-Ls-b32"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSe-Cc-rXb">
@@ -32,7 +36,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="importDrinkData:" destination="-1" eventType="touchUpInside" id="jha-UI-wEG"/>
+                        <action selector="importDrinks:" destination="-1" eventType="touchUpInside" id="FC2-ah-8Nq"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j8o-Ed-8Sg">
@@ -42,7 +46,18 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="importCheckinData:" destination="-1" eventType="touchUpInside" id="g1b-aH-9Dz"/>
+                        <action selector="importCheckins:" destination="-1" eventType="touchUpInside" id="jVN-gb-erD"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1o-1y-nqr">
+                    <rect key="frame" x="89" y="282" width="143" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Delete All Local Data">
+                        <color key="titleColor" red="1" green="0.023573720190035896" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="deleteAllLocalData:" destination="-1" eventType="touchUpInside" id="V9r-d6-nA5"/>
                     </connections>
                 </button>
             </subviews>
