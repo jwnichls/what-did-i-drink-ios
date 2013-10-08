@@ -5,7 +5,6 @@
 //
 
 #import "AppDelegate.h"
-#import <Crashlytics/Crashlytics.h>
 #import "Checkin.h"
 #import "CheckinsViewController.h"
 #import "Client.h"
@@ -67,7 +66,7 @@
 
 - (void)_configureCrashlytics
 {
-    [Crashlytics startWithAPIKey:@"d428b1fbc4aadc4e5f99cce2c43724eb9e62055e"];
+    //[Crashlytics startWithAPIKey:@"d428b1fbc4aadc4e5f99cce2c43724eb9e62055e"];
 }
 
 
