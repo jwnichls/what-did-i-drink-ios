@@ -30,9 +30,13 @@
                                                                                                action:@selector(_addCheckin)];
 
         // create & add a button to reveal the settings
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize
-                                                                                        target:self
-                                                                                        action:@selector(_showSettings)];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings.png"]
+                                                                                 style:UIBarButtonItemStylePlain
+                                                                                target:self
+                                                                                action:@selector(_showSettings)];
+//        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize
+//                                                                                        target:self
+//                                                                                        action:@selector(_showSettings)];
 
 
         // TODO: show a message if there are no check-ins yet

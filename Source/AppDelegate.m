@@ -1,21 +1,17 @@
 //
-//
 //  Created by Chris Kau on 4/12/12.
 //  Copyright (c) 2012 N/A. All rights reserved.
 //
 
 #import "AppDelegate.h"
 #import "Checkin.h"
+#import <Crashlytics/Crashlytics.h>
 #import "CheckinsViewController.h"
-#import "Client.h"
-#import "Drink.h"
+#import "DownloadManager.h"
 #import "FCModel.h"
 #import "GAI.h"
-#import "ISO8601DateFormatter.h"
 #include "SettingsViewController.h"
-#import "TMCache.h"
 #import "User.h"
-#import "Venue.h"
 
 @implementation AppDelegate {
     CLLocationManager *_locationManager;
@@ -34,7 +30,9 @@
 
     [self _customizeAppearance];
 
-    // checkins
+    [self _configureBackgroundFetch];
+
+    // create the checkins view controller
     CheckinsViewController *checkinsViewController = [[CheckinsViewController alloc] init];
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:checkinsViewController];
 
@@ -46,9 +44,26 @@
 
     [self.window makeKeyAndVisible];
 
+    // fetch the latest venues
+    [[DownloadManager sharedManager] updateVenues];
+
+    // fetch the latest drinks
+    [[DownloadManager sharedManager] updateDrinks];
+
     [self _configureCrashlytics];
 
     return YES;
+}
+
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    // fetch the latest venues
+    [[DownloadManager sharedManager] updateVenues];
+
+    // fetch the latest drinks
+    [[DownloadManager sharedManager] updateDrinks];
+
+    completionHandler(UIBackgroundFetchResultNewData);
 }
 
 - (CLLocationManager *)locationManager
@@ -69,6 +84,10 @@
     //[Crashlytics startWithAPIKey:@"d428b1fbc4aadc4e5f99cce2c43724eb9e62055e"];
 }
 
+- (void)_configureBackgroundFetch
+{
+    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+}
 
 #define DEG2RAD(degrees) (degrees * 0.01745327) // degrees * pi over 180
 
@@ -88,7 +107,7 @@
         [db setShouldCacheStatements:YES];
 
         // log every query (useful to learn what FCModel is doing or analyze performance)
-        [db setTraceExecution:YES];
+//        [db setTraceExecution:YES];
 
 
         [db beginTransaction];
@@ -246,28 +265,6 @@
     // customize the appearance of the tool bar
 //    [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"toolbar.png"]];
 //    [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithHue:202 saturation:67 brightness:100 alpha:1.0]];
-}
-
-
-- (void)_updateVenueData
-{
-    [[Client sharedClient] allVenuesWithCompletionHandler:^(id JSON, NSError *error) {
-//        NSArray *venues = [NSJSONSerialization JSONObjectWithData:JSON options:0 error:NULL];
-
-        for (NSDictionary *dict in JSON) {
-            Venue *venue = [Venue new];
-            venue.name = [dict valueForKey:@"name"];
-            venue.address = [dict valueForKey:@"address"];
-            venue.city = [dict valueForKey:@"city"];
-            venue.postalCode = [dict valueForKey:@"postalCode"];
-            venue.state = [dict valueForKey:@"state"];
-            venue.longitude = [[dict valueForKey:@"lng"] floatValue];
-            venue.latitude = [[dict valueForKey:@"lat"] floatValue];
-//            venue.createdTime = [dict valueForKey:@"created_at"];
-//            venue.modifiedTime = [dict valueForKey:@"modified_at"];
-            [venue save];
-        }
-    }];
 }
 
 @end

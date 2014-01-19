@@ -15,9 +15,11 @@ NSString *const kHTTP_METHOD_PUT = @"PUT";
 
 
 NSString *const kBaseURLString = @"http://api.whatdididrink.com";
+//NSString *const kBaseURLString = @"http://api.drinks.dev:3000";
 
 @interface Client () {
     void(^_onFetchDrinksBlock)(id JSON, NSError *error);
+    NSDateFormatter *_dateFormatter;
 }
 
 @end
@@ -46,10 +48,13 @@ NSString *const kBaseURLString = @"http://api.whatdididrink.com";
     [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
     [self setDefaultHeader:@"Accept" value:@"application/json"];
 
+    _dateFormatter = [[NSDateFormatter alloc] init];
+    [_dateFormatter setDateFormat:@"YYYY-MM-dd"];
+
     return self;
 }
 
-- (void)allDrinksWithCompletionHandler:(void (^)(id JSON, NSError *error))completion
+- (void)allDrinksWithCompletionHandler:(void (^)(id JSON, NSError *error))handler
 {
     NSMutableURLRequest *request = [self _mutableRequestWithMethod:kHTTP_METHOD_GET
                                                               path:@"/drinks"
@@ -57,16 +62,39 @@ NSString *const kBaseURLString = @"http://api.whatdididrink.com";
     AFHTTPRequestOperation *operation =
     [self HTTPRequestOperationWithRequest:request
                                   success:^(AFHTTPRequestOperation *op, id responseObject) {
-                                      if (completion) {
-                                          completion(responseObject, nil);
+                                      if (handler) {
+                                          handler(responseObject, nil);
                                       }
                                   }
                                   failure:^(AFHTTPRequestOperation *op, NSError *error) {
-                                      if (completion) {
-                                          completion(nil, error);
+                                      if (handler) {
+                                          handler(nil, error);
                                       }
                                   }];
 
+    [self.operationQueue addOperation:operation];
+}
+
+- (void)allDrinksSinceDate:(NSDate *)date completion:(void (^)(id JSON, NSError *error))handler
+{
+    NSString *dateString = [_dateFormatter stringFromDate:date];
+    NSDictionary *paramters = @{ @"since" : dateString };
+    NSMutableURLRequest *request = [self _mutableRequestWithMethod:kHTTP_METHOD_GET
+                                                              path:@"/drinks"
+                                                        parameters:paramters];
+    AFHTTPRequestOperation *operation =
+    [self HTTPRequestOperationWithRequest:request
+                                  success:^(AFHTTPRequestOperation *op, id responseObject) {
+                                      if (handler) {
+                                          handler(responseObject, nil);
+                                      }
+                                  }
+                                  failure:^(AFHTTPRequestOperation *op, NSError *error) {
+                                      if (handler) {
+                                          handler(nil, error);
+                                      }
+                                  }];
+    
     [self.operationQueue addOperation:operation];
 }
 
@@ -162,28 +190,51 @@ NSString *const kBaseURLString = @"http://api.whatdididrink.com";
     [self.operationQueue addOperation:operation];
 }
 
+- (void)allCheckinsSinceDate:(NSDate *)date completion:(void (^)(id JSON, NSError *error))handler
+{
+    NSString *dateString = [_dateFormatter stringFromDate:date];
+    NSDictionary *paramters = @{ @"since" : dateString };
+    NSMutableURLRequest *request = [self _mutableRequestWithMethod:kHTTP_METHOD_GET
+                                                              path:@"/checkins"
+                                                        parameters:paramters];
+    AFHTTPRequestOperation *operation =
+    [self HTTPRequestOperationWithRequest:request
+                                  success:^(AFHTTPRequestOperation *op, id responseObject) {
+                                      if (handler) {
+                                          handler(responseObject, nil);
+                                      }
+                                  }
+                                  failure:^(AFHTTPRequestOperation *op, NSError *error) {
+                                      if (handler) {
+                                          handler(nil, error);
+                                      }
+                                  }];
+
+    [self.operationQueue addOperation:operation];
+}
+
 - (void)addCheckin:(Checkin *)checkin completion:(void (^)(id JSON, NSError *error))completion
 {
-//    NSDictionary *parameters = @{ @"drink_id" : [NSNumber numberWithInteger:checkin.drink_id] };
-//
-//    NSMutableURLRequest *request = [self _mutableRequestWithMethod:kHTTP_METHOD_POST
-//                                                              path:@"/checkins"
-//                                                        parameters:parameters];
-//
-//    AFHTTPRequestOperation *operation =
-//    [self HTTPRequestOperationWithRequest:request
-//                                  success:^(AFHTTPRequestOperation *op, id responseObject) {
-//                                      if (completion) {
-//                                          completion(responseObject, nil);
-//                                      }
-//                                  }
-//                                  failure:^(AFHTTPRequestOperation *op, NSError *error) {
-//                                      if (completion) {
-//                                          completion(nil, error);
-//                                      }
-//                                  }];
-//
-//    [self.operationQueue addOperation:operation];
+    NSDictionary *parameters = @{ @"drink_id" : [NSNumber numberWithInteger:checkin.drink_id] };
+
+    NSMutableURLRequest *request = [self _mutableRequestWithMethod:kHTTP_METHOD_POST
+                                                              path:@"/checkins"
+                                                        parameters:parameters];
+
+    AFHTTPRequestOperation *operation =
+    [self HTTPRequestOperationWithRequest:request
+                                  success:^(AFHTTPRequestOperation *op, id responseObject) {
+                                      if (completion) {
+                                          completion(responseObject, nil);
+                                      }
+                                  }
+                                  failure:^(AFHTTPRequestOperation *op, NSError *error) {
+                                      if (completion) {
+                                          completion(nil, error);
+                                      }
+                                  }];
+
+    [self.operationQueue addOperation:operation];
 }
 
 - (void)detailsForCheckinWithID:(NSUInteger)checkinID completion:(void (^)(id JSON, NSError *error))completion
@@ -312,6 +363,28 @@ NSString *const kBaseURLString = @"http://api.whatdididrink.com";
                                                               path:@"/venues"
                                                         parameters:nil];
 
+    AFHTTPRequestOperation *operation =
+    [self HTTPRequestOperationWithRequest:request
+                                  success:^(AFHTTPRequestOperation *op, id responseObject) {
+                                      if (handler) {
+                                          handler(responseObject, nil);
+                                      }
+                                  }
+                                  failure:^(AFHTTPRequestOperation *op, NSError *error) {
+                                      if (handler) {
+                                          handler(nil, error);
+                                      }
+                                  }];
+
+    [self.operationQueue addOperation:operation];
+}
+
+- (void)allVenuesSinceDate:(NSDate *)date completion:(void (^)(id JSON, NSError *error))handler
+{
+    NSDictionary *paramters = @{ @"since" : @"2013-10-04" };
+    NSMutableURLRequest *request = [self _mutableRequestWithMethod:kHTTP_METHOD_GET
+                                                              path:@"/venues"
+                                                        parameters:paramters];
     AFHTTPRequestOperation *operation =
     [self HTTPRequestOperationWithRequest:request
                                   success:^(AFHTTPRequestOperation *op, id responseObject) {

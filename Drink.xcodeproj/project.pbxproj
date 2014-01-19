@@ -6,20 +6,6 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		833C648F17F213930018750B /* mogenerator */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 833C649017F213930018750B /* Build configuration list for PBXAggregateTarget "mogenerator" */;
-			buildPhases = (
-				833C649317F2139C0018750B /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = mogenerator;
-			productName = mogenerator;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		830590A8167FA13E00BCD9F8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 830590A7167FA13E00BCD9F8 /* Default-568h@2x.png */; };
 		8306A58A15376AF70019AED5 /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 8306A58915376AF70019AED5 /* Client.m */; };
@@ -57,6 +43,8 @@
 		8377787D153768FE009EE79F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83777878153768FE009EE79F /* AppDelegate.m */; };
 		8377787F153768FE009EE79F /* CheckinsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377787C153768FE009EE79F /* CheckinsViewController.m */; };
 		8377788215376906009EE79F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377788115376906009EE79F /* main.m */; };
+		8380A9E7188B3EC600F21BCA /* NSUserDefaults-Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8380A9E6188B3EC600F21BCA /* NSUserDefaults-Extensions.m */; };
+		8380A9EA188B450700F21BCA /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8380A9E9188B450700F21BCA /* DownloadManager.m */; };
 		8386699017F391F0000891C6 /* CheckinDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8386698F17F391F0000891C6 /* CheckinDetailsView.xib */; };
 		8386699317F3B38D000891C6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 8386699217F3B38D000891C6 /* User.m */; };
 		838B218C1537660300F36DB0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 838B218B1537660300F36DB0 /* UIKit.framework */; };
@@ -165,6 +153,10 @@
 		8377787C153768FE009EE79F /* CheckinsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CheckinsViewController.m; path = Source/CheckinsViewController.m; sourceTree = SOURCE_ROOT; };
 		8377788015376906009EE79F /* Drink-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Drink-Prefix.pch"; path = "Source/Drink-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		8377788115376906009EE79F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/main.m; sourceTree = SOURCE_ROOT; };
+		8380A9E5188B3EC600F21BCA /* NSUserDefaults-Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSUserDefaults-Extensions.h"; path = "Source/NSUserDefaults-Extensions.h"; sourceTree = SOURCE_ROOT; };
+		8380A9E6188B3EC600F21BCA /* NSUserDefaults-Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSUserDefaults-Extensions.m"; path = "Source/NSUserDefaults-Extensions.m"; sourceTree = SOURCE_ROOT; };
+		8380A9E8188B450700F21BCA /* DownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DownloadManager.h; path = Source/DownloadManager.h; sourceTree = SOURCE_ROOT; };
+		8380A9E9188B450700F21BCA /* DownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DownloadManager.m; path = Source/DownloadManager.m; sourceTree = SOURCE_ROOT; };
 		8383E47916C86B8F0007C470 /* wishlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wishlist.png; sourceTree = "<group>"; };
 		8383E47A16C86B8F0007C470 /* wishlist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wishlist@2x.png"; sourceTree = "<group>"; };
 		8383E47D16C86C450007C470 /* checkins.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkins.png; sourceTree = "<group>"; };
@@ -307,6 +299,8 @@
 			children = (
 				83BFA34516C8649F00D65CFC /* NSDate-Extensions.h */,
 				83BFA34616C8649F00D65CFC /* NSDate-Extensions.m */,
+				8380A9E5188B3EC600F21BCA /* NSUserDefaults-Extensions.h */,
+				8380A9E6188B3EC600F21BCA /* NSUserDefaults-Extensions.m */,
 				83358471168002B80066D745 /* UIImage-Extensions.h */,
 				83358472168002B80066D745 /* UIImage-Extensions.m */,
 				83358473168002B80066D745 /* UIView-Extensions.h */,
@@ -371,6 +365,7 @@
 		8377782D153768AB009EE79F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				83EAE91417FF5DF1003A1A67 /* Images.xcassets */,
 				83EAE92017FF8782003A1A67 /* camera.png */,
 				83EAE92117FF8782003A1A67 /* camera@2x.png */,
 				8356D78E176040C400C9D757 /* chevron.png */,
@@ -392,7 +387,6 @@
 				830DBADB1760479B004E5D2D /* venue@2x.png */,
 				8383E47916C86B8F0007C470 /* wishlist.png */,
 				8383E47A16C86B8F0007C470 /* wishlist@2x.png */,
-				83EAE91417FF5DF1003A1A67 /* Images.xcassets */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -430,6 +424,15 @@
 				8391BB5217F5123E00E0B2F1 /* Drink.m */,
 			);
 			name = "Data Model";
+			sourceTree = "<group>";
+		};
+		8380A9EB188B459800F21BCA /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				833BD22217F79A91002C8F37 /* CheckinTableViewCell.h */,
+				833BD22317F79A91002C8F37 /* CheckinTableViewCell.m */,
+			);
+			name = "Table View Cells";
 			sourceTree = "<group>";
 		};
 		838B217C1537660300F36DB0 = {
@@ -481,12 +484,13 @@
 				83358470168002730066D745 /* Extensions */,
 				83777877153768FE009EE79F /* AppDelegate.h */,
 				83777878153768FE009EE79F /* AppDelegate.m */,
+				8380A9E8188B450700F21BCA /* DownloadManager.h */,
+				8380A9E9188B450700F21BCA /* DownloadManager.m */,
 				8306A57E15376A480019AED5 /* View Controllers */,
+				8380A9EB188B459800F21BCA /* Table View Cells */,
 				8306A57C15376A390019AED5 /* REST API Client */,
 				8377D20E169671B100940912 /* Data Model */,
 				838B21921537660300F36DB0 /* Supporting Files */,
-				833BD22217F79A91002C8F37 /* CheckinTableViewCell.h */,
-				833BD22317F79A91002C8F37 /* CheckinTableViewCell.m */,
 			);
 			name = Source;
 			path = Drink;
@@ -566,6 +570,11 @@
 				TargetAttributes = {
 					838B21861537660300F36DB0 = {
 						DevelopmentTeam = U67574366T;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -582,7 +591,6 @@
 			projectRoot = "";
 			targets = (
 				838B21861537660300F36DB0 /* Drink */,
-				833C648F17F213930018750B /* mogenerator */,
 			);
 		};
 /* End PBXProject section */
@@ -608,22 +616,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		833C649317F2139C0018750B /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cd $PROJECT_DIR/Source/DataModel\n/usr/local/bin/mogenerator --template-var arc=true -m 'DataModel.xcdatamodeld/Datamodel.xcdatamodel'";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		838B21831537660300F36DB0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -634,6 +626,7 @@
 				831CD8CF17FA35AE006CAA96 /* TMDiskCache.m in Sources */,
 				83EAE91817FF6517003A1A67 /* SettingsViewController.m in Sources */,
 				8377788215376906009EE79F /* main.m in Sources */,
+				8380A9EA188B450700F21BCA /* DownloadManager.m in Sources */,
 				831CD8CE17FA35AE006CAA96 /* TMCache.m in Sources */,
 				833BD22417F79A91002C8F37 /* CheckinTableViewCell.m in Sources */,
 				833D484617F24E250006BD62 /* Venue.m in Sources */,
@@ -648,6 +641,7 @@
 				836F7F81167FAA19002F30AB /* AFImageRequestOperation.m in Sources */,
 				833D483517F2387F0006BD62 /* FMDatabase.m in Sources */,
 				833D483A17F2387F0006BD62 /* FMResultSet.m in Sources */,
+				8380A9E7188B3EC600F21BCA /* NSUserDefaults-Extensions.m in Sources */,
 				836F7F82167FAA19002F30AB /* AFJSONRequestOperation.m in Sources */,
 				836F7F83167FAA19002F30AB /* AFNetworkActivityIndicatorManager.m in Sources */,
 				836F7F84167FAA19002F30AB /* AFPropertyListRequestOperation.m in Sources */,
@@ -682,20 +676,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		833C649117F213930018750B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		833C649217F213930018750B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		838B21B11537660300F36DB0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -793,15 +773,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		833C649017F213930018750B /* Build configuration list for PBXAggregateTarget "mogenerator" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				833C649117F213930018750B /* Debug */,
-				833C649217F213930018750B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		838B21811537660300F36DB0 /* Build configuration list for PBXProject "Drink" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

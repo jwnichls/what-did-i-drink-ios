@@ -17,6 +17,7 @@
     #import "UIView-Extensions.h"
     #import "UIImage-Extensions.h"
     #import "NSDate-Extensions.h"
+    #import "NSUserDefaults-Extensions.h"
 #endif
 
 #define TABLE_VIEW_BACKGROUND_COLOR [UIColor colorWithRed:0.231 green:0.263 blue:0.302 alpha:1.0]
